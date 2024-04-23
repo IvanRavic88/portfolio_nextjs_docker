@@ -1,5 +1,7 @@
-import { Button } from "@/components/ui/button";
-import { NavMenu } from "./components/Navbar";
+"use client";
+
+import { motion } from "framer-motion";
+
 export default function Home() {
   return (
     <>
@@ -8,19 +10,23 @@ export default function Home() {
           style={{ backgroundImage: `url('/hero-img 1.png')` }}
           className="bg-cover bg-center bg-no-repeat h-screen relative "
         >
-          <NavMenu />
-          <div className="flex flex-col items-start justify-center h-screen p-10 md:p-20 space-y-6">
+          <motion.div
+            initial={{ y: -100, opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            transition={{ ease: "easeInOut", duration: 2 }}
+            className="flex flex-col items-start justify-center h-screen p-10 md:p-20 space-y-6"
+          >
             <h1 className="text-6xl font-bold text-left text-custom-red">
-              Software Developer
+              Ivan Ravić
             </h1>
-            <p className="text-4xl text-left text-custom-yellow">
-              Hello, I&apos;m Ivan. 👋
+
+            <p className="text-2xl text-left text-white max-w-xl">
+              Dedicated software developer with{" "}
+              <span className="text-custom-yellow">
+                AWS Developer Associate certification.
+              </span>
             </p>
-            <p className="text-2xl text-left text-white">
-              I&apos;m a dedicated software developer with AWS Developer
-              Associate certification.
-            </p>
-          </div>
+          </motion.div>
         </section>
       </main>
     </>

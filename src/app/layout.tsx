@@ -1,8 +1,13 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Playfair_Display } from "next/font/google";
 import "./globals.css";
-import { NavMenu } from "./components/Navbar";
-const inter = Inter({ subsets: ["latin"] });
+import Header from "../components/Header";
+import Footer from "../components/Footer";
+
+const playfair_display = Playfair_Display({
+  subsets: ["latin-ext"],
+  weight: ["400", "700"],
+});
 
 export const metadata: Metadata = {
   title: "Ivan Ravić @Portfolio_Website",
@@ -17,7 +22,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={` w-full min-h-screen  ${playfair_display.className}`}>
+        <Header />
+        {children}
+        <Footer />
+      </body>
     </html>
   );
 }

@@ -12,6 +12,12 @@ This project is a result of dedicated effort, built using some of my favorite te
 
 - **Framer Motion**: For animations, I use Framer Motion. It's a production-ready motion library for React that makes animating elements and components a piece of cake.
 
+-**Docker**: I have used Docker to containerize the application.
+
+-**NGNX**: I have used NGNX as a reverse proxy server for the application.
+
+-**AWS**: I have used AWS to deploy the application.
+
 ## Want to Dive In? 🏊‍♀️
 
 Here's how you can get started with this project:
@@ -24,10 +30,10 @@ Here's how you can get started with this project:
 
 Here's a quick overview of how this project is organized:
 
-- `pages`: This is where the application's pages live. Each file corresponds to a route based on its name.
+- `src`: This is where the source code lives.
 - `components`: This is where I keep reusable React components.
 - `public`: This is for static assets like images.
-- `styles`: This is for global styles or themes.
+
 - `node_modules`: This is where the installed dependencies hang out.
 - `package.json`: This file defines the project configuration and lists the dependencies.
 

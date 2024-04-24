@@ -3,15 +3,15 @@ import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { ContactForm } from "@/components/ContactForm";
-import EmailIcon from "@/public/email 1.svg";
-import GitHubIcon from "@/public/github 1.svg";
-import LinkedInIcon from "@/public/linkedin 1.svg";
+import EmailIcon from "@/public/email_1.svg";
+import GitHubIcon from "@/public/github_1.svg";
+import LinkedInIcon from "@/public/linkedin_1.svg";
 import PhoneIcon from "@/public/phone-icon.svg";
 
 export default function ContactPage() {
   return (
     <section
-      style={{ backgroundImage: `url("/hero-img 1.png" )` }}
+      style={{ backgroundImage: `url("/hero-img_1.png" )` }}
       className="bg-cover bg-center bg-no-repeat h-screen relative flex p-28"
     >
       <div className="text-left text-white grid grid-cols-2 gap-72 min-w-full">

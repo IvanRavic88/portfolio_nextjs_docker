@@ -1,0 +1,23 @@
+- hosts: all
+  become: true
+  task:
+    -name: Install NGINX
+     yum:
+       name: nginx
+       state: present
+      
+    -name: Install Docker
+      yum:
+        name: docker
+        state: present
+
+    - name: Start NGINX service
+      service:
+        name: nginx
+        state: started
+
+    - name: Start Docker service
+      service:
+        name: docker
+        state: started
+        enabled: yes

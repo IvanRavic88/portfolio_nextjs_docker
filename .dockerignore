@@ -5,4 +5,23 @@ node_modules/
 .dockerignore
 Dockerfile
 docker-compose.yml
-nginx/
+
+# TERRAFORM
+
+# Compiled files
+**/.terraform/*
+**/.terragrunt-cache/*
+*.tfstate
+*.tfstate.*
+
+# Module directory
+.terraform
+**/.idea
+**/*.iml
+*.tf
+*.tfvars
+**/.build-harness
+**/build-harness
+
+# terraform lock.hcl file
+*.terraform.lock.hcl

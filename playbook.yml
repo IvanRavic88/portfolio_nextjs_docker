@@ -1,23 +1,61 @@
 - hosts: all
   become: true
-  task:
-    -name: Install NGINX
-     yum:
-       name: nginx
-       state: present
-      
-    -name: Install Docker
-      yum:
+  tasks:
+    - name: Update all packages to the latest version
+      dnf:
+        name: "*"
+        state: latest
+
+    - name: Install Docker
+      dnf:
         name: docker
         state: present
-
-    - name: Start NGINX service
-      service:
-        name: nginx
-        state: started
 
     - name: Start Docker service
       service:
         name: docker
         state: started
         enabled: yes
+
+    - name: Add ec2-user to docker group
+      user:
+        name: ec2-user
+        groups: docker
+        append: yes
+
+    - name: Install NGINX
+      dnf:
+        name: nginx
+        state: present
+
+    - name: Create NGINX configuration
+      copy:
+        dest: /etc/nginx/conf.d/default.conf
+        content: |
+          server {
+            listen 80;
+            location / {
+              proxy_pass http://localhost:3000;
+              proxy_http_version 1.1;
+              proxy_set_header Upgrade $http_upgrade;
+              proxy_set_header Connection 'upgrade';
+              proxy_set_header Host $host;
+              proxy_cache_bypass $http_upgrade;
+            }
+          }
+
+    - name: Restart NGINX to apply configuration
+      service:
+        name: nginx
+        state: restarted
+
+    # Reboot the server if needed
+    - name: Check i a reboot is needed
+      command: "needs-restarting -r"
+      register: reboot_required
+      changed_when: reboot_required.rc == 1
+      failed_when: reboot_required.rc not in [0, 1]
+
+    - name: Reboot the server if required
+      reboot:
+      when: reboot_required.rc == 1

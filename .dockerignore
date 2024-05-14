@@ -25,3 +25,6 @@ docker-compose.yml
 
 # terraform lock.hcl file
 *.terraform.lock.hcl
+
+# Ignore CLI configuration files
+my_ip.txt

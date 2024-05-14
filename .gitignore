@@ -64,6 +64,7 @@ override.tf.json
 # terraform lock.hcl file
 *.terraform.lock.hcl
 
-
+# Ignore CLI configuration files
+my_ip.txt
 
 

@@ -54,7 +54,7 @@ resource "aws_iam_role" "ecr_role" {
 EOF
 }
 
-# Create aws_iam_role_policy for allowing EC2 instances to access the ECR repository
+# Create IAM policy for allowing EC2 instances to access the ECR repository
 resource "aws_iam_role_policy" "ecr_policy" {
   name = "ecr_policy"
   role = aws_iam_role.ecr_role.id
@@ -85,32 +85,6 @@ resource "aws_iam_instance_profile" "ecr_profile" {
   role = aws_iam_role.ecr_role.name
 }
 
-# Create an EC2 instance with an IAM role and a security group that allows SSH access from the specified IP addresses
-resource "aws_instance" "MyServer" {
-  ami           = "ami-098c93bd9d119c051"
-  instance_type = "t2.micro"
-  key_name = var.key_pair_name
-
-  iam_instance_profile = aws_iam_instance_profile.ecr_profile.name
-
-  tags = {
-    Name = "MyServer"
-  }
-
-  vpc_security_group_ids = [aws_security_group.SG_MyServer.id]
-# Volume size is set to 16 GB
-  root_block_device {
-    encrypted = false
-    volume_size = 16
-  }
-
-# Create a local-exec provisioner for running Ansible playbook
-provisioner "local-exec" {
-command = "sleep 120; ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -u ec2-user --private-key ${var.pem_file_path} -i '${aws_instance.MyServer.public_ip},' playbook.yml"
-}
-
-
-}
 # Check the public IP address of the machine that is running Terraform
 data "http" "my_ip" {
   url = "http://checkip.amazonaws.com/"
@@ -134,6 +108,47 @@ resource "aws_security_group" "SG_MyServer" {
     protocol = "-1"
     cidr_blocks = ["0.0.0.0/0"]
   }
+    ingress {
+    from_port   = 80
+    to_port     = 80
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  ingress {
+    from_port   = 443
+    to_port     = 443
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+}
+
+
+# Create an EC2 instance with an IAM role and a security group that allows SSH access from the specified IP addresses
+resource "aws_instance" "MyServer" {
+  ami           = "ami-098c93bd9d119c051"
+  instance_type = "t2.micro"
+  key_name = var.key_pair_name
+
+  iam_instance_profile = aws_iam_instance_profile.ecr_profile.name
+
+  tags = {
+    Name = "MyServer"
+  }
+
+  vpc_security_group_ids = [aws_security_group.SG_MyServer.id]
+
+  root_block_device {
+    encrypted = false
+    volume_size = 16
+  }
+
+# Create a local-exec provisioner for running Ansible playbook
+provisioner "local-exec" {
+command = "sleep 120; ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -u ec2-user --private-key ${var.pem_file_path} -i '${aws_instance.MyServer.public_ip},' playbook.yml"
+}
+
+
 }
 
 # Create a public ECR repository

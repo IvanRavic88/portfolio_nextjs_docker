@@ -34,8 +34,8 @@ jobs:
       - name: Build and push Docker image
         run: |
           docker build -t portfolio .
-          docker tag portfolio:latest 471112849786.dkr.ecr.us-east-1.amazonaws.com/portfolio:latest
-          docker push 471112849786.dkr.ecr.us-east-1.amazonaws.com/portfolio:latest
+          docker tag portfolio:latest 471112849786.dkr.ecr.us-east-1.amazonaws.com/portfolio_docker_repository:latest
+          docker push 471112849786.dkr.ecr.us-east-1.amazonaws.com/portfolio_docker_repository:latest
 
       - name: Deploy to EC2
         uses: appleboy/ssh-action@v0.1.4
@@ -44,7 +44,7 @@ jobs:
           username: ec2-user
           key: ${{ secrets.EC2_KEY }}
           script: |
-            docker pull 471112849786.dkr.ecr.us-east-1.amazonaws.com/portfolio:latest
+            docker pull 471112849786.dkr.ecr.us-east-1.amazonaws.com/portfolio_docker_repository:latest
             docker stop portfolio || true
             docker rm portfolio || true
             docker run -d --name portfolio -p 3001:3000 471112849786.dkr.ecr.us-east-1.amazonaws.com/portfolio:latest

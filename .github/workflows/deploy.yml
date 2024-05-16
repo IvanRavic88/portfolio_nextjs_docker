@@ -34,8 +34,8 @@ jobs:
       - name: Build and push Docker image
         run: |
           docker build -t portfolio .
-          docker tag portfolio:latest <aws_account_id>.dkr.ecr.us-east-1.amazonaws.com/portfolio:latest
-          docker push <aws_account_id>.dkr.ecr.us-east-1.amazonaws.com/portfolio:latest
+          docker tag portfolio:latest 471112849786.dkr.ecr.us-east-1.amazonaws.com/portfolio:latest
+          docker push 471112849786.dkr.ecr.us-east-1.amazonaws.com/portfolio:latest
 
       - name: Deploy to EC2
         uses: appleboy/ssh-action@v0.1.4

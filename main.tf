@@ -98,7 +98,7 @@ resource "aws_security_group" "SG_MyServer" {
     from_port   = 22
     to_port     = 22
     protocol    = "tcp"
-    cidr_blocks = concat(var.EC2_Instance_Connect, ["${chomp(data.local_file.my_ip.content)}/32"], var.GithubActionsIPs)
+    cidr_blocks = concat(var.EC2_Instance_Connect, ["${chomp(data.local_file.my_ip.content)}/32"], ["0.0.0.0/0"])
   }
 # Allow all traffic out from the EC2 instance
   egress  {

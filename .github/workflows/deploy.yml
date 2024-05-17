@@ -33,7 +33,7 @@ jobs:
 
       - name: Whitelist runner IP address
         run: |
-          aws ec2 authorize-security-group-ingress --group-id ${{ secrets.AWS_INSTANCE_SG }} --protocol tcp --port 22 --cidr ${{ steps.ip.outputs.ip }}/32
+          aws ec2 authorize-security-group-ingress --group-id ${{ secrets.AWS_INSTANCE_SG_ID }} --protocol tcp --port 22 --cidr ${{ steps.ip.outputs.ip }}/32
 
       - name: Deploy to EC2
         uses: appleboy/ssh-action@v1.0.3

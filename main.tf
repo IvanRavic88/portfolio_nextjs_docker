@@ -155,4 +155,5 @@ command = "sleep 120; ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -u ec2-us
 resource "aws_ecrpublic_repository" "portfolio" {
   provider = aws.east
   repository_name = "portfolio_docker_repository"
+  force_destroy = true
 }

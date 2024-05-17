@@ -151,6 +151,13 @@ command = "sleep 120; ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -u ec2-us
 
 }
 
+resource "aws_eip" "MyServer_eip" {
+  instance = aws_instance.MyServer.id
+  
+  depends_on = [aws_instance.MyServer]
+  
+}
+
 # Create a public ECR repository
 resource "aws_ecrpublic_repository" "portfolio" {
   provider = aws.east

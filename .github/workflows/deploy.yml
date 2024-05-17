@@ -8,7 +8,8 @@ on:
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
-
+    env:
+      AWS_INSTANCE_SG_ID: ${{ secrets.AWS_INSTANCE_SG_ID }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -26,6 +27,14 @@ jobs:
           docker tag portfolio:latest public.ecr.aws/v2w5z6p0/portfolio_docker_repository:latest
           docker push public.ecr.aws/v2w5z6p0/portfolio_docker_repository:latest
 
+      - name: Get runer IP address
+        id: ip
+        uses: haythem/runner-ip@v1.3
+
+      - name: Whitelist runner IP address
+        run: |
+          aws ec2 authorize-security-group-ingress --group-id ${{ secrets.AWS_INSTANCE_SG }} --protocol tcp --port 22 --cidr ${{ steps.ip.outputs.ip }}/32
+
       - name: Deploy to EC2
         uses: appleboy/ssh-action@v1.0.3
         with:
@@ -40,3 +49,11 @@ jobs:
             docker rm portfolio || true
             docker run -d --name portfolio -p 3001:3000 public.ecr.aws/v2w5z6p0/portfolio_docker_repository:latest
           debug: true
+
+      - name: Revoke runner ip address
+        run: |
+          aws ec2 revoke-security-group-ingress \
+            --group-id $AWS_INSTANCE_SG_ID \
+            --protocol tcp \
+            --port 22 \
+            --cidr ${{ steps.ip.outputs.ipv4 }}/32

@@ -29,7 +29,7 @@ jobs:
 
       - name: Get runer IP address
         id: ip
-        uses: haythem/runner-ip@v1.3
+        uses: haythem/public-ip@v1.3
 
       - name: Whitelist runner IP address
         run: |

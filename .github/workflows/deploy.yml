@@ -31,7 +31,7 @@ jobs:
         uses: haythem/public-ip@v1.3
 
       - name: Print runner IP address
-        run: echo ${{ steps.ip.outputs.ip }}
+        run: echo "Runer IP is ${{ steps.ip.outputs.ip }}"
 
       - name: Whitelist runner IP address
         run: |

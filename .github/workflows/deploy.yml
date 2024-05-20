@@ -30,6 +30,10 @@ jobs:
           docker tag portfolio:latest public.ecr.aws/v2w5z6p0/portfolio_docker_repository:latest
           docker push public.ecr.aws/v2w5z6p0/portfolio_docker_repository:latest
 
+      -name: Delete old Docker image
+        run: |
+          docker rmi public.ecr.aws/v2w5z6p0/portfolio_docker_repository:latest
+  
       - name: Get runner IP address
         id: ip
         run: echo "IP=$(curl -s http://checkip.amazonaws.com)" >> $GITHUB_ENV

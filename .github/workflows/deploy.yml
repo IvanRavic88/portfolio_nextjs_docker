@@ -30,9 +30,6 @@ jobs:
         id: ip
         uses: haythem/public-ip@v1.3
 
-      - name: Print runner IP address
-        run: echo "Runer IP is ${{ steps.ip.outputs.ipv4 }}"
-
       - name: Whitelist runner IP address
         run: |
           aws ec2 authorize-security-group-ingress --group-id ${{ secrets.AWS_INSTANCE_SG_ID }} --protocol tcp --port 22 --cidr ${{ steps.ip.outputs.ipv4 }}/32

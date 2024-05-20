@@ -65,6 +65,16 @@
         name: nginx
         state: restarted
 
+    - name: Install pythom3 and pip3
+      dnf:
+        name: ["python3", "python3-pip"]
+        state: present
+
+    - name: Install AWS CLI using pip
+      pip:
+        name: awscli
+        executable: pip3
+
     # Reboot the server if needed
     - name: Check i a reboot is needed
       command: "needs-restarting -r"

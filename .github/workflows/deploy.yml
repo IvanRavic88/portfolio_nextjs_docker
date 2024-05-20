@@ -18,6 +18,20 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
+      - name: Install AWS CLI and Docker Credential Helper
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y awscli gnupg pass
+          curl -fsSL https://github.com/docker/docker-credential-helpers/releases/download/v0.6.3/docker-credential-pass-v0.6.3.linux-amd64 -o docker-credential-pass
+          sudo mv docker-credential-pass /usr/local/bin/
+          sudo chmod +x /usr/local/bin/docker-credential-pass
+          pass init "docker-credentials"
+
+      - name: Configure Docker to Use Credential Helper
+        run: |
+          mkdir -p ~/.docker
+          echo '{"credsStore": "pass"}' > ~/.docker/config.json
+
       - name: Log in to Amazon ECR
         run: |
           aws ecr-public get-login-password --region us-east-1 | docker login --username AWS --password-stdin public.ecr.aws/v2w5z6p0

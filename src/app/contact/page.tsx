@@ -29,11 +29,14 @@ export default function ContactPage() {
           <div className="flex flex-col gap-3">
             <Link href={"mailto:ravic.ivan88@gmail.com"}>
               <div className="flex flex-row gap-3 items-center">
-                <Image src={EmailIcon} alt="White email icon." className="" />
+                <Image src={EmailIcon} alt="White email icon." />
                 <p className="text-lg">ravic.ivan88@gmail.com</p>
               </div>
             </Link>
-            <Link href={"https://www.linkedin.com/in/ivan-ravić-b3aa36143"}>
+            <Link
+              href={"https://www.linkedin.com/in/ivan-ravić-b3aa36143"}
+              target="_blank"
+            >
               <div className="flex flex-row gap-3 items-center">
                 <Image src={LinkedInIcon} alt="White icon for LinkedIn." />
                 <p className="text-lg">
@@ -41,9 +44,12 @@ export default function ContactPage() {
                 </p>
               </div>
             </Link>
-            <Link href={"https://github.com/IvanRavic88?tab=repositories"}>
+            <Link
+              href={"https://github.com/IvanRavic88?tab=repositories"}
+              target="_blank"
+            >
               <div className="flex flex-row gap-3 items-center">
-                <Image src={GitHubIcon} alt="White github icon." className="" />
+                <Image src={GitHubIcon} alt="White github icon." />
                 <p className="text-lg">
                   https://github.com/IvanRavic88?tab=repositories
                 </p>
@@ -51,7 +57,7 @@ export default function ContactPage() {
             </Link>
             <Link href={"tel:+381655254013"}>
               <div className="flex flex-row gap-3 items-center">
-                <Image src={PhoneIcon} alt="White github icon." className="" />
+                <Image src={PhoneIcon} alt="White github icon." />
                 <p className="text-lg">+381655254013</p>
               </div>
             </Link>

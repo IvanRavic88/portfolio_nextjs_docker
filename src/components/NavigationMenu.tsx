@@ -72,14 +72,10 @@ export function NavMenu() {
           </Link>
         </NavigationMenuItem>
         <NavigationMenuItem>
-          <Link
-            href="/Ivan_Ravić_Resume_19_4_2024.pdf"
-            legacyBehavior
-            passHref
-            target="_blank"
-          >
+          <Link href="/Ivan_Ravić_Resume_19_4_2024.pdf" legacyBehavior passHref>
             <NavigationMenuLink
               className={`bg-inherit text-white hover:bg-inherit hover:text-custom-red ${navigationMenuTriggerStyle()}`}
+              target="_blank"
             >
               Resume
             </NavigationMenuLink>

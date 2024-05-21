@@ -3,11 +3,12 @@ provider "aws" {
   profile = "default"
   region  = "eu-central-1"
 }
+
 # Region for the ECR repository (us-east-1 because ECR public is not available in eu-central-1)
 provider "aws" {
-  alias = "east"
+  alias   = "east"
   profile = "default"
-  region = "us-east-1"
+  region  = "us-east-1"
 }
 
 # (Windows and WSL) Run a local command to fetch the public IP address of the machine that is running Terraform 
@@ -17,10 +18,10 @@ resource "null_resource" "my_ip" {
   }
 
   provisioner "local-exec" {
-    when = destroy
-    command = "rm -f my_ip.txt"
-    
+    when    = destroy
+    command = "rm -f my_ip.txt"   
   }
+
   triggers = {
     always_run = timestamp()
   }
@@ -29,29 +30,26 @@ resource "null_resource" "my_ip" {
 # Read the public IP address of the machine that is running Terraform
 data "local_file" "my_ip" {
   depends_on = [null_resource.my_ip]
-  filename = "my_ip.txt"
+  filename   = "my_ip.txt"
 }
-
 
 # Create an IAM role for allowing EC2 instances to access the ECR repository
 resource "aws_iam_role" "ecr_role" {
   name = "ecr_role"
 
-  assume_role_policy = <<EOF
-{
-  "Version": "2012-10-17",
-  "Statement": [
-    {
-      "Action": "sts:AssumeRole",
-      "Principal": {
-        "Service": "ec2.amazonaws.com"
-      },
-      "Effect": "Allow",
-      "Sid": ""
-    }
-  ]
-}
-EOF
+  assume_role_policy = jsonencode({
+    Version   = "2012-10-17"
+    Statement = [
+      {
+        Action    = "sts:AssumeRole"
+        Principal = {
+          Service = "ec2.amazonaws.com"
+        }
+        Effect = "Allow"
+        Sid    = ""
+      }
+    ]
+  })
 }
 
 # Create IAM policy for allowing EC2 instances to access the ECR repository
@@ -59,24 +57,22 @@ resource "aws_iam_role_policy" "ecr_policy" {
   name = "ecr_policy"
   role = aws_iam_role.ecr_role.id
 
-  policy = <<EOF
-{
-  "Version": "2012-10-17",
-  "Statement": [
-    {
-      "Effect": "Allow",
-      "Action": [
-        "ecr:GetDownloadUrlForLayer",
-        "ecr:BatchGetImage",
-        "ecr:BatchCheckLayerAvailability",
-        "ecr:ListImages",
-        "ecr:DescribeImages"
-      ],
-      "Resource": "${aws_ecrpublic_repository.portfolio.arn}"
-    }
-  ]
-}
-EOF
+  policy = jsonencode({
+    Version   = "2012-10-17"
+    Statement = [
+      {
+        Effect   = "Allow"
+        Action   = [
+          "ecr:GetDownloadUrlForLayer",
+          "ecr:BatchGetImage",
+          "ecr:BatchCheckLayerAvailability",
+          "ecr:ListImages",
+          "ecr:DescribeImages"
+        ]
+        Resource = aws_ecrpublic_repository.portfolio.arn
+      }
+    ]
+  })
 }
 
 # Create an instance profile
@@ -89,26 +85,30 @@ resource "aws_iam_instance_profile" "ecr_profile" {
 data "http" "my_ip" {
   url = "http://checkip.amazonaws.com/"
 }
+
 # Create a security group
 resource "aws_security_group" "SG_MyServer" {
   name        = "SGMyServer"
   description = "SGMyServer security group"
-# Open port 22 for SSH access from the specified IP addresses (EC2_Instance_Connect and the public IP address of the machine that is running Terraform)
+
+  # Open port 22 for SSH access from the specified IP addresses (EC2_Instance_Connect and the public IP address of the machine that is running Terraform)
   ingress {
     from_port   = 22
     to_port     = 22
     protocol    = "tcp"
-    cidr_blocks = concat(var.EC2_Instance_Connect, ["${chomp(data.local_file.my_ip.content)}/32"], var.GithubActionsIPs)
+    cidr_blocks = concat(var.EC2_Instance_Connect, ["${chomp(data.local_file.my_ip.content)}/32"])
   }
-# Allow all traffic out from the EC2 instance
+
+  # Allow all traffic out from the EC2 instance
   egress  {
     description = "Allow all traffic out"
-    from_port = 0
-    to_port = 0
-    protocol = "-1"
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
     cidr_blocks = ["0.0.0.0/0"]
   }
-    ingress {
+
+  ingress {
     from_port   = 80
     to_port     = 80
     protocol    = "tcp"
@@ -123,44 +123,51 @@ resource "aws_security_group" "SG_MyServer" {
   }
 }
 
+# Create a public ECR repository
+resource "aws_ecrpublic_repository" "portfolio" {
+  provider          = aws.east 
+  repository_name   = "portfolio_docker_repository"
+  force_destroy     = true
+
+}
 
 # Create an EC2 instance with an IAM role and a security group that allows SSH access from the specified IP addresses
 resource "aws_instance" "MyServer" {
-  ami           = "ami-098c93bd9d119c051"
-  instance_type = "t2.micro"
-  key_name = var.key_pair_name
-
+  ami                  = "ami-098c93bd9d119c051"
+  instance_type        = "t2.micro"
+  key_name             = var.key_pair_name
   iam_instance_profile = aws_iam_instance_profile.ecr_profile.name
-
-  tags = {
-    Name = "MyServer"
-  }
-
+  tags                 = { Name = "MyServer" }
   vpc_security_group_ids = [aws_security_group.SG_MyServer.id]
 
   root_block_device {
-    encrypted = false
+    encrypted   = false
     volume_size = 16
   }
 
-# Create a local-exec provisioner for running Ansible playbook
-provisioner "local-exec" {
-command = "sleep 120; ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -u ec2-user --private-key ${var.pem_file_path} -i '${aws_instance.MyServer.public_ip},' playbook.yml"
-}
-
-
+  # Create a local-exec provisioner for running Ansible playbook
+  provisioner "local-exec" {
+    command = "sleep 120; ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -u ec2-user --private-key ${var.pem_file_path} -i '${aws_instance.MyServer.public_ip},' playbook.yml"
+  }
 }
 
 resource "aws_eip" "MyServer_eip" {
-  instance = aws_instance.MyServer.id
-  
-  depends_on = [aws_instance.MyServer]
-  
+  instance    = aws_instance.MyServer.id
+  depends_on  = [aws_instance.MyServer]
 }
 
-# Create a public ECR repository
-resource "aws_ecrpublic_repository" "portfolio" {
-  provider = aws.east
-  repository_name = "portfolio_docker_repository"
-  force_destroy = true
+# Lifecycle policy for the ECR repository to expire images after 1 day
+
+
+
+
+
+output "MyServer_public_ip" {
+  value       = aws_eip.MyServer_eip.public_ip
+  description = "The Elastic IP address of the EC2 instance"
+}
+
+output "MyServer_security_group_id" {
+  value       = aws_security_group.SG_MyServer.id
+  description = "The ID of the security group"
 }

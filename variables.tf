@@ -15,8 +15,3 @@ variable "EC2_Instance_Connect" {
   default     = []
 }
 
-variable "GithubActionsIPs" {
-  description = "Github Actions IP addresses"
-  type        = list(string)
-  default     = []
-}

@@ -18,7 +18,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      # Set up Terraform and run the script to set GitHub secrets is nedded just one first time when you run the workflow
+      # Set up Terraform and run the script to set GitHub secrets is nedded just first time when you run the workflow
       - name: Set up Terraform
         uses: hashicorp/setup-terraform@v1
         with:

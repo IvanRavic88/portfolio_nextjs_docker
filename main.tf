@@ -1,3 +1,8 @@
+# Affter running the terraform init command, the terraform apply command will create the resources in the AWS account and before running GitHub Actions, 
+# it is necessary  to insert the public IP address of the machine that is running Terraform in the variable EC2_HOST in the GitHub Secrets, and
+# AWS_INSTANCE_SG_ID (that values will be in output after running the terraform apply command) in the GitHub Secrets.
+
+
 # Default provider for the AWS region
 provider "aws" {
   profile = "default"

@@ -27,7 +27,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          ../fetch_and_set_secrets.sh
+          ./fetch_and_set_secrets.sh
 
       - name: Log in to Amazon ECR
         run: |

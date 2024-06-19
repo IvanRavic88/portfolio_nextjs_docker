@@ -41,27 +41,26 @@ export function ContactForm() {
 
   return (
     <motion.div
-      initial={{ x: 100, opacity: 0 }} // Animating from left
+      initial={{ x: 100, opacity: 0 }} // Animating from right
       animate={{ x: 0, opacity: 1 }} // Moving to the center
       transition={{ ease: "easeInOut", duration: 2 }}
-      className="ml-10 flex flex-col"
-      style={{ flex: 1 }} // Expand to fill the available space
+      className="flex flex-col p-4 sm:p-6 md:p-8 lg:p-10 w-full"
     >
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
-          className="space-y-8 min-w-full max-w-2xl w-full"
+          className="space-y-4 sm:space-y-6 md:space-y-8 w-full"
         >
           <FormField
             control={form.control}
             name="name"
             render={({ field }) => (
               <FormItem>
-                <FormLabel className="text-custom-yellow text-lg">
+                <FormLabel className="text-custom-yellow text-base sm:text-lg">
                   Name
                 </FormLabel>
                 <FormControl>
-                  <Input placeholder="" {...field} />
+                  <Input placeholder="" {...field} autoComplete="name" />
                 </FormControl>
                 <FormDescription>Your name</FormDescription>
                 <FormMessage />
@@ -73,11 +72,11 @@ export function ContactForm() {
             name="email"
             render={({ field }) => (
               <FormItem>
-                <FormLabel className="text-custom-yellow text-lg">
-                  Email Adress
+                <FormLabel className="text-custom-yellow text-base sm:text-lg">
+                  Email Address
                 </FormLabel>
                 <FormControl>
-                  <Input placeholder="" {...field} className="" />
+                  <Input placeholder="" {...field} autoComplete="email" />
                 </FormControl>
                 <FormDescription>name@example.com</FormDescription>
                 <FormMessage />
@@ -89,11 +88,11 @@ export function ContactForm() {
             name="message"
             render={({ field }) => (
               <FormItem>
-                <FormLabel className="text-custom-yellow text-lg">
+                <FormLabel className="text-custom-yellow text-base sm:text-lg">
                   Message
                 </FormLabel>
                 <FormControl>
-                  <Textarea {...field} />
+                  <Textarea placeholder="" {...field} />
                 </FormControl>
                 <FormDescription>Your message</FormDescription>
                 <FormMessage />

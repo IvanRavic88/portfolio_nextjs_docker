@@ -2,6 +2,9 @@
 # it is necessary  to insert the public IP address of the machine that is running Terraform in the variable EC2_HOST in the GitHub Secrets, and
 # AWS_INSTANCE_SG_ID (that values will be in output after running the terraform apply command) in the GitHub Secrets.
 
+# Also because of the ECR public repository, lifecycle policy for the ECR repository to expire images after 1 day is not implemented in the code.
+# The lifecycle policy can be implemented in the AWS Management Console.
+
 
 # Default provider for the AWS region
 provider "aws" {

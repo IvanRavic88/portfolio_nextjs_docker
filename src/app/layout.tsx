@@ -21,10 +21,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={` w-full min-h-screen  ${playfair_display.className}`}>
+    <html lang="en" className="h-full">
+      <body
+        className={`flex flex-col min-h-screen ${playfair_display.className}`}
+      >
         <Header />
-        {children}
+        <main className="flex-grow">{children}</main>
         <Footer />
       </body>
     </html>

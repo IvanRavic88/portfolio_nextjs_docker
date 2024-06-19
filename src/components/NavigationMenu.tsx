@@ -72,12 +72,26 @@ export function NavMenu() {
           </Link>
         </NavigationMenuItem>
         <NavigationMenuItem>
-          <Link href="/Ivan_Ravić_Resume_19_4_2024.pdf" legacyBehavior passHref>
+          <Link href="/Ivan_Ravić_Resume_21_5_2024.pdf" legacyBehavior passHref>
             <NavigationMenuLink
               className={`bg-inherit text-white hover:bg-inherit hover:text-custom-red ${navigationMenuTriggerStyle()}`}
               target="_blank"
             >
               Resume
+            </NavigationMenuLink>
+          </Link>
+        </NavigationMenuItem>
+        <NavigationMenuItem>
+          <Link
+            href="/AWS Certified Developer - Associate certificate.pdf"
+            legacyBehavior
+            passHref
+          >
+            <NavigationMenuLink
+              className={`bg-inherit text-white hover:bg-inherit hover:text-custom-red ${navigationMenuTriggerStyle()}`}
+              target="_blank"
+            >
+              My AWS Certificate
             </NavigationMenuLink>
           </Link>
         </NavigationMenuItem>

@@ -33,6 +33,9 @@ jobs:
       - name: Get runner IP address
         id: ip
         run: echo "IP=$(curl -s http://checkip.amazonaws.com)" >> $GITHUB_ENV
+      
+      -name: Print runner IP address
+        run: echo "IP is:${{ env.IP }}""
 
       - name: Whitelist runner IP address
         run: |

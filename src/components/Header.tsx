@@ -13,7 +13,7 @@ const Header = () => {
         `sticky inset-x-0 top-0 z-30 w-full transition-all  bg-black`,
         {
           " bg-black/75 backdrop-blur-lg text-white": scrolled,
-          "border-b border-gray-200 bg-black text-white": selectedLayout,
+          " bg-black text-white": selectedLayout,
         }
       )}
     >

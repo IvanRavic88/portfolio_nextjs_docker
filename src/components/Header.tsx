@@ -1,72 +1,42 @@
 "use client";
-
 import Link from "next/link";
-// Example: using FontAwesome for the hamburger icon
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
+import { useSelectedLayoutSegment } from "next/navigation";
+import useScroll from "@/hooks/use-scroll";
+import { cn } from "@/lib/utils";
 
-import { NavMenu } from "./NavigationMenu";
-
-export default function Header() {
+const Header = () => {
+  const scrolled = useScroll(5);
+  const selectedLayout = useSelectedLayoutSegment();
   return (
-    <header className="bg-black">
-      <div className="flex items-center justify-between p-4 md:p-4">
-        {/* Hamburger Menu for Mobile View */}
-        <div className="md:hidden">
-          <DropdownMenu>
-            <DropdownMenuTrigger className="text-white">
-              Menu
-            </DropdownMenuTrigger>
-            <DropdownMenuContent className="bg-black text-white">
-              <DropdownMenuLabel className="text-custom-yellow">
-                Menu
-              </DropdownMenuLabel>
-              <DropdownMenuItem asChild>
-                <Link href="/projects">Projects</Link>
-              </DropdownMenuItem>
-              <DropdownMenuItem asChild>
-                <Link href="/contact">Contact</Link>
-              </DropdownMenuItem>
-              <DropdownMenuItem asChild>
-                <Link href="/about">About</Link>
-              </DropdownMenuItem>
-              <DropdownMenuItem asChild>
-                <Link href="/Ivan_Ravić_Resume_21_5_2024.pdf" target="_blank">
-                  Resume
-                </Link>
-              </DropdownMenuItem>
-              <DropdownMenuItem asChild>
-                <Link
-                  href="/AWS Certified Developer - Associate certificate.pdf"
-                  target="_blank"
-                >
-                  My AWS Certificate
-                </Link>
-              </DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
-        </div>
-
-        {/* Navigation Menu for Desktop View */}
-        <div className="hidden md:block">
-          <NavMenu />
-        </div>
-
-        {/* Logo */}
+    <div
+      className={cn(
+        `sticky inset-x-0 top-0 z-30 w-full transition-all  bg-black`,
+        {
+          " bg-black/75 backdrop-blur-lg text-white": scrolled,
+          "border-b border-gray-200 bg-black text-white": selectedLayout,
+        }
+      )}
+    >
+      <div className="flex h-[47px] items-center justify-between px-4">
         <div className="flex items-center space-x-4">
-          <h1 className="text-xl text-white">
-            <Link href="/" className="text-custom-yellow">
-              Ivan Ravić
-            </Link>
-          </h1>
+          <Link
+            className="flex flex-row space-x-3 items-center justify-center md:hidden"
+            href="/"
+          >
+            <span className="font-bold text-xl flex text-custom-yellow">
+              Ivan Ravic
+            </span>
+          </Link>
+          <span className=" hidden md:block font-bold text-2xl text-white">
+            Ivan Ravić
+          </span>
+        </div>
+        <div className="text-custom-red  items-center justify-center hidden md:block">
+          <span className="font-bold text-2xl">IR</span>
         </div>
       </div>
-    </header>
+    </div>
   );
-}
+};
+
+export default Header;

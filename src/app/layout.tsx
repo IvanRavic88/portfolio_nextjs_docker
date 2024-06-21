@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import { Playfair_Display } from "next/font/google";
 import "./globals.css";
-import Header from "../components/Header";
-import Footer from "../components/Footer";
+import Header from "@/components/header";
+import HeaderMobile from "@/components/header-mobile";
+import Footer from "@/components/footer";
 
 const playfair_display = Playfair_Display({
   subsets: ["latin-ext"],
@@ -26,7 +27,8 @@ export default function RootLayout({
         className={`flex flex-col min-h-screen ${playfair_display.className}`}
       >
         <Header />
-        <main className="flex-grow">{children}</main>
+        <HeaderMobile />
+        {children}
         <Footer />
       </body>
     </html>

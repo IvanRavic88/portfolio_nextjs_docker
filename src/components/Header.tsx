@@ -31,7 +31,7 @@ const Header = () => {
             Ivan Ravić
           </span>
         </div>
-        <div className="text-custom-red  items-center justify-center hidden md:block">
+        <div className="text-custom-red  items-center justify-center hidden md:blockImplement initial layout for Header and mobile Header">
           <span className="font-bold text-2xl">IR</span>
         </div>
       </div>

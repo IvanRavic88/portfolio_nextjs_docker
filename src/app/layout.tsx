@@ -3,8 +3,8 @@ import { Playfair_Display } from "next/font/google";
 import "./globals.css";
 
 import HeaderMobile from "../components/header-mobile";
-import Header from "@/components/header";
-import Footer from "@/components/footer";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 
 const playfair_display = Playfair_Display({
   subsets: ["latin-ext"],

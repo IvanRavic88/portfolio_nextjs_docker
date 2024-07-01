@@ -56,13 +56,18 @@ export function ContactForm() {
             name="name"
             render={({ field }) => (
               <FormItem>
-                <FormLabel className="text-custom-yellow text-base sm:text-lg">
+                <FormLabel className="text-custom-yellow text-base sm:text-lg ">
                   Name
                 </FormLabel>
                 <FormControl>
-                  <Input placeholder="" {...field} autoComplete="name" />
+                  <Input
+                    placeholder="Your name"
+                    {...field}
+                    autoComplete="name"
+                    className="text-sm focus:text-lg"
+                  />
                 </FormControl>
-                <FormDescription>Your name</FormDescription>
+
                 <FormMessage />
               </FormItem>
             )}
@@ -76,9 +81,14 @@ export function ContactForm() {
                   Email Address
                 </FormLabel>
                 <FormControl>
-                  <Input placeholder="" {...field} autoComplete="email" />
+                  <Input
+                    placeholder="name@example.com"
+                    {...field}
+                    autoComplete="email"
+                    className=" focus:text-lg"
+                  />
                 </FormControl>
-                <FormDescription>name@example.com</FormDescription>
+
                 <FormMessage />
               </FormItem>
             )}
@@ -92,9 +102,13 @@ export function ContactForm() {
                   Message
                 </FormLabel>
                 <FormControl>
-                  <Textarea placeholder="" {...field} />
+                  <Textarea
+                    placeholder="Your message"
+                    {...field}
+                    className="focus:text-lg"
+                  />
                 </FormControl>
-                <FormDescription>Your message</FormDescription>
+
                 <FormMessage />
               </FormItem>
             )}

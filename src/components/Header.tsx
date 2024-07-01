@@ -3,6 +3,7 @@ import Link from "next/link";
 import { useSelectedLayoutSegment } from "next/navigation";
 import useScroll from "@/hooks/use-scroll";
 import { cn } from "@/lib/utils";
+import { NavMenu } from "./navigation-menu-shadcn";
 
 const Header = () => {
   const scrolled = useScroll(5);
@@ -20,19 +21,16 @@ const Header = () => {
       <div className="flex h-[47px] items-center justify-between px-4">
         <div className="flex items-center space-x-4">
           <Link
-            className="flex flex-row space-x-3 items-center justify-center md:hidden"
+            className="flex flex-row space-x-3 items-center justify-center "
             href="/"
           >
             <span className="font-bold text-xl flex text-custom-yellow">
-              Ivan Ravic
+              Ivan Ravić
             </span>
           </Link>
-          <span className=" hidden md:block font-bold text-2xl text-white">
-            Ivan Ravić
-          </span>
         </div>
-        <div className="text-custom-red  items-center justify-center hidden md:blockImplement initial layout for Header and mobile Header">
-          <span className="font-bold text-2xl">IR</span>
+        <div className="hidden md:block">
+          <NavMenu />
         </div>
       </div>
     </div>

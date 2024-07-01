@@ -8,7 +8,7 @@ export default function Home() {
       <main>
         <section
           style={{ backgroundImage: `url('/hero-img_1.png')` }}
-          className="bg-cover bg-center bg-no-repeat h-screen relative "
+          className="bg-cover bg-no-repeat h-screen relative md:bg-center bg-right"
         >
           <motion.div
             initial={{ y: -100, opacity: 0 }}

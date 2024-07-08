@@ -15,14 +15,16 @@ import {
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
 
-export function NavMenu() {
+export const NavMenu: React.FC = () => {
   return (
     <NavigationMenu>
       <NavigationMenuList>
         <NavigationMenuItem>
-          <NavigationMenuTrigger>Projects</NavigationMenuTrigger>
+          <NavigationMenuTrigger className={` animated-underline`}>
+            Projects
+          </NavigationMenuTrigger>
           <NavigationMenuContent className="">
-            <ul className=" bg-black grid gap-1 p-2 md:w-80 lg:min-w-96 lg:grid-cols-[2fr] text-custom-red">
+            <ul className=" grid gap-1 p-2 md:w-80 lg:min-w-96 lg:grid-cols-[2fr] text-custom-red">
               <ListItem href="/docs/installation" title="My store">
                 My Store is e-commerce website for selling men&apos;s clothes,
                 It was created as an online store for selling clothes, but it is
@@ -53,7 +55,9 @@ export function NavMenu() {
         </NavigationMenuItem>
 
         <NavigationMenuItem>
-          <NavigationMenuTrigger>Contact</NavigationMenuTrigger>
+          <NavigationMenuTrigger className={` animated-underline`}>
+            Contact
+          </NavigationMenuTrigger>
           <NavigationMenuContent>
             <ul className="grid w-40 gap-3 p-4 md:w-30 md:grid-cols-1 lg:w-80">
               <ListItem title="Contact me" href="/contact">
@@ -65,7 +69,7 @@ export function NavMenu() {
         <NavigationMenuItem>
           <Link href="/about" legacyBehavior passHref>
             <NavigationMenuLink
-              className={`bg-inherit text-white hover:bg-inherit hover:text-custom-red ${navigationMenuTriggerStyle()}`}
+              className={` animated-underline hover:text-custom-red ${navigationMenuTriggerStyle()}`}
             >
               About
             </NavigationMenuLink>
@@ -74,7 +78,7 @@ export function NavMenu() {
         <NavigationMenuItem>
           <Link href="/Ivan_Ravić_Resume_21_5_2024.pdf" legacyBehavior passHref>
             <NavigationMenuLink
-              className={`bg-inherit text-white hover:bg-inherit hover:text-custom-red ${navigationMenuTriggerStyle()}`}
+              className={`bg-inherit} animated-underline hover:bg-inherit hover:text-custom-red ${navigationMenuTriggerStyle()}`}
               target="_blank"
             >
               Resume
@@ -88,7 +92,7 @@ export function NavMenu() {
             passHref
           >
             <NavigationMenuLink
-              className={`bg-inherit text-white hover:bg-inherit hover:text-custom-red ${navigationMenuTriggerStyle()}`}
+              className={`bg-inherit  animated-underline hover:bg-inherit hover:text-custom-red ${navigationMenuTriggerStyle()}`}
               target="_blank"
             >
               My AWS Certificate
@@ -98,7 +102,7 @@ export function NavMenu() {
       </NavigationMenuList>
     </NavigationMenu>
   );
-}
+};
 
 const ListItem = React.forwardRef<
   React.ElementRef<"a">,

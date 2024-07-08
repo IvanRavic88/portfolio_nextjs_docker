@@ -1,21 +1,27 @@
 "use client";
 import Link from "next/link";
-import { useSelectedLayoutSegment } from "next/navigation";
+
 import useScroll from "@/hooks/use-scroll";
 import { cn } from "@/lib/utils";
 import { NavMenu } from "./navigation-menu-shadcn";
+import ThemeSwitch from "./ThemeSwitch";
+import { useTheme } from "next-themes";
 
 const Header = () => {
   const scrolled = useScroll(5);
-  const selectedLayout = useSelectedLayoutSegment();
+
+  // const { theme } = useTheme();
+
+  // const backgroundColor =
+  //   theme === "dark" ? "bg-custom-dark" : "bg-custom-light";
+  // const textColor = theme === "dark" ? "text-custom-dark" : "text-custom-light";
+
   return (
     <div
       className={cn(
-        `sticky inset-x-0 top-0 z-30 w-full transition-all  bg-black`,
-        {
-          " bg-black/75 backdrop-blur-lg text-white": scrolled,
-          " bg-black text-white": selectedLayout,
-        }
+        `sticky inset-x-0 top-0 z-30 w-full transition-all  p-2`,
+
+        scrolled ? "shadow-md" : ""
       )}
     >
       <div className="flex h-[47px] items-center justify-between px-4">
@@ -24,13 +30,14 @@ const Header = () => {
             className="flex flex-row space-x-3 items-center justify-center "
             href="/"
           >
-            <span className="font-bold text-xl flex text-custom-yellow">
-              Ivan Ravić
-            </span>
+            <span className={`font-bold text-xl flex} `}>Ivan Ravić</span>
           </Link>
         </div>
         <div className="hidden md:block">
           <NavMenu />
+        </div>
+        <div className="hidden md:block">
+          <ThemeSwitch />
         </div>
       </div>
     </div>

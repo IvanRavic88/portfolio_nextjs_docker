@@ -6,10 +6,7 @@ export default function Home() {
   return (
     <>
       <main>
-        <section
-          style={{ backgroundImage: `url('/hero-img_1.png')` }}
-          className="bg-cover bg-no-repeat h-screen relative md:bg-center bg-right"
-        >
+        <section className="bg-cover bg-no-repeat h-screen relative md:bg-center bg-right">
           <motion.div
             initial={{ y: -100, opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
@@ -20,7 +17,7 @@ export default function Home() {
               Ivan Ravić
             </h1>
 
-            <p className="text-2xl text-left text-white max-w-xl">
+            <p className="text-2xl text-left max-w-xl">
               Dedicated software developer with{" "}
               <span className="text-custom-yellow">
                 AWS Developer Associate certification.

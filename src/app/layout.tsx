@@ -1,14 +1,14 @@
 import type { Metadata } from "next";
-import { Playfair_Display } from "next/font/google";
+import { Montserrat } from "next/font/google";
 import "./globals.css";
-
+import { Providers } from "@/app/providers";
 import HeaderMobile from "../components/header-mobile";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
-const playfair_display = Playfair_Display({
+const montserrat_display = Montserrat({
   subsets: ["latin-ext"],
-  weight: ["400", "700"],
+  weight: ["500", "700"],
 });
 
 export const metadata: Metadata = {
@@ -23,14 +23,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="h-full">
+    <html lang="en" className="h-full" suppressHydrationWarning>
       <body
-        className={`flex flex-col min-h-screen ${playfair_display.className}`}
+        className={`flex flex-col min-h-screen ${montserrat_display.className}`}
       >
-        <Header />
-        <HeaderMobile />
-        {children}
-        <Footer />
+        <Providers>
+          <Header />
+          <HeaderMobile />
+          {children}
+          <Footer />
+        </Providers>
       </body>
     </html>
   );

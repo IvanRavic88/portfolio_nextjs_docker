@@ -19,9 +19,7 @@ export default function Home() {
 
             <p className="text-2xl text-left max-w-xl">
               Dedicated software developer with{" "}
-              <span className="text-custom-yellow">
-                AWS Developer Associate certification.
-              </span>
+              <span className="">AWS Developer Associate certification.</span>
             </p>
           </motion.div>
         </section>

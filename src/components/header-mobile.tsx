@@ -1,6 +1,6 @@
 "use client";
 
-import React, { ReactNode, useEffect, useRef, useState } from "react";
+import React, { ReactNode, use, useEffect, useRef, useState } from "react";
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -9,8 +9,12 @@ import { SIDE_NAV_ITEMS } from "@/constants";
 import { SideNavItem } from "@/types";
 import { Icon } from "@iconify/react";
 import { motion, useCycle } from "framer-motion";
+import { useTheme } from "next-themes";
+import { set } from "react-hook-form";
+import ThemeSwitch from "./ThemeSwitch";
 
 type MenuItemWithSubMenuProps = {
+  icon?: JSX.Element;
   item: SideNavItem;
   toggleOpen: () => void;
 };
@@ -39,24 +43,39 @@ const HeaderMobile = () => {
   const containerRef = useRef(null);
   const { height } = useDimensions(containerRef);
   const [isOpen, toggleOpen] = useCycle(false, true);
+  const { theme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  const initialThemeClass = "bg-custom-dark";
+  const themeClass = theme === "dark" ? "bg-custom-light" : "bg-custom-dark";
+  const textThemeClass = mounted
+    ? theme === "dark"
+      ? "text-custom-dark"
+      : "text-custom-light"
+    : "text-custom-dark";
 
   return (
     <motion.nav
       initial={false}
       animate={isOpen ? "open" : "closed"}
       custom={height}
-      className={`fixed inset-0 z-50 w-full md:hidden ${
+      className={`fixed inset-0 z-50 w-full md:hidden  ${
         isOpen ? "" : "pointer-events-none"
       }`}
       ref={containerRef}
     >
       <motion.div
-        className="absolute inset-0 right-0 w-full bg-white"
+        className={`absolute inset-0 right-0 w-full ${
+          mounted ? themeClass : initialThemeClass
+        }`}
         variants={sidebar}
       />
       <motion.ul
         variants={variants}
-        className="absolute grid w-full gap-3 px-10 py-16 max-h-screen overflow-y-auto"
+        className={`absolute grid w-full gap-3 px-10 py-16 max-h-screen overflow-y-auto ${textThemeClass}`}
       >
         {SIDE_NAV_ITEMS.map((item, idx) => {
           const isLastItem = idx === SIDE_NAV_ITEMS.length - 1; // Check if it's the last item
@@ -64,9 +83,13 @@ const HeaderMobile = () => {
           return (
             <div key={idx}>
               {item.submenu ? (
-                <MenuItemWithSubMenu item={item} toggleOpen={toggleOpen} />
+                <MenuItemWithSubMenu
+                  icon={item.icon}
+                  item={item}
+                  toggleOpen={toggleOpen}
+                />
               ) : (
-                <MenuItem>
+                <MenuItem icon={item.icon}>
                   <Link
                     href={item.path}
                     onClick={() => toggleOpen()}
@@ -86,6 +109,9 @@ const HeaderMobile = () => {
             </div>
           );
         })}
+        <MenuItem className="mt-9 flex justify-end">
+          <ThemeSwitch />
+        </MenuItem>
       </motion.ul>
       <MenuToggle toggle={toggleOpen} />
     </motion.nav>
@@ -135,20 +161,24 @@ const Path = (props: any) => (
 );
 
 const MenuItem = ({
+  icon,
   className,
   children,
 }: {
   className?: string;
   children?: ReactNode;
+  icon?: JSX.Element;
 }) => {
   return (
     <motion.li variants={MenuItemVariants} className={className}>
+      {icon}
       {children}
     </motion.li>
   );
 };
 
 const MenuItemWithSubMenu: React.FC<MenuItemWithSubMenuProps> = ({
+  icon,
   item,
   toggleOpen,
 }) => {
@@ -158,6 +188,7 @@ const MenuItemWithSubMenu: React.FC<MenuItemWithSubMenuProps> = ({
   return (
     <>
       <MenuItem>
+        {icon}
         <button
           className="flex w-full text-2xl"
           onClick={() => setSubMenuOpen(!subMenuOpen)}

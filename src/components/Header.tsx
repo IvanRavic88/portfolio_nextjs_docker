@@ -5,16 +5,9 @@ import useScroll from "@/hooks/use-scroll";
 import { cn } from "@/lib/utils";
 import { NavMenu } from "./navigation-menu-shadcn";
 import ThemeSwitch from "./ThemeSwitch";
-import { useTheme } from "next-themes";
 
 const Header = () => {
   const scrolled = useScroll(5);
-
-  // const { theme } = useTheme();
-
-  // const backgroundColor =
-  //   theme === "dark" ? "bg-custom-dark" : "bg-custom-light";
-  // const textColor = theme === "dark" ? "text-custom-dark" : "text-custom-light";
 
   return (
     <div
@@ -36,6 +29,7 @@ const Header = () => {
         <div className="hidden md:block">
           <NavMenu />
         </div>
+
         <div className="hidden md:block">
           <ThemeSwitch />
         </div>

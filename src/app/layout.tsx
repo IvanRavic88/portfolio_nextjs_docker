@@ -5,6 +5,7 @@ import { Providers } from "@/app/providers";
 import HeaderMobile from "../components/header-mobile";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import ThemeSwitch from "@/components/ThemeSwitch";
 
 const montserrat_display = Montserrat({
   subsets: ["latin-ext"],
@@ -30,6 +31,7 @@ export default function RootLayout({
         <Providers>
           <Header />
           <HeaderMobile />
+
           {children}
           <Footer />
         </Providers>

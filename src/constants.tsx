@@ -11,7 +11,7 @@ export const SIDE_NAV_ITEMS: SideNavItem[] = [
   {
     title: "Projects",
     path: "/projects",
-    icon: <Icon icon="lucide:folder" width="24" height="24" />,
+    icon: <Icon icon="lucide:layers" width="24" height="24" />,
     submenu: true,
     subMenuItems: [
       {
@@ -31,7 +31,7 @@ export const SIDE_NAV_ITEMS: SideNavItem[] = [
   {
     title: "About",
     path: "/about",
-    icon: <Icon icon="lucide:info-circle" width="24" height="24" />,
+    icon: <Icon icon="lucide:info" width="24" height="24" />,
   },
   {
     title: "Contact",
@@ -41,7 +41,7 @@ export const SIDE_NAV_ITEMS: SideNavItem[] = [
   {
     title: "AWS Associate Certificate",
     path: "/AWS Certified Developer - Associate certificate.pdf",
-    icon: <Icon icon="logos:aws" width="24" height="24" />,
+    icon: <Icon icon="lucide:cloud" width="24" height="24" />,
     new_window: true,
   },
   {

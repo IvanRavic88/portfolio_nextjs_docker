@@ -33,7 +33,7 @@ export default function RootLayout({
           <HeaderMobile />
 
           {children}
-          <Footer />
+          {/* <Footer /> */}
         </Providers>
       </body>
     </html>

@@ -10,7 +10,7 @@ import { SideNavItem } from "@/types";
 import { Icon } from "@iconify/react";
 import { motion, useCycle } from "framer-motion";
 import { useTheme } from "next-themes";
-import { set } from "react-hook-form";
+
 import ThemeSwitch from "./ThemeSwitch";
 
 type MenuItemWithSubMenuProps = {

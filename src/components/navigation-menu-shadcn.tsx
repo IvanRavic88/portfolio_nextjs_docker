@@ -20,7 +20,7 @@ export const NavMenu: React.FC = () => {
     <NavigationMenu>
       <NavigationMenuList>
         <NavigationMenuItem>
-          <NavigationMenuTrigger className={` animated-underline`}>
+          <NavigationMenuTrigger className={` text-link-animation`}>
             Projects
           </NavigationMenuTrigger>
           <NavigationMenuContent className="">
@@ -55,7 +55,7 @@ export const NavMenu: React.FC = () => {
         </NavigationMenuItem>
 
         <NavigationMenuItem>
-          <NavigationMenuTrigger className={` animated-underline`}>
+          <NavigationMenuTrigger className={` text-link-animation`}>
             Contact
           </NavigationMenuTrigger>
           <NavigationMenuContent>
@@ -69,7 +69,7 @@ export const NavMenu: React.FC = () => {
         <NavigationMenuItem>
           <Link href="/about" legacyBehavior passHref>
             <NavigationMenuLink
-              className={` animated-underline hover:text-custom-red ${navigationMenuTriggerStyle()}`}
+              className={` text-link-animation hover:text-custom-red ${navigationMenuTriggerStyle()}`}
             >
               About
             </NavigationMenuLink>
@@ -78,7 +78,7 @@ export const NavMenu: React.FC = () => {
         <NavigationMenuItem>
           <Link href="/Ivan_Ravić_Resume_21_5_2024.pdf" legacyBehavior passHref>
             <NavigationMenuLink
-              className={`bg-inherit} animated-underline hover:bg-inherit hover:text-custom-red ${navigationMenuTriggerStyle()}`}
+              className={`bg-inherit} text-link-animation hover:bg-inherit hover:text-custom-red ${navigationMenuTriggerStyle()}`}
               target="_blank"
             >
               Resume
@@ -92,7 +92,7 @@ export const NavMenu: React.FC = () => {
             passHref
           >
             <NavigationMenuLink
-              className={`bg-inherit  animated-underline hover:bg-inherit hover:text-custom-red ${navigationMenuTriggerStyle()}`}
+              className={`bg-inherit  text-link-animation hover:bg-inherit hover:text-custom-red ${navigationMenuTriggerStyle()}`}
               target="_blank"
             >
               My AWS Certificate

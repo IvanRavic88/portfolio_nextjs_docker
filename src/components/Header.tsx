@@ -1,10 +1,12 @@
-"use client";
-import Link from "next/link";
+'use client';
+import Link from 'next/link';
 
-import useScroll from "@/hooks/use-scroll";
-import { cn } from "@/lib/utils";
-import { NavMenu } from "./navigation-menu-shadcn";
-import ThemeSwitch from "./ThemeSwitch";
+import useScroll from '@/hooks/use-scroll';
+import { cn } from '@/lib/utils';
+import { NavMenu } from './navigation-menu-shadcn';
+import ThemeSwitch from './ThemeSwitch';
+import Image from 'next/image';
+import IvanRavic from '@/public/Ivan.png';
 
 const Header = () => {
   const scrolled = useScroll(5);
@@ -12,18 +14,25 @@ const Header = () => {
   return (
     <div
       className={cn(
-        `sticky inset-x-0 top-0 z-30 w-full transition-all  p-2`,
+        `sticky inset-x-0 top-0 z-30 w-full bg-inherit p-2 transition-all`,
 
-        scrolled ? "shadow-md" : ""
+        scrolled ? 'shadow-md' : '',
       )}
     >
       <div className="flex h-[47px] items-center justify-between px-4">
         <div className="flex items-center space-x-4">
           <Link
-            className="flex flex-row space-x-3 items-center justify-center "
+            className="flex flex-row items-center justify-center space-x-3"
             href="/"
           >
-            <span className={`font-bold text-xl flex} `}>Ivan Ravić</span>
+            <Image
+              src={IvanRavic}
+              alt="Ivan Ravić profile picture"
+              width={40}
+              height={40}
+              className="rounded-full"
+            ></Image>
+            <span className={`flex} text-xl font-bold`}>Ivan Ravić</span>
           </Link>
         </div>
         <div className="hidden md:block">

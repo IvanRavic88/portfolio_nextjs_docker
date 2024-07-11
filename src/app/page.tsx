@@ -1,36 +1,40 @@
-export default function Home() {
+import SocialLink from '@/components/SocialLink';
+
+function Home() {
   return (
     <>
-      <main className="flex-grow ">
-        <section className="bg-cover bg-no-repeat h-screen relative md:bg-center bg-right min-h-screen flex">
-          <div className="wrapper pt-60 pb-28 2xl:max-w-7xl m-auto">
-            <div className="hero_top grid items-end mb-20 grid-cols-12 gap-20">
-              <div className="hero-title col-span-10">
-                <h1 className="text-9xl">
+      <main className="mx-auto px-6 sm:px-10">
+        <section className="relative flex flex-col bg-center">
+          <div className="wrapper mx-auto my-0 max-w-full pb-10 pt-32 md:px-5 md:pt-40 xl:pt-60 2xl:max-w-[90rem]">
+            <div className="hero_top mb-14 flex flex-col items-start gap-14 xl:mb-20 xl:grid xl:grid-cols-12 xl:items-end xl:gap-20">
+              <div className="hero-title col-span-8 text-left">
+                <h1 className="-ml-[0.375rem] text-4xl sm:text-5xl md:text-8xl 2xl:text-9xl">
                   <span className="hidden">Ivan Ravic</span>
                   <span>Software Developer with AWS Certification</span>
                 </h1>
               </div>
-              <div className="hero-sub col-span-2 mt-[-2.7rem] max-w-56">
-                <p>Full-Stack, DevOps, AWS Cloud Expertise</p>
+              <div className="hero-sub mt-[-2.7rem] max-w-60 xl:col-span-4 xl:mx-auto xl:max-w-40">
+                <p className="text-lg opacity-50 xl:opacity-100">
+                  Full-Stack, DevOps, AWS Cloud Expertise
+                </p>
               </div>
             </div>
-            <div className="hero_bottom grid gap-20 grid-cols-12">
-              <div className="hero_text  col-span-8">
-                <p className="text-4xl mb-4  ">
+            <div className="hero_bottom flex flex-col items-start gap-14 lg:grid lg:grid-cols-12 lg:gap-20">
+              <div className="hero_text col-span-8 text-left">
+                <p className="mb-4 md:text-xl xl:mb-8 xl:text-3xl">
                   I help startups and businesses build robust and scalable web
                   applications using full-stack development and AWS cloud
                   solutions, ensuring optimal performance and growth.
                 </p>
                 <a
                   href="mailto:ravic.ivan88@gmail.com"
-                  className="max-w-48 inline-flex items-center p-1 bg-custom-dark text-custom-light rounded-full"
+                  className="inline-flex items-center justify-center rounded-full bg-custom-dark p-1 text-custom-light sm:justify-start"
                 >
-                  <span>Drop me a line</span>
-                  <div className="button_icon relative flex justify-center items-center w-10 h-10 rounded-full">
-                    <div className="button_icon_bg absolute w-full h-full rounded-full scale-25 bg-custom-light"></div>
+                  <span className="md:text-sm">Drop me a line</span>
+                  <div className="button_icon relative flex h-10 w-10 items-center justify-center rounded-full md:px-4 md:py-2 md:pl-4">
+                    <div className="button_icon_bg scale-25 absolute h-full w-full rounded-full bg-custom-light"></div>
                     <svg
-                      className="w-6 h-6 opacity-0 mix-blend-difference"
+                      className="h-6 w-6 opacity-0 mix-blend-difference"
                       fill="none"
                       xmlns="http://www.w3.org/2000/svg"
                       viewBox="0 0 24 24"
@@ -43,37 +47,19 @@ export default function Home() {
                   </div>
                 </a>
               </div>
-              <ul className="hero-social list-none col-span-2 col-start-11">
-                <li className="pb-2 border-b-[1px] opacity-50 mb-4">
+              <ul className="hero-social col-span-4 mx-auto hidden list-none sm:text-sm lg:block xl:text-xl">
+                <li className="mb-4 border-b-2 pb-2 text-center opacity-50">
                   <span>Let&apos;s get connected</span>
                 </li>
-                <li className="mb-2">
-                  <a
-                    href="https://www.instagram.com/ivan_ravic_88/"
-                    target="_blank"
-                    className="text-link-animation"
-                  >
-                    Instagram
-                  </a>
-                </li>
-                <li className="mb-2">
-                  <a
-                    href="https://linkedin.com/in/ivan-ravić-b3aa36143"
-                    target="_blank"
-                    className="text-link-animation"
-                  >
-                    LinkedIn
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="https://github.com/IvanRavic88?tab=repositories"
-                    target="_blank"
-                    className="text-link-animation"
-                  >
-                    GitHub
-                  </a>
-                </li>
+                <SocialLink href="https://www.instagram.com/ivan_ravic_88/">
+                  Instagram
+                </SocialLink>
+                <SocialLink href="https://linkedin.com/in/ivan-ravić-b3aa36143">
+                  LinkedIn
+                </SocialLink>
+                <SocialLink href="https://github.com/IvanRavic88?tab=repositories">
+                  GitHub
+                </SocialLink>
               </ul>
             </div>
           </div>
@@ -82,3 +68,4 @@ export default function Home() {
     </>
   );
 }
+export default Home;

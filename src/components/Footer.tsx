@@ -1,13 +1,16 @@
-export default function Footer() {
-  const currentYear = new Date().getFullYear();
-  const currentDate = new Date();
-  const currentMonth = currentDate.toLocaleString("default", { month: "long" });
+import React from 'react';
 
+import Content from './FooterContent';
+
+export default function Footer() {
   return (
-    <footer className="w-full bg-black p-4 sm:p-12 flex justify-left items-center">
-      <p className="text-sm text-gray-300">
-        Designed and made by Ivan Ravić @ {currentMonth} {currentYear}
-      </p>
-    </footer>
+    <div
+      className="relative h-[600px]"
+      style={{ clipPath: 'polygon(0% 0, 100% 0%, 100% 100%, 0 100%)' }}
+    >
+      <div className="fixed bottom-0 h-[600px] w-full">
+        <Content />
+      </div>
+    </div>
   );
 }

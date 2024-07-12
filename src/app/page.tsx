@@ -1,6 +1,15 @@
-import SocialLink from '@/components/SocialLink';
+'use client';
+import { useEffect } from 'react';
+import LinkAnimated from '@/components/LinkAnimated';
 
-function Home() {
+export default function Home() {
+  useEffect(() => {
+    (async () => {
+      const LocomotiveScroll = (await import('locomotive-scroll')).default;
+      const locomotiveScroll = new LocomotiveScroll();
+    })();
+  }, []);
+
   return (
     <>
       <main className="mx-auto px-6 sm:px-10">
@@ -51,15 +60,15 @@ function Home() {
                 <li className="mb-4 border-b-2 pb-2 text-center opacity-50">
                   <span>Let&apos;s get connected</span>
                 </li>
-                <SocialLink href="https://www.instagram.com/ivan_ravic_88/">
+                <LinkAnimated href="https://www.instagram.com/ivan_ravic_88/">
                   Instagram
-                </SocialLink>
-                <SocialLink href="https://linkedin.com/in/ivan-ravić-b3aa36143">
+                </LinkAnimated>
+                <LinkAnimated href="https://linkedin.com/in/ivan-ravić-b3aa36143">
                   LinkedIn
-                </SocialLink>
-                <SocialLink href="https://github.com/IvanRavic88?tab=repositories">
+                </LinkAnimated>
+                <LinkAnimated href="https://github.com/IvanRavic88?tab=repositories">
                   GitHub
-                </SocialLink>
+                </LinkAnimated>
               </ul>
             </div>
           </div>
@@ -68,4 +77,3 @@ function Home() {
     </>
   );
 }
-export default Home;

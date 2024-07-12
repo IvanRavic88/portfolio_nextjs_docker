@@ -25,14 +25,14 @@ export default function RootLayout({
   return (
     <html lang="en" className="h-full" suppressHydrationWarning>
       <body
-        className={`md:text-sm lg:text-2xl ${montserrat_display.className}`}
+        className={`md:text-lg lg:text-2xl ${montserrat_display.className}`}
       >
         <Providers>
           <Header />
           <HeaderMobile />
 
           {children}
-          {/* <Footer /> */}
+          <Footer />
         </Providers>
       </body>
     </html>

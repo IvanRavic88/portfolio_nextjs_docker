@@ -31,7 +31,7 @@ const Header = () => {
               width={40}
               height={40}
               className="rounded-full"
-            ></Image>
+            />
             <span className={`flex} text-xl font-bold`}>Ivan Ravić</span>
           </Link>
         </div>

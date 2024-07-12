@@ -3,9 +3,9 @@ type socialLinkProps = {
   children: React.ReactNode;
 };
 
-export default function SocialLink({ href, children }: socialLinkProps) {
+export default function LinkAnimated({ href, children }: socialLinkProps) {
   return (
-    <li className="mb-2 text-center sm:text-left">
+    <li className="mb-2 sm:text-left">
       <a
         href={href}
         target="_blank"

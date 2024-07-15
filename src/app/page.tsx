@@ -1,6 +1,9 @@
 'use client';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import LinkAnimated from '@/components/LinkAnimated';
+import Scene from '@/components/Scene';
+import Projects from '@/components/Projects';
+import Lenis from 'lenis';
 
 export default function Home() {
   useEffect(() => {
@@ -8,6 +11,18 @@ export default function Home() {
       const LocomotiveScroll = (await import('locomotive-scroll')).default;
       const locomotiveScroll = new LocomotiveScroll();
     })();
+  }, []);
+  // projects listing of components with preview
+  const [activeMenu, setActiveMenu] = useState(null);
+
+  useEffect(() => {
+    const lenis = new Lenis();
+
+    function raf(time: number) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    }
+    requestAnimationFrame(raf);
   }, []);
 
   return (
@@ -56,7 +71,7 @@ export default function Home() {
                   </div>
                 </a>
               </div>
-              <ul className="hero-social col-span-4 mx-auto hidden list-none sm:text-sm lg:block xl:text-xl">
+              <ul className="hero-social z-99 col-span-4 mx-auto hidden list-none sm:text-sm lg:block xl:text-xl">
                 <li className="mb-4 border-b-2 pb-2 text-center opacity-50">
                   <span>Let&apos;s get connected</span>
                 </li>
@@ -72,6 +87,12 @@ export default function Home() {
               </ul>
             </div>
           </div>
+        </section>
+        <section>
+          <div className="h-[50vh]"></div>
+          <Projects setActiveMenu={setActiveMenu} />
+          <Scene activeMenu={activeMenu} />
+          <div className="h-[50vh]"></div>
         </section>
       </main>
     </>

@@ -2,7 +2,7 @@ import LinkAnimated from './LinkAnimated';
 import ThemedText from './ThemedText';
 import Image from 'next/image';
 import IvanRavic from '@/public/Ivan.png';
-import { format, toZonedTime } from 'date-fns-tz';
+import CurrentTime from '@/lib/CurentTime';
 
 export default function Content() {
   return (
@@ -22,11 +22,6 @@ const Section1 = () => {
 };
 
 const Section2 = () => {
-  const currentTime = format(
-    toZonedTime(new Date(), 'Europe/Belgrade'),
-    'hh:mm a',
-  );
-
   return (
     <div className="flex items-end justify-between">
       <h1 className="mt-10 flex items-center text-[10vw] leading-[0.8] text-custom-dark">
@@ -40,7 +35,7 @@ const Section2 = () => {
         Ivan Ravic
       </h1>
       <ThemedText>
-        <p>Local Time: {currentTime} </p>
+        <CurrentTime />
       </ThemedText>
     </div>
   );

@@ -7,39 +7,53 @@ import { useTexture, useAspect } from '@react-three/drei';
 import useMouse from '@/hooks/useMouse';
 import useDimension from '@/hooks/useDimension';
 import { projects } from './data';
+import { Mesh, ShaderMaterial, BufferGeometry } from 'three';
 
-export default function Model({ activeMenu }: { activeMenu: number | null }) {
-  const plane = useRef();
+type ModelProps = {
+  activeMenu: number | null;
+};
+
+const lerp = (x: number, y: number, a: number): number => x * (1 - a) + y * a;
+
+const Model: React.FC<ModelProps> = ({ activeMenu }) => {
+  const plane = useRef<Mesh<BufferGeometry, ShaderMaterial>>(null!);
   const { viewport } = useThree();
   const dimension = useDimension();
   const mouse = useMouse();
   const opacity = useMotionValue(0);
-  const textures = projects.map((project) => useTexture(project.src));
-  const { width, height } = textures[0].image;
-  const lerp = (x: number, y: number, a: number) => x * (1 - a) + y * a;
-
-  const scale = useAspect(width, height, 0.225);
+  const textures = useTexture(projects.map((project) => project.src));
+  const scale = useAspect(
+    textures[0].image.width,
+    textures[0].image.height,
+    0.225,
+  );
   const smoothMouse = {
     x: useMotionValue(0),
     y: useMotionValue(0),
   };
 
   useEffect(() => {
-    if (activeMenu != null) {
+    if (activeMenu != null && plane.current) {
       plane.current.material.uniforms.uTexture.value = textures[activeMenu];
       animate(opacity, 1, {
         duration: 0.2,
-        onUpdate: (latest) =>
-          (plane.current.material.uniforms.uAlpha.value = latest),
+        onUpdate: (latest) => {
+          if (plane.current) {
+            plane.current.material.uniforms.uAlpha.value = latest;
+          }
+        },
       });
     } else {
       animate(opacity, 0, {
         duration: 0.2,
-        onUpdate: (latest) =>
-          (plane.current.material.uniforms.uAlpha.value = latest),
+        onUpdate: (latest) => {
+          if (plane.current) {
+            plane.current.material.uniforms.uAlpha.value = latest;
+          }
+        },
       });
     }
-  }, [activeMenu]);
+  }, [activeMenu, textures, opacity]);
 
   const uniforms = useRef({
     uDelta: { value: { x: 0, y: 0 } },
@@ -53,7 +67,7 @@ export default function Model({ activeMenu }: { activeMenu: number | null }) {
     const smoothX = smoothMouse.x.get();
     const smoothY = smoothMouse.y.get();
 
-    if (Math.abs(x - smoothX) > 1) {
+    if (Math.abs(x - smoothX) > 1 && plane.current) {
       smoothMouse.x.set(lerp(smoothX, x, 0.1));
       smoothMouse.y.set(lerp(smoothY, y, 0.1));
       plane.current.material.uniforms.uDelta.value = {
@@ -75,16 +89,16 @@ export default function Model({ activeMenu }: { activeMenu: number | null }) {
   );
 
   return (
-    <motion.mesh position-x={x} position-y={y} ref={plane} scale={scale}>
+    <motion.mesh position-x={x} position-y={y} ref={plane as any} scale={scale}>
       <planeGeometry args={[1, 1, 15, 15]} />
-      {/* <meshBasicMaterial wireframe={true} color="red"/> */}
       <shaderMaterial
         vertexShader={vertex}
         fragmentShader={fragment}
         uniforms={uniforms.current}
         transparent={true}
-        // wireframe={true}
       />
     </motion.mesh>
   );
-}
+};
+
+export default Model;

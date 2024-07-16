@@ -15,16 +15,6 @@ export default function Home() {
   // projects listing of components with preview
   const [activeMenu, setActiveMenu] = useState(null);
 
-  useEffect(() => {
-    const lenis = new Lenis();
-
-    function raf(time: number) {
-      lenis.raf(time);
-      requestAnimationFrame(raf);
-    }
-    requestAnimationFrame(raf);
-  }, []);
-
   return (
     <>
       <main className="mx-auto px-6 sm:px-10">
@@ -89,10 +79,8 @@ export default function Home() {
           </div>
         </section>
         <section>
-          <div className="h-[50vh]"></div>
           <Projects setActiveMenu={setActiveMenu} />
           <Scene activeMenu={activeMenu} />
-          <div className="h-[50vh]"></div>
         </section>
       </main>
     </>

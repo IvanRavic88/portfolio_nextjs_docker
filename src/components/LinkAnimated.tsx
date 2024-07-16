@@ -5,7 +5,7 @@ type socialLinkProps = {
 
 export default function LinkAnimated({ href, children }: socialLinkProps) {
   return (
-    <li className="mb-2 sm:text-left">
+    <li className="z-99 mb-2 sm:text-left">
       <a
         href={href}
         target="_blank"

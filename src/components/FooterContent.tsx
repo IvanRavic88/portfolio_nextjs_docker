@@ -2,7 +2,7 @@ import LinkAnimated from './LinkAnimated';
 import ThemedText from './ThemedText';
 import Image from 'next/image';
 import IvanRavic from '@/public/Ivan.png';
-import CurrentTime from '@/lib/CurentTime';
+import CurrentTime from '@/components/CurentTime';
 
 export default function Content() {
   return (

@@ -6,7 +6,7 @@ import { vertex, fragment } from './Shader';
 import { useTexture, useAspect } from '@react-three/drei';
 import useMouse from '@/hooks/useMouse';
 import useDimension from '@/hooks/useDimension';
-import { projects } from './data';
+import { projects } from '@/projectMenuData';
 import { Mesh, ShaderMaterial, BufferGeometry } from 'three';
 
 type ModelProps = {

@@ -1,9 +1,8 @@
 'use client';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import LinkAnimated from '@/components/LinkAnimated';
-import Scene from '@/components/Scene';
-import Projects from '@/components/Projects';
-import Lenis from 'lenis';
+import ProjectsMenu from '@/components/ProjectsMenu';
+import { Button } from '@/components/ui/button';
 
 export default function Home() {
   useEffect(() => {
@@ -12,8 +11,6 @@ export default function Home() {
       const locomotiveScroll = new LocomotiveScroll();
     })();
   }, []);
-  // projects listing of components with preview
-  const [activeMenu, setActiveMenu] = useState(null);
 
   return (
     <>
@@ -36,29 +33,18 @@ export default function Home() {
             <div className="hero_bottom flex flex-col items-start gap-14 lg:grid lg:grid-cols-12 lg:gap-20">
               <div className="hero_text col-span-8 text-left">
                 <p className="mb-4 md:text-xl xl:mb-8 xl:text-3xl">
-                  I help startups and businesses build robust and scalable web
-                  applications using full-stack development and AWS cloud
-                  solutions, ensuring optimal performance and growth.
+                  Specializing in modern web development frameworks like Next.js
+                  and Tailwind CSS, alongside AWS cloud solutions, I assist
+                  startups and businesses in creating robust, scalable
+                  applications that achieve optimal performance and sustainable
+                  growth.
                 </p>
-                <a
-                  href="mailto:ravic.ivan88@gmail.com"
-                  className="inline-flex items-center justify-center rounded-full bg-custom-dark p-1 text-custom-light sm:justify-start"
-                >
-                  <span className="md:text-sm">Drop me a line</span>
-                  <div className="button_icon relative flex h-10 w-10 items-center justify-center rounded-full md:px-4 md:py-2 md:pl-4">
-                    <div className="button_icon_bg scale-25 absolute h-full w-full rounded-full bg-custom-light"></div>
-                    <svg
-                      className="h-6 w-6 opacity-0 mix-blend-difference"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        d="m7.012 18.069 9.702-9.702v7.298l1.499.028-.014-8.81-1.132-1.132-8.81-.014.028 1.499h7.298L5.88 16.937l1.131 1.132Z"
-                        fill="currentColor"
-                      ></path>
-                    </svg>
-                  </div>
+                <a href="mailto:ravic.ivan88@gmail.com?subject=Email from Website&body=Hi, I'm interested in...">
+                  <Button className="flex cursor-pointer items-center justify-center rounded-full bg-[#1C1D20] p-6 text-white">
+                    <p className="font-ligh relative z-10 m-0 text-base">
+                      Drop me a line
+                    </p>
+                  </Button>
                 </a>
               </div>
               <ul className="hero-social z-99 col-span-4 mx-auto hidden list-none sm:text-sm lg:block xl:text-xl">
@@ -78,10 +64,8 @@ export default function Home() {
             </div>
           </div>
         </section>
-        <section>
-          <Projects setActiveMenu={setActiveMenu} />
-          <Scene activeMenu={activeMenu} />
-        </section>
+        <div className="h-[30vh]"></div>
+        <ProjectsMenu />
       </main>
     </>
   );

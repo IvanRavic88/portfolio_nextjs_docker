@@ -5,10 +5,8 @@ import Model from './Model';
 
 export default function Scene({ activeMenu }: { activeMenu: number | null }) {
   return (
-    <div className="fixed top-0 h-screen w-full">
-      <Canvas>
-        <Model activeMenu={activeMenu} />
-      </Canvas>
-    </div>
+    <Canvas>
+      <Model activeMenu={activeMenu} />
+    </Canvas>
   );
 }

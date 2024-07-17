@@ -1,5 +1,5 @@
 import React from 'react';
-import { projects } from './data';
+import { projects } from '@/projectMenuData';
 
 interface ProjectsProps {
   setActiveMenu: (menu: any) => void;
@@ -11,7 +11,7 @@ export default function Projects({ setActiveMenu }: ProjectsProps) {
         onMouseLeave={() => {
           setActiveMenu(null);
         }}
-        className="border-b"
+        className=""
       >
         {projects.map((project, i) => {
           return (
@@ -20,9 +20,9 @@ export default function Projects({ setActiveMenu }: ProjectsProps) {
                 setActiveMenu(i);
               }}
               key={project.title}
-              className="border-t p-5 text-[4vw]"
+              className="mb-5 border-b-[1px] p-10 text-[4vw]"
             >
-              <p>{project.title}</p>
+              <a href={project.href}>{project.title}</a>
             </li>
           );
         })}

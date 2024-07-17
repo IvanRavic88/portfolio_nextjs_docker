@@ -15,3 +15,9 @@ export type MenuItemWithSubMenuProps = {
 export type ActiveMenuProps = {
   setActiveMenu: (menuIndex: number | null) => void;
 };
+
+export type Project = {
+  title: string;
+  src: string;
+  href: string;
+};

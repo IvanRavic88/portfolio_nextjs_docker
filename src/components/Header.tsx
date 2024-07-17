@@ -7,6 +7,7 @@ import { NavMenu } from './navigation-menu-shadcn';
 import ThemeSwitch from './ThemeSwitch';
 import Image from 'next/image';
 import IvanRavic from '@/public/Ivan.png';
+import FramerMagnetic from './FramerMagnetic';
 
 const Header = () => {
   const scrolled = useScroll(5);
@@ -25,22 +26,27 @@ const Header = () => {
             className="flex flex-row items-center justify-center space-x-3"
             href="/"
           >
-            <Image
-              src={IvanRavic}
-              alt="Ivan Ravić profile picture"
-              width={40}
-              height={40}
-              className="rounded-full"
-            />
+            <FramerMagnetic>
+              <Image
+                src={IvanRavic}
+                alt="Ivan Ravić profile picture"
+                width={40}
+                height={40}
+                className="rounded-full"
+              />
+            </FramerMagnetic>
             <span className={`flex} text-xl font-bold`}>Ivan Ravić</span>
           </Link>
         </div>
+
         <div className="hidden md:block">
           <NavMenu />
         </div>
 
         <div className="hidden md:block">
-          <ThemeSwitch />
+          <FramerMagnetic>
+            <ThemeSwitch />
+          </FramerMagnetic>
         </div>
       </div>
     </div>

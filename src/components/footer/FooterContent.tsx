@@ -1,8 +1,8 @@
-import LinkAnimated from './LinkAnimated';
-import ThemedText from './ThemedText';
+import LinkAnimated from '../LinkAnimated';
+import ThemedText from '../ThemedText';
 import Image from 'next/image';
 import IvanRavic from '@/public/Ivan.png';
-import CurrentTime from '@/components/CurentTime';
+import CurrentTime from '@/components/footer/CurentTime';
 
 export default function Content() {
   return (

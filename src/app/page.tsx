@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 import LinkAnimated from '@/components/LinkAnimated';
 import ProjectsMenu from '@/components/ProjectsMenu';
 import { Button } from '@/components/ui/button';
+import MyServices from '@/components/services/MyServices';
 
 export default function Home() {
   useEffect(() => {
@@ -64,6 +65,7 @@ export default function Home() {
             </div>
           </div>
         </section>
+        <MyServices />
         <div className="h-[30vh]"></div>
         <ProjectsMenu />
       </main>

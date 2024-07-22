@@ -25,7 +25,7 @@ const Model: React.FC<ModelProps> = ({ activeMenu }) => {
   const scale = useAspect(
     textures[0].image.width,
     textures[0].image.height,
-    0.225,
+    0.5,
   );
   const smoothMouse = {
     x: useMotionValue(0),

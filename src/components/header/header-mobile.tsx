@@ -1,17 +1,17 @@
-"use client";
+'use client';
 
-import React, { ReactNode, use, useEffect, useRef, useState } from "react";
+import React, { ReactNode, use, useEffect, useRef, useState } from 'react';
 
-import Link from "next/link";
-import { usePathname } from "next/navigation";
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 
-import { SIDE_NAV_ITEMS } from "@/constants";
-import { SideNavItem } from "@/types";
-import { Icon } from "@iconify/react";
-import { motion, useCycle } from "framer-motion";
-import { useTheme } from "next-themes";
+import { SIDE_NAV_ITEMS } from '@/constants';
+import { SideNavItem } from '@/types';
+import { Icon } from '@iconify/react';
+import { motion, useCycle } from 'framer-motion';
+import { useTheme } from 'next-themes';
 
-import ThemeSwitch from "./ThemeSwitch";
+import ThemeSwitch from '@/components/ThemeSwitch';
 
 type MenuItemWithSubMenuProps = {
   icon?: JSX.Element;
@@ -23,15 +23,15 @@ const sidebar = {
   open: (height = 1000) => ({
     clipPath: `circle(${height * 2 + 200}px at 100% 0)`,
     transition: {
-      type: "spring",
+      type: 'spring',
       stiffness: 20,
       restDelta: 2,
     },
   }),
   closed: {
-    clipPath: "circle(0px at 100% 0)",
+    clipPath: 'circle(0px at 100% 0)',
     transition: {
-      type: "spring",
+      type: 'spring',
       stiffness: 400,
       damping: 40,
     },
@@ -49,21 +49,21 @@ const HeaderMobile = () => {
     setMounted(true);
   }, []);
 
-  const initialThemeClass = "bg-custom-dark";
-  const themeClass = theme === "dark" ? "bg-custom-light" : "bg-custom-dark";
+  const initialThemeClass = 'bg-custom-dark';
+  const themeClass = theme === 'dark' ? 'bg-custom-light' : 'bg-custom-dark';
   const textThemeClass = mounted
-    ? theme === "dark"
-      ? "text-custom-dark"
-      : "text-custom-light"
-    : "text-custom-dark";
+    ? theme === 'dark'
+      ? 'text-custom-dark'
+      : 'text-custom-light'
+    : 'text-custom-dark';
 
   return (
     <motion.nav
       initial={false}
-      animate={isOpen ? "open" : "closed"}
+      animate={isOpen ? 'open' : 'closed'}
       custom={height}
-      className={`fixed inset-0 z-50 w-full md:hidden  ${
-        isOpen ? "" : "pointer-events-none"
+      className={`fixed inset-0 z-50 w-full md:hidden ${
+        isOpen ? '' : 'pointer-events-none'
       }`}
       ref={containerRef}
     >
@@ -75,7 +75,7 @@ const HeaderMobile = () => {
       />
       <motion.ul
         variants={variants}
-        className={`absolute grid w-full gap-3 px-10 py-16 max-h-screen overflow-y-auto ${textThemeClass}`}
+        className={`absolute grid max-h-screen w-full gap-3 overflow-y-auto px-10 py-16 ${textThemeClass}`}
       >
         {SIDE_NAV_ITEMS.map((item, idx) => {
           const isLastItem = idx === SIDE_NAV_ITEMS.length - 1; // Check if it's the last item
@@ -94,9 +94,9 @@ const HeaderMobile = () => {
                     href={item.path}
                     onClick={() => toggleOpen()}
                     className={`flex w-full text-2xl ${
-                      item.path === pathname ? "font-bold" : ""
+                      item.path === pathname ? 'font-bold' : ''
                     }`}
-                    target={item.new_window ? "_blank" : ""}
+                    target={item.new_window ? '_blank' : ''}
                   >
                     {item.title}
                   </Link>
@@ -128,8 +128,8 @@ const MenuToggle = ({ toggle }: { toggle: any }) => (
     <svg width="23" height="23" viewBox="0 0 23 23">
       <Path
         variants={{
-          closed: { d: "M 2 2.5 L 20 2.5" },
-          open: { d: "M 3 16.5 L 17 2.5" },
+          closed: { d: 'M 2 2.5 L 20 2.5' },
+          open: { d: 'M 3 16.5 L 17 2.5' },
         }}
       />
       <Path
@@ -142,8 +142,8 @@ const MenuToggle = ({ toggle }: { toggle: any }) => (
       />
       <Path
         variants={{
-          closed: { d: "M 2 16.346 L 20 16.346" },
-          open: { d: "M 3 2.5 L 17 16.346" },
+          closed: { d: 'M 2 16.346 L 20 16.346' },
+          open: { d: 'M 3 2.5 L 17 16.346' },
         }}
       />
     </svg>
@@ -193,19 +193,19 @@ const MenuItemWithSubMenu: React.FC<MenuItemWithSubMenuProps> = ({
           className="flex w-full text-2xl"
           onClick={() => setSubMenuOpen(!subMenuOpen)}
         >
-          <div className="flex flex-row justify-between w-full items-center">
+          <div className="flex w-full flex-row items-center justify-between">
             <span
-              className={`${pathname.includes(item.path) ? "font-bold" : ""}`}
+              className={`${pathname.includes(item.path) ? 'font-bold' : ''}`}
             >
               {item.title}
             </span>
-            <div className={`${subMenuOpen && "rotate-180"}`}>
+            <div className={`${subMenuOpen && 'rotate-180'}`}>
               <Icon icon="lucide:chevron-down" width="24" height="24" />
             </div>
           </div>
         </button>
       </MenuItem>
-      <div className="mt-2 ml-2 flex flex-col space-y-2">
+      <div className="ml-2 mt-2 flex flex-col space-y-2">
         {subMenuOpen && (
           <>
             {item.subMenuItems?.map((subItem, subIdx) => {
@@ -215,7 +215,7 @@ const MenuItemWithSubMenu: React.FC<MenuItemWithSubMenuProps> = ({
                     href={subItem.path}
                     onClick={() => toggleOpen()}
                     className={` ${
-                      subItem.path === pathname ? "font-bold" : ""
+                      subItem.path === pathname ? 'font-bold' : ''
                     }`}
                   >
                     {subItem.title}

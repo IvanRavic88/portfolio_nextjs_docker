@@ -17,7 +17,9 @@ export type ActiveMenuProps = {
 };
 
 export type Project = {
+  id: number;
   title: string;
   src: string;
   href: string;
+  description: string;
 };

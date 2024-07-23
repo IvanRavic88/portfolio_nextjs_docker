@@ -17,23 +17,23 @@ export default function Home() {
     <>
       <main className="mx-auto px-6 sm:px-10">
         <section className="relative flex flex-col bg-center">
-          <div className="wrapper mx-auto my-0 max-w-full pb-10 pt-32 md:px-5 md:pt-40 xl:pt-60 2xl:max-w-[90rem]">
-            <div className="hero_top mb-14 flex flex-col items-start gap-14 xl:mb-20 xl:grid xl:grid-cols-12 xl:items-end xl:gap-20">
-              <div className="hero-title col-span-8 text-left">
+          <div className="mx-auto my-0 max-w-full pb-10 pt-32 md:px-5 md:pt-40 xl:pt-60 2xl:max-w-[90rem]">
+            <div className="mb-14 flex flex-col items-start gap-14 xl:mb-20 xl:grid xl:grid-cols-12 xl:items-end xl:gap-20">
+              <div className="col-span-8 text-left">
                 <h1 className="-ml-[0.375rem] text-4xl sm:text-5xl md:text-8xl 2xl:text-9xl">
                   <span className="hidden">Ivan Ravic</span>
                   <span>Software Developer with AWS Certification</span>
                 </h1>
               </div>
-              <div className="hero-sub mt-[-2.7rem] max-w-60 xl:col-span-4 xl:mx-auto xl:max-w-40">
+              <div className="mt-[-2.7rem] max-w-60 xl:col-span-4 xl:mx-auto xl:max-w-40">
                 <p className="text-lg opacity-50 xl:opacity-100">
                   Full-Stack, DevOps, AWS Cloud Expertise
                 </p>
               </div>
             </div>
-            <div className="hero_bottom flex flex-col items-start gap-14 lg:grid lg:grid-cols-12 lg:gap-20">
-              <div className="hero_text col-span-8 text-left">
-                <p className="mb-4 md:text-xl xl:mb-8 xl:text-3xl">
+            <div className="flex flex-col items-start gap-14 lg:grid lg:grid-cols-12 lg:gap-20">
+              <div className="col-span-8 text-left">
+                <p className="mb-4 md:text-xl xl:mb-10 xl:text-3xl">
                   Specializing in modern web development frameworks like Next.js
                   and Tailwind CSS, alongside AWS cloud solutions, I assist
                   startups and businesses in creating robust, scalable
@@ -48,7 +48,7 @@ export default function Home() {
                   </Button>
                 </a>
               </div>
-              <ul className="hero-social z-99 col-span-4 mx-auto hidden list-none sm:text-sm lg:block xl:text-xl">
+              <ul className="z-99 col-span-4 mx-auto hidden list-none sm:text-sm lg:block xl:text-xl">
                 <li className="mb-4 border-b-2 pb-2 text-center opacity-50">
                   <span>Let&apos;s get connected</span>
                 </li>
@@ -66,8 +66,12 @@ export default function Home() {
           </div>
         </section>
         <MyServices />
-        <div className="h-[30vh]"></div>
+        <div className="container mx-auto mb-20 flex items-center justify-between text-base opacity-60">
+          <h3 className="text-left text-6xl">Portfolio Highlights</h3>
+          <span className="">A selection of favorites</span>
+        </div>
         <ProjectsMenu />
+        <div className="mb-[30vh]"></div>
       </main>
     </>
   );

@@ -2,8 +2,9 @@
 import { useEffect } from 'react';
 import LinkAnimated from '@/components/LinkAnimated';
 import ProjectsMenu from '@/components/ProjectsMenu';
-import { Button } from '@/components/ui/button';
+
 import MyServices from '@/components/services/MyServices';
+import Rounded from '@/components/common/Button/index';
 
 export default function Home() {
   useEffect(() => {
@@ -40,12 +41,13 @@ export default function Home() {
                   applications that achieve optimal performance and sustainable
                   growth.
                 </p>
-                <a href="mailto:ravic.ivan88@gmail.com?subject=Email from Website&body=Hi, I'm interested in...">
-                  <Button className="flex cursor-pointer items-center justify-center rounded-full bg-[#1C1D20] p-6 text-white">
-                    <p className="font-ligh relative z-10 m-0 text-base">
-                      Drop me a line
-                    </p>
-                  </Button>
+                <a
+                  href="mailto:ravic.ivan88@gmail.com?subject=Email from Website&body=Hi, I'm interested in..."
+                  className="inline-block"
+                >
+                  <Rounded>
+                    <p className="z-10 m-0 text-base">Drop me a line</p>
+                  </Rounded>
                 </a>
               </div>
               <ul className="z-99 col-span-4 mx-auto hidden list-none sm:text-sm lg:block xl:text-xl">

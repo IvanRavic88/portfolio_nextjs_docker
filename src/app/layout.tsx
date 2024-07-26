@@ -1,12 +1,12 @@
 import type { Metadata } from 'next';
-import { Montserrat } from 'next/font/google';
+import { Open_Sans } from 'next/font/google';
 import './globals.css';
 import { Providers } from '@/app/providers';
 import HeaderMobile from '@/components/header/header-mobile';
 import Header from '@/components/header/Header';
 import Footer from '@/components/footer/Footer';
 
-const montserrat_display = Montserrat({
+const montserrat_display = Open_Sans({
   subsets: ['latin-ext'],
   weight: ['500', '700'],
 });

@@ -1,8 +1,8 @@
-"use client";
-import { useState, useEffect } from "react";
-import { useTheme } from "next-themes";
-import { FiSun, FiMoon } from "react-icons/fi";
-import Image from "next/image";
+'use client';
+import { useState, useEffect } from 'react';
+import { useTheme } from 'next-themes';
+import { FiSun, FiMoon } from 'react-icons/fi';
+import Image from 'next/image';
 
 export default function ThemeSwitch() {
   const [mounted, setMounted] = useState(false);
@@ -14,7 +14,7 @@ export default function ThemeSwitch() {
   }, []);
 
   const toggleTheme = () => {
-    setTheme(resolvedTheme === "dark" ? "light" : "dark");
+    setTheme(resolvedTheme === 'dark' ? 'light' : 'dark');
     setAnimateIcon(true);
     setTimeout(() => {
       setAnimateIcon(false);
@@ -38,18 +38,18 @@ export default function ThemeSwitch() {
   return (
     <button
       aria-label={`Switch to ${
-        resolvedTheme === "dark" ? "light" : "dark"
+        resolvedTheme === 'dark' ? 'light' : 'dark'
       } mode`}
-      className="theme-switcher flex space-x-1 items-center "
+      className="theme-switcher -mt-4 flex items-center space-x-1"
       onClick={toggleTheme}
     >
-      {resolvedTheme === "dark" ? (
-        <FiSun className={`text-xl ${animateIcon ? "animate-spin" : ""}`} />
+      {resolvedTheme === 'dark' ? (
+        <FiSun className={`text-xl ${animateIcon ? 'animate-spin' : ''}`} />
       ) : (
-        <FiMoon className={`text-xl ${animateIcon ? "animate-spin" : ""}`} />
+        <FiMoon className={`text-xl ${animateIcon ? 'animate-spin' : ''}`} />
       )}
       <span className="text-sm">
-        {resolvedTheme === "dark" ? "Light" : "Dark"}
+        {resolvedTheme === 'dark' ? 'Light' : 'Dark'}
       </span>
     </button>
   );

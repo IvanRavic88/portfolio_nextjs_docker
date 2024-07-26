@@ -6,7 +6,7 @@ import { cn } from '@/lib/utils';
 import { NavMenu } from '@/components/header/navigation-menu-shadcn';
 import ThemeSwitch from '@/components/ThemeSwitch';
 import Image from 'next/image';
-import IvanRavic from '@/public/Ivan.png';
+import IvanRavic from '@/public/images/Ivan.png';
 import FramerMagnetic from '@/components/FramerMagnetic';
 
 const Header = () => {

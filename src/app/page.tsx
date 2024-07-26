@@ -1,8 +1,8 @@
 'use client';
 import { useEffect } from 'react';
 import LinkAnimated from '@/components/LinkAnimated';
-import ProjectsMenu from '@/components/ProjectsMenu';
-
+import ProjectsMenu from '@/components/projectsMenu/ProjectsMenu';
+import CTA from '@/components/cta/CTA';
 import MyServices from '@/components/services/MyServices';
 import Rounded from '@/components/common/Button/index';
 
@@ -34,7 +34,7 @@ export default function Home() {
             </div>
             <div className="flex flex-col items-start gap-14 lg:grid lg:grid-cols-12 lg:gap-20">
               <div className="col-span-8 text-left">
-                <p className="mb-4 md:text-xl xl:mb-10 xl:text-3xl">
+                <p className="mb-10 md:text-xl xl:mb-10 xl:text-3xl">
                   Specializing in modern web development frameworks like Next.js
                   and Tailwind CSS, alongside AWS cloud solutions, I assist
                   startups and businesses in creating robust, scalable
@@ -68,12 +68,14 @@ export default function Home() {
           </div>
         </section>
         <MyServices />
-        <div className="container mx-auto mb-20 flex items-center justify-between text-base opacity-60">
-          <h3 className="text-left text-6xl">Portfolio Highlights</h3>
+        <div className="items-left container mx-auto mb-10 flex flex-col justify-between gap-4 text-base opacity-60 sm:mb-20 sm:flex-row sm:items-center">
+          <h3 className="text-left text-xl sm:text-2xl">
+            Portfolio Highlights
+          </h3>
           <span className="">A selection of favorites</span>
         </div>
         <ProjectsMenu />
-        <div className="mb-[30vh]"></div>
+        <CTA />
       </main>
     </>
   );

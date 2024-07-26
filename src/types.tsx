@@ -22,4 +22,5 @@ export type Project = {
   src: string;
   href: string;
   description: string;
+  color: string;
 };

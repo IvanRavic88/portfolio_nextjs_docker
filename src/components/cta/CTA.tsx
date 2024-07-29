@@ -1,10 +1,10 @@
 import Image from 'next/image';
-import IvanRavic from '@/public/images/Ivan.png'; // Adjust the path as necessary
-import Rounded from '@/components/common/Button'; // Adjust the path as necessary
+import IvanRavic from '@/public/images/Ivan.png';
+import Rounded from '@/components/common/Button';
 
 function CTA() {
   return (
-    <div className="container mx-auto my-5 mb-20 flex flex-shrink flex-col justify-between gap-8 rounded-lg p-8 md:flex-row">
+    <div className="mx-auto my-44 flex max-w-[90rem] flex-shrink flex-col justify-between gap-10 rounded-lg p-0 sm:container sm:my-20 sm:p-8 md:flex-row md:items-center">
       <div className="flex flex-col md:flex-row md:items-center">
         <Image
           src={IvanRavic}
@@ -18,15 +18,18 @@ function CTA() {
           projects.
         </p>
       </div>
-
-      <a
-        href="mailto:ravic.ivan88@gmail.com?subject=Email from Website&body=Hi, I'm interested in..."
-        className="mt-4 sm:ml-auto sm:mt-0"
-      >
-        <Rounded>
-          <p className="z-10 whitespace-nowrap p-1 text-base">Drop me a line</p>
-        </Rounded>
-      </a>
+      <div className="">
+        <a
+          href="mailto:ravic.ivan88@gmail.com?subject=Email from Website&body=Hi, I'm interested in..."
+          className="inline-block"
+        >
+          <Rounded>
+            <p className="z-10 m-0 whitespace-nowrap text-base">
+              Drop me a line
+            </p>
+          </Rounded>
+        </a>
+      </div>
     </div>
   );
 }

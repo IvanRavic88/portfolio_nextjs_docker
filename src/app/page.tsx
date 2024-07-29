@@ -68,8 +68,8 @@ export default function Home() {
           </div>
         </section>
         <MyServices />
-        <div className="items-left container mx-auto mb-10 flex flex-col justify-between gap-4 text-base opacity-60 sm:mb-20 sm:flex-row sm:items-center">
-          <h3 className="text-left text-xl sm:text-2xl">
+        <div className="items-left mx-auto my-10 flex flex-col justify-between gap-4 pt-20 text-base opacity-70 sm:container sm:mb-20 sm:flex-row sm:items-center">
+          <h3 className="text-left text-2xl sm:text-4xl">
             Portfolio Highlights
           </h3>
           <span className="">A selection of favorites</span>

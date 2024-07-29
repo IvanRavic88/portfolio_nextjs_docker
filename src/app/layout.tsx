@@ -23,7 +23,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="h-full" suppressHydrationWarning>
+    <html
+      lang="en"
+      className="relative m-0 box-border h-full max-w-full overflow-hidden p-0"
+      suppressHydrationWarning
+    >
       <body
         className={`md:text-lg lg:text-2xl ${montserrat_display.className}`}
       >

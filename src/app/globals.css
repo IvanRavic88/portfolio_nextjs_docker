@@ -93,6 +93,7 @@
 }
 
 .roundedButton {
+  max-width: fit-content;
   border-radius: 3em;
   border: 1px solid hsl(var(--ring));
   cursor: pointer;

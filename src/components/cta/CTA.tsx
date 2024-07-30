@@ -1,3 +1,4 @@
+'use client';
 import Image from 'next/image';
 import IvanRavic from '@/public/images/Ivan.png';
 import Rounded from '@/components/common/Button';

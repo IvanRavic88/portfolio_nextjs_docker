@@ -13,7 +13,7 @@ export default function AboutPage() {
   });
 
   return (
-    <div className="flex min-h-screen flex-col px-6 sm:container">
+    <div className="flex min-h-screen flex-col px-3 sm:container sm:px-6">
       <div>
         <div className="max-w-[90rem] py-24 sm:py-40 md:py-52">
           <div className="flex flex-wrap">
@@ -31,7 +31,7 @@ export default function AboutPage() {
             alt="Ivan Ravić profile picture"
             width={300}
             height={300}
-            className="mb-5 mr-3 w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg"
+            className="mb-5 mr-3 w-full max-w-xs rounded-sm sm:max-w-sm md:max-w-md lg:max-w-lg"
           />
           <motion.div
             ref={element}

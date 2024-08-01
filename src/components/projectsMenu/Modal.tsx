@@ -21,7 +21,13 @@ const scaleAnimation = {
 
 interface ModalProps {
   modal: { active: boolean; index: number };
-  projects: { src: string; color: string; description: string; href: string }[];
+  projects: {
+    index: number;
+    src: string;
+    color: string;
+    description: string;
+    href: string;
+  }[];
 }
 
 export default function Modal({ modal, projects }: ModalProps) {
@@ -82,17 +88,23 @@ export default function Modal({ modal, projects }: ModalProps) {
         className="pointer-events-none absolute flex h-[350px] w-[400px] items-center justify-center overflow-hidden bg-white"
       >
         <div
-          className="duration-[0.5s] ease-[cubic-bezier(0.76,0,0.24,1)] absolute h-full w-full transition-[top]"
+          className="duration-[0.5s] ease-[cubic-bezier(0.76,0,0.24,1)]; absolute h-full w-full transition-[top]"
           style={{ top: index * -100 + '%' }}
         >
-          {projects.map((project, index) => {
+          {projects.map((project) => {
             return (
               <div
                 className="flex h-full w-full items-center justify-center"
                 style={{ backgroundColor: color }}
-                key={`modal_${index}`}
+                key={`modal_${project.index}`}
               >
-                <Image src={src} width={300} height={0} alt={description} />
+                <Image
+                  className="h-auto w-full"
+                  src={src}
+                  width={300}
+                  height={0}
+                  alt={description}
+                />
               </div>
             );
           })}

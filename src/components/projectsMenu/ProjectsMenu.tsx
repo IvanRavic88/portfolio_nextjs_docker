@@ -26,7 +26,7 @@ function ProjectsMenu() {
           );
         })}
       </div>
-      <div className="">
+      <div>
         <Modal modal={modal} projects={projects} />
       </div>
     </section>

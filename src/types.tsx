@@ -1,3 +1,5 @@
+import { StaticImport } from 'next/dist/shared/lib/get-img-props';
+
 export type SideNavItem = {
   title: string;
   path: string;
@@ -17,10 +19,18 @@ export type ActiveMenuProps = {
 };
 
 export type Project = {
-  id: number;
+  index: number;
   title: string;
   src: string;
   href: string;
   description: string;
   color: string;
+};
+
+export type Contactinfo = {
+  id: number;
+  href?: string;
+  icon?: JSX.Element;
+  description: string;
+  text: string;
 };

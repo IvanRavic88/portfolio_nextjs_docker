@@ -1,5 +1,5 @@
 'use client';
-import { useEffect } from 'react';
+// import { useEffect } from 'react';
 
 import ProjectsMenu from '@/components/projectsMenu/ProjectsMenu';
 import CTA from '@/components/cta/CTA';
@@ -8,12 +8,12 @@ import Rounded from '@/components/common/Button/index';
 import Socials from '@/components/socials/Socials';
 
 export default function Home() {
-  useEffect(() => {
-    (async () => {
-      const LocomotiveScroll = (await import('locomotive-scroll')).default;
-      const locomotiveScroll = new LocomotiveScroll();
-    })();
-  }, []);
+  // useEffect(() => {
+  //   (async () => {
+  //     const LocomotiveScroll = (await import('locomotive-scroll')).default;
+  //     const locomotiveScroll = new LocomotiveScroll();
+  //   })();
+  // }, []);
 
   return (
     <>

@@ -8,7 +8,7 @@ interface LayoutProps {
 }
 
 export default function Layout({ children }: LayoutProps) {
-  const pathname = usePathname(); // Extract pathname to a separate variable
+  const pathname = usePathname();
 
   useEffect(() => {
     let locomotiveScroll: LocomotiveScroll | null = null;
@@ -24,7 +24,7 @@ export default function Layout({ children }: LayoutProps) {
     return () => {
       if (locomotiveScroll) locomotiveScroll.destroy();
     };
-  }, [pathname]); // Use the extracted pathname variable in the dependency array
+  }, [pathname]);
 
   return <div data-scroll-container>{children}</div>;
 }

@@ -1,3 +1,4 @@
+'use client';
 import React, { useState } from 'react';
 import Modal from '@/components/projectsMenu/Modal';
 import { projects } from '@/projectMenuData';

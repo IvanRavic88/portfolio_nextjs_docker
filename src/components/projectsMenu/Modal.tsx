@@ -85,7 +85,7 @@ export default function Modal({ modal, projects }: ModalProps) {
         variants={scaleAnimation}
         initial="initial"
         animate={active ? 'enter' : 'closed'}
-        className="pointer-events-none absolute flex h-[350px] w-[400px] items-center justify-center overflow-hidden bg-white"
+        className="pointer-events-none absolute flex h-[410px] w-[410px] items-center justify-center overflow-hidden bg-white"
       >
         <div
           className="duration-[0.5s] ease-[cubic-bezier(0.76,0,0.24,1)]; absolute h-full w-full transition-[top]"

@@ -1,5 +1,5 @@
 const ivanRavic = () => {
-  return <div>Ivan Ravic page in progress...</div>;
+  return <div>Portfolio v2 page in progress...</div>;
 };
 
 export default ivanRavic;

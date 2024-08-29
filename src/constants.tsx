@@ -19,14 +19,17 @@ export const SIDE_NAV_ITEMS: SideNavItem[] = [
         title: 'All',
         path: '/projects',
       },
+      { title: '01  Evolving', path: '/projects/portfoliov02' },
       {
-        title: 'gaginislatkisi.com',
+        title: '02  gaginislatkisi.com',
         path: '/projects/gaginislatkisi',
       },
+
       {
-        title: 'ivanravic.com',
-        path: '/projects/ivanravic',
+        title: '03  Fundations',
+        path: '/projects/portfoliov01',
       },
+      { title: '04  E-Commerce', path: '/projects/e-commerce' },
     ],
   },
   {

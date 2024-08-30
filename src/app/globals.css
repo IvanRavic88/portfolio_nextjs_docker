@@ -123,6 +123,18 @@
   background-color: hsl(var(--primary));
 }
 
+.custom-font-size {
+  @apply text-4xl; /* Fallback for browsers that do not support calc or clamp */
+  font-size: calc(clamp(3.25em, 7vw, 8em) * 1);
+}
+.custom-width {
+  width: calc(33.333% - (var(--gap-padding) / 1));
+}
+
+.custom-margin-right {
+  margin-right: calc(var(--gap-padding) * 1.5);
+}
+
 @layer base {
   * {
     @apply border-border;

@@ -1,5 +1,7 @@
-const ivanRavic = () => {
-  return <div>Portfolio v2 page in progress...</div>;
+import ProjectsTemplate from '@/components/common/ProjectsTemplate';
+
+const Evolving = () => {
+  return <ProjectsTemplate></ProjectsTemplate>;
 };
 
-export default ivanRavic;
+export default Evolving;

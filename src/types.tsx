@@ -39,4 +39,8 @@ export type ProjectsPageData = {
   services: string;
   year: number;
   location: string;
+  descriptionTitle: string;
+  projectDescription: string;
+  imageSrcLight: string;
+  imageSrcDark: string;
 }[];

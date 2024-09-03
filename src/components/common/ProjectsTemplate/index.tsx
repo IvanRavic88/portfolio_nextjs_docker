@@ -9,6 +9,10 @@ interface ProjectsTemplateProps {
   services: string;
   year: number;
   location: string;
+  descriptionTitle: string;
+  projectDescription: string;
+  imageSrcLight: string;
+  imageSrcDark: string;
 }
 
 export default function ProjectsTemplate({
@@ -16,13 +20,14 @@ export default function ProjectsTemplate({
   services,
   year,
   location,
+  descriptionTitle,
+  projectDescription,
+  imageSrcLight,
+  imageSrcDark,
 }: ProjectsTemplateProps) {
   const { theme } = useTheme();
 
-  const imageSrc =
-    theme === 'dark'
-      ? '/images/portfolio_v02_light.png'
-      : '/images/portfolio_v02_dark.png';
+  const imageSrc = theme === 'dark' ? `${imageSrcLight}` : `${imageSrcDark}`;
 
   return (
     <div className="p-4 sm:p-0">
@@ -73,36 +78,6 @@ export default function ProjectsTemplate({
         </div>
       </section>
 
-      <section className="py-12">
-        <div className="sm:container">
-          <div className="mb-8 flex flex-col flex-wrap items-center pb-10 text-center">
-            <h2 className="mb-6 text-4xl font-semibold text-gray-800 dark:text-gray-200">
-              Portfolio v02
-            </h2>
-            <p className="mb-6 max-w-6xl text-3xl leading-relaxed text-gray-700 dark:text-gray-300">
-              This portfolio is a testament to my expertise in modern web
-              development. It features a robust tech stack that includes Docker
-              for containerization, Next.js for efficient server-side rendering,
-              Tailwind CSS for adaptive and responsive designs, and TypeScript
-              for enhanced type safety. Hosted on AWS for scalability, it also
-              showcases dynamic animations powered by Framer Motion. The
-              development pipeline is streamlined with Git workflows for version
-              control, Terraform for infrastructure as code, and Ansible for
-              automated configuration management, ensuring a smooth and
-              efficient deployment process.
-            </p>
-            <a
-              href="https://github.com/IvanRavic88/portfolio_nextjs_docker"
-              className="inline-block"
-            >
-              <Rounded>
-                <p className="z-10 m-0 text-base">Github Code</p>
-              </Rounded>
-            </a>
-          </div>
-        </div>
-      </section>
-
       <section className="relative flex h-auto w-full justify-center sm:container">
         <div className="relative h-0 w-full pb-[56.25%]">
           <Image
@@ -113,6 +88,26 @@ export default function ProjectsTemplate({
             layout="responsive"
             className="object-cover"
           />
+        </div>
+      </section>
+      <section className="py-12">
+        <div className="sm:container">
+          <div className="mb-8 flex flex-col flex-wrap items-center pb-10">
+            <h2 className="mb-6 text-4xl font-semibold text-gray-800 dark:text-gray-200">
+              {descriptionTitle}
+            </h2>
+            <p className="mb-6 max-w-6xl text-3xl leading-relaxed text-gray-700 dark:text-gray-300">
+              {projectDescription}
+            </p>
+            <a
+              href="https://github.com/IvanRavic88/portfolio_nextjs_docker"
+              className="inline-block items-center"
+            >
+              <Rounded>
+                <p className="z-10 m-0 text-base">Github Code</p>
+              </Rounded>
+            </a>
+          </div>
         </div>
       </section>
     </div>

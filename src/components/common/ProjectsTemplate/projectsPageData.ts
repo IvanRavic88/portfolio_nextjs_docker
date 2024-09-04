@@ -9,8 +9,9 @@ export const projectsPageData: ProjectsPageData = [
     location: 'Serbia',
     descriptionTitle: 'Portfolio v02',
     projectDescription:
-      'This portfolio is a testament to my expertise in modern web development. It features a robust tech stack that includes Docker for containerization, Next.js for efficient server-side rendering, Tailwind CSS for adaptive and responsive designs, and TypeScript for enhanced type safety. Hosted on AWS for scalability, it also showcases dynamic animations powered by Framer Motion. The development pipeline is streamlined with Git workflows for version control, Terraform for infrastructure as code, and Ansible for automated configuration management, ensuring a smooth and efficient deployment process.',
+      'This portfolio reflects my professional experience in modern web development, utilizing a comprehensive tech stack that includes Docker for containerization, Next.js for efficient server-side rendering, Tailwind CSS for responsive design, and TypeScript for type safety. Hosted on AWS for reliability and scalability, it also features dynamic animations created with Framer Motion. The development process is supported by professional practices, including Git workflows for version control, Terraform for infrastructure as code, and Ansible for automated configuration management, ensuring smooth and efficient deployment.',
     imageSrcLight: '/images/portfolio_v02_light.png',
     imageSrcDark: '/images/portfolio_v02_dark.png',
+    
   },
 ];

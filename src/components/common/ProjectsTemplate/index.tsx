@@ -2,6 +2,7 @@
 import Image from 'next/image';
 import { useTheme } from 'next-themes';
 import Rounded from '@/components/common/Button/index';
+import { useEffect, useState } from 'react';
 
 interface ProjectsTemplateProps {
   id: number;
@@ -26,15 +27,26 @@ export default function ProjectsTemplate({
   imageSrcDark,
 }: ProjectsTemplateProps) {
   const { theme } = useTheme();
+  const [mounted, setMounted] = useState(false);
 
-  const imageSrc = theme === 'dark' ? `${imageSrcLight}` : `${imageSrcDark}`;
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  const imageSrc = theme === 'dark' ? imageSrcLight : imageSrcDark;
+
+  if (!mounted) {
+    return <div className="h-[300px] w-full bg-gray-200 dark:bg-gray-800" />;
+  }
 
   return (
     <div className="p-4 sm:p-0">
-      <section className="mt-24">
-        <div className="sm:container">
-          <div className="flex flex-row flex-wrap justify-between gap-10">
-            <h1 className="text-9xl font-bold">{title}</h1>
+      <section className="my-24 sm:mb-12">
+        <div className="container mx-auto px-4">
+          <div className="flex flex-col flex-wrap items-center justify-between gap-10 sm:flex-row">
+            <h1 className="text-center text-6xl font-bold sm:text-left sm:text-8xl md:text-9xl">
+              {title}
+            </h1>
             <a href="https://ivanravic.com" className="inline-block">
               <Rounded>
                 <p className="z-10 m-0 text-base">Live site</p>
@@ -85,18 +97,17 @@ export default function ProjectsTemplate({
             alt="Evolve - Portfolio v02"
             width={1920}
             height={1080}
-            layout="responsive"
-            className="object-cover"
           />
         </div>
       </section>
+
       <section className="py-12">
-        <div className="sm:container">
+        <div className="container mx-auto px-4">
           <div className="mb-8 flex flex-col flex-wrap items-center pb-10">
-            <h2 className="mb-6 text-4xl font-semibold text-gray-800 dark:text-gray-200">
+            <h2 className="mb-6 text-center text-2xl font-semibold text-gray-800 dark:text-gray-200 sm:text-3xl md:text-4xl">
               {descriptionTitle}
             </h2>
-            <p className="mb-6 max-w-6xl text-3xl leading-relaxed text-gray-700 dark:text-gray-300">
+            <p className="mb-6 max-w-6xl text-center text-base leading-relaxed text-gray-700 dark:text-gray-300 sm:text-lg md:text-xl lg:text-2xl">
               {projectDescription}
             </p>
             <a
@@ -107,6 +118,40 @@ export default function ProjectsTemplate({
                 <p className="z-10 m-0 text-base">Github Code</p>
               </Rounded>
             </a>
+          </div>
+        </div>
+      </section>
+
+      <section className="py-12">
+        <div className="mx-auto sm:container">
+          <div className="flex flex-wrap justify-center gap-14 sm:gap-24">
+            <div className="min-w-[250px] max-w-[400px] flex-1">
+              <Image
+                src="/images/mobile_portfolio_v02_dark.png"
+                alt="Dark mobile version of main page"
+                width={800}
+                height={600}
+                className={`rounded-lg shadow-lg ${theme === 'dark' ? 'border border-white' : ''}`}
+              />
+            </div>
+            <div className="min-w-[250px] max-w-[400px] flex-1">
+              <Image
+                src="/images/mobile_portfolio_v02.png"
+                alt="Light mobile version of main page"
+                width={800}
+                height={600}
+                className="rounded-lg shadow-lg"
+              />
+            </div>
+            <div className="min-w-[250px] max-w-[400px] flex-1">
+              <Image
+                src="/images/mobile_menu_portfolio_v02.png"
+                alt="Light mobile version of main page"
+                width={800}
+                height={600}
+                className={`rounded-lg shadow-xl ${theme === 'dark' ? 'border border-white' : ''}`}
+              />
+            </div>
           </div>
         </div>
       </section>

@@ -2,7 +2,8 @@
 import Image from 'next/image';
 import { useTheme } from 'next-themes';
 import Rounded from '@/components/common/Button/index';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import { useScroll, useTransform, motion } from 'framer-motion';
 
 interface ProjectsTemplateProps {
   id: number;
@@ -26,8 +27,18 @@ export default function ProjectsTemplate({
   imageSrcLight,
   imageSrcDark,
 }: ProjectsTemplateProps) {
+  const container = useRef(null);
   const { theme } = useTheme();
   const [mounted, setMounted] = useState(false);
+
+  const { scrollYProgress } = useScroll({
+    target: container,
+    offset: ['start end', 'end start'],
+  });
+
+  const sm = useTransform(scrollYProgress, [0, 1], [0, -50]);
+  const md = useTransform(scrollYProgress, [0, 1], [0, -150]);
+  const lg = useTransform(scrollYProgress, [0, 1], [0, -250]);
 
   useEffect(() => {
     setMounted(true);
@@ -40,7 +51,7 @@ export default function ProjectsTemplate({
   }
 
   return (
-    <div className="p-4 sm:p-0">
+    <div ref={container} className="p-4 sm:p-0">
       <section className="my-24 sm:mb-12">
         <div className="container mx-auto px-4">
           <div className="flex flex-col flex-wrap items-center justify-between gap-10 sm:flex-row">
@@ -58,7 +69,7 @@ export default function ProjectsTemplate({
 
       <section className="pb-12 sm:py-36">
         <div className="flex items-center justify-center sm:container">
-          <div className="flex w-full flex-col flex-wrap gap-16 sm:flex-row sm:gap-24">
+          <div className="flex w-full flex-col flex-wrap gap-16 text-center sm:flex-row sm:gap-24">
             <div className="flex flex-1 flex-col gap-2">
               <h5 className="mb-4 text-base uppercase text-gray-600 dark:text-gray-400">
                 Role / Services
@@ -91,14 +102,17 @@ export default function ProjectsTemplate({
       </section>
 
       <section className="relative flex h-auto w-full justify-center sm:container">
-        <div className="relative h-0 w-full pb-[56.25%]">
+        <motion.div
+          style={{ y: lg }}
+          className="relative h-0 w-full pb-[56.25%]"
+        >
           <Image
             src={imageSrc}
             alt="Evolve - Portfolio v02"
             width={1920}
             height={1080}
           />
-        </div>
+        </motion.div>
       </section>
 
       <section className="py-12">
@@ -125,7 +139,10 @@ export default function ProjectsTemplate({
       <section className="py-12">
         <div className="mx-auto sm:container">
           <div className="flex flex-wrap justify-center gap-14 sm:gap-24">
-            <div className="min-w-[250px] max-w-[400px] flex-1">
+            <motion.div
+              style={{ y: lg }}
+              className="min-w-[250px] max-w-[400px] flex-1"
+            >
               <Image
                 src="/images/mobile_portfolio_v02_dark.png"
                 alt="Dark mobile version of main page"
@@ -133,8 +150,11 @@ export default function ProjectsTemplate({
                 height={600}
                 className={`rounded-lg shadow-lg ${theme === 'dark' ? 'border border-white' : ''}`}
               />
-            </div>
-            <div className="min-w-[250px] max-w-[400px] flex-1">
+            </motion.div>
+            <motion.div
+              style={{ y: md }}
+              className="min-w-[250px] max-w-[400px] flex-1"
+            >
               <Image
                 src="/images/mobile_portfolio_v02.png"
                 alt="Light mobile version of main page"
@@ -142,8 +162,11 @@ export default function ProjectsTemplate({
                 height={600}
                 className="rounded-lg shadow-lg"
               />
-            </div>
-            <div className="min-w-[250px] max-w-[400px] flex-1">
+            </motion.div>
+            <motion.div
+              style={{ y: sm }}
+              className="min-w-[250px] max-w-[400px] flex-1"
+            >
               <Image
                 src="/images/mobile_menu_portfolio_v02.png"
                 alt="Light mobile version of main page"
@@ -151,7 +174,7 @@ export default function ProjectsTemplate({
                 height={600}
                 className={`rounded-lg shadow-xl ${theme === 'dark' ? 'border border-white' : ''}`}
               />
-            </div>
+            </motion.div>
           </div>
         </div>
       </section>

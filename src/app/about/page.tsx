@@ -2,30 +2,47 @@
 import MyServices from '@/components/services/MyServices';
 import IvanRavic from '@/public/images/Ivan.png';
 import Image from 'next/image';
-import { useScroll, motion } from 'framer-motion';
+import { useScroll, useTransform, motion } from 'framer-motion';
 import { useRef } from 'react';
 
 export default function AboutPage() {
+  const container = useRef(null);
   const element = useRef(null);
-  const { scrollYProgress } = useScroll({
+  const { scrollYProgress: scrollYProgressElement } = useScroll({
     target: element,
     offset: ['start 0.9', 'start 0.25'],
   });
 
+  const { scrollYProgress: scrollYProgressContainer } = useScroll({
+    target: container,
+    offset: ['start end', 'end start'],
+  });
+  const sm = useTransform(scrollYProgressContainer, [0, 1], [0, -150]);
+  const md = useTransform(scrollYProgressContainer, [0, 1], [0, -250]);
+  const lg = useTransform(scrollYProgressContainer, [0, 1], [0, -350]);
+
   return (
-    <div className="flex min-h-screen flex-col px-3 sm:container sm:px-6">
+    <div
+      ref={container}
+      className="flex min-h-screen flex-col px-3 sm:container sm:px-6"
+    >
       <div>
         <div className="max-w-[90rem] py-24 sm:py-40 md:py-52">
           <div className="flex flex-wrap">
             <div className="relative order-2 block w-full">
               <h1 className="text-5xl sm:text-7xl md:text-8xl lg:text-9xl">
-                <span className="block">Empowering Your </span>
-                <span>Digital Journey</span>
+                <motion.span className="block" style={{ top: lg }}>
+                  Empowering Your{' '}
+                </motion.span>
+                <motion.span style={{ top: sm }}>Digital Journey</motion.span>
               </h1>
             </div>
           </div>
         </div>
-        <div className="flex flex-col items-center border-b-2 border-t-2 p-0 py-20 md:container lg:flex-row">
+        <motion.div
+          style={{ y: lg }}
+          className="flex flex-col items-center border-b-2 border-t-2 p-0 py-20 md:container lg:flex-row"
+        >
           <Image
             src={IvanRavic}
             alt="Ivan Ravić profile picture"
@@ -35,7 +52,7 @@ export default function AboutPage() {
           />
           <motion.div
             ref={element}
-            style={{ opacity: scrollYProgress }}
+            style={{ opacity: scrollYProgressElement }}
             className="flex flex-col gap-10 p-0 text-base md:container sm:text-xl"
           >
             <div className="rounded-lg">
@@ -71,7 +88,7 @@ export default function AboutPage() {
               </p>
             </div>
           </motion.div>
-        </div>
+        </motion.div>
       </div>
 
       <MyServices />

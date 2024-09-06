@@ -43,4 +43,5 @@ export type ProjectsPageData = {
   projectDescription: string;
   imageSrcLight: string;
   imageSrcDark: string;
+  nextProject: { name: string; href: string };
 }[];

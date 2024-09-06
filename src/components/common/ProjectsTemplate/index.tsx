@@ -4,6 +4,7 @@ import { useTheme } from 'next-themes';
 import Rounded from '@/components/common/Button/index';
 import { useEffect, useRef, useState } from 'react';
 import { useScroll, useTransform, motion } from 'framer-motion';
+import Intro from '@/components/common/ProjectsTemplate/backgroundImageParallax';
 
 interface ProjectsTemplateProps {
   id: number;
@@ -15,6 +16,7 @@ interface ProjectsTemplateProps {
   projectDescription: string;
   imageSrcLight: string;
   imageSrcDark: string;
+  nextProject: { name: string; href: string };
 }
 
 export default function ProjectsTemplate({
@@ -26,6 +28,7 @@ export default function ProjectsTemplate({
   projectDescription,
   imageSrcLight,
   imageSrcDark,
+  nextProject: { name, href },
 }: ProjectsTemplateProps) {
   const container = useRef(null);
   const { theme } = useTheme();
@@ -51,11 +54,11 @@ export default function ProjectsTemplate({
   }
 
   return (
-    <div ref={container} className="p-4 sm:p-0">
+    <div ref={container} className="p-1 sm:p-0">
       <section className="my-24 sm:mb-12">
         <div className="container mx-auto px-4">
           <div className="flex flex-col flex-wrap items-center justify-between gap-10 sm:flex-row">
-            <h1 className="text-center text-6xl font-bold sm:text-left sm:text-8xl md:text-9xl">
+            <h1 className="text-center text-5xl font-bold sm:text-left sm:text-8xl md:text-9xl">
               {title}
             </h1>
             <a href="https://ivanravic.com" className="inline-block">
@@ -101,29 +104,23 @@ export default function ProjectsTemplate({
         </div>
       </section>
 
-      <section className="relative flex h-auto w-full justify-center sm:container">
-        <motion.div
-          style={{ y: lg }}
-          className="relative h-0 w-full pb-[56.25%]"
-        >
-          <Image
-            src={imageSrc}
-            alt="Evolve - Portfolio v02"
-            width={1920}
-            height={1080}
-          />
-        </motion.div>
-      </section>
+      <Intro background={imageSrc} />
 
-      <section className="py-12">
+      <section className="py-10 sm:py-36">
         <div className="container mx-auto px-4">
           <div className="mb-8 flex flex-col flex-wrap items-center pb-10">
-            <h2 className="mb-6 text-center text-2xl font-semibold text-gray-800 dark:text-gray-200 sm:text-3xl md:text-4xl">
+            <motion.h2
+              style={{ y: sm }}
+              className="text-center text-2xl font-semibold text-gray-800 dark:text-gray-200 sm:text-3xl md:text-4xl"
+            >
               {descriptionTitle}
-            </h2>
-            <p className="mb-6 max-w-6xl text-center text-base leading-relaxed text-gray-700 dark:text-gray-300 sm:text-lg md:text-xl lg:text-2xl">
+            </motion.h2>
+            <motion.p
+              style={{ top: lg }}
+              className="mb-6 max-w-6xl text-center text-base leading-relaxed text-gray-700 dark:text-gray-300 sm:text-lg md:text-xl lg:text-2xl"
+            >
               {projectDescription}
-            </p>
+            </motion.p>
             <a
               href="https://github.com/IvanRavic88/portfolio_nextjs_docker"
               className="inline-block items-center"
@@ -175,6 +172,22 @@ export default function ProjectsTemplate({
                 className={`rounded-lg shadow-xl ${theme === 'dark' ? 'border border-white' : ''}`}
               />
             </motion.div>
+          </div>
+        </div>
+      </section>
+      <div className="border-t-[1px]"></div>
+      <section className="container py-24 sm:py-36">
+        <div className="px-4">
+          <div className="grid grid-cols-1 items-end gap-16 sm:grid-cols-[5fr_7fr]">
+            <span className="text-xl opacity-40 sm:text-2xl">
+              Next project <span>&#8594;</span>
+            </span>
+            <a
+              className="text-5xl leading-none tracking-tighter blur-sm filter transition duration-500 hover:filter-none sm:text-6xl"
+              href={href}
+            >
+              {name}
+            </a>
           </div>
         </div>
       </section>

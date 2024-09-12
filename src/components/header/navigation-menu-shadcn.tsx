@@ -25,10 +25,7 @@ export const NavMenu: React.FC = () => {
           </NavigationMenuTrigger>
           <NavigationMenuContent className="">
             <ul className="grid gap-1 p-2 md:w-80 lg:min-w-96 lg:grid-cols-[2fr]">
-              <ListItem
-                href="/projects/portfoliov02"
-                title="01 Evolving"
-              >
+              <ListItem href="/projects/portfolio_v2" title="01 Evolving">
                 A collection showcasing my growth, with refined techniques and
                 innovative solutions.
               </ListItem>
@@ -39,12 +36,9 @@ export const NavMenu: React.FC = () => {
                 A client app for homemade sweets, featuring a database and admin
                 login.
               </ListItem>
-              <ListItem
-                href="/projects/portfoliov01"
-                title="03 Fundations"
-              >
+              <ListItem href="/projects/fundations" title="03 Fundations">
                 Early projects where I honed my skills and built my software
-                development foundation.
+                development foundation with small twist.
               </ListItem>
               <ListItem href="/projects/e-commerce" title="04 E-Commerce">
                 A fully functional e-commerce website, with a cart and payment

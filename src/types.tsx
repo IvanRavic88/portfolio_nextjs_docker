@@ -43,5 +43,8 @@ export type ProjectsPageData = {
   projectDescription: string;
   imageSrcLight: string;
   imageSrcDark: string;
+  githubLink: string;
+  liveWebsite: string;
+  mobileImages: { src: string; alt: string }[];
   nextProject: { name: string; href: string };
 }[];

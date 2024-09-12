@@ -16,6 +16,10 @@ interface ProjectsTemplateProps {
   projectDescription: string;
   imageSrcLight: string;
   imageSrcDark: string;
+  githubLink: string;
+  liveWebsite: string;
+  mobileImages: { src: string; alt: string }[];
+
   nextProject: { name: string; href: string };
 }
 
@@ -28,6 +32,9 @@ export default function ProjectsTemplate({
   projectDescription,
   imageSrcLight,
   imageSrcDark,
+  githubLink,
+  liveWebsite,
+  mobileImages,
   nextProject: { name, href },
 }: ProjectsTemplateProps) {
   const container = useRef(null);
@@ -61,7 +68,7 @@ export default function ProjectsTemplate({
             <h1 className="text-center text-5xl font-bold sm:text-left sm:text-8xl md:text-9xl">
               {title}
             </h1>
-            <a href="https://ivanravic.com" className="inline-block">
+            <a href={liveWebsite} className="inline-block">
               <Rounded>
                 <p className="z-10 m-0 text-base">Live site</p>
               </Rounded>
@@ -121,10 +128,7 @@ export default function ProjectsTemplate({
             >
               {projectDescription}
             </motion.p>
-            <a
-              href="https://github.com/IvanRavic88/portfolio_nextjs_docker"
-              className="inline-block items-center"
-            >
+            <a href={githubLink} className="inline-block items-center">
               <Rounded>
                 <p className="z-10 m-0 text-base">Github Code</p>
               </Rounded>
@@ -136,42 +140,33 @@ export default function ProjectsTemplate({
       <section className="py-12">
         <div className="mx-auto sm:container">
           <div className="flex flex-wrap justify-center gap-14 sm:gap-24">
-            <motion.div
-              style={{ y: lg }}
-              className="min-w-[250px] max-w-[400px] flex-1"
-            >
-              <Image
-                src="/images/mobile_portfolio_v02_dark.png"
-                alt="Dark mobile version of main page"
-                width={800}
-                height={600}
-                className={`rounded-lg shadow-lg ${theme === 'dark' ? 'border border-white' : ''}`}
-              />
-            </motion.div>
-            <motion.div
-              style={{ y: md }}
-              className="min-w-[250px] max-w-[400px] flex-1"
-            >
-              <Image
-                src="/images/mobile_portfolio_v02.png"
-                alt="Light mobile version of main page"
-                width={800}
-                height={600}
-                className="rounded-lg shadow-lg"
-              />
-            </motion.div>
-            <motion.div
-              style={{ y: sm }}
-              className="min-w-[250px] max-w-[400px] flex-1"
-            >
-              <Image
-                src="/images/mobile_menu_portfolio_v02.png"
-                alt="Light mobile version of main page"
-                width={800}
-                height={600}
-                className={`rounded-lg shadow-xl ${theme === 'dark' ? 'border border-white' : ''}`}
-              />
-            </motion.div>
+            {mobileImages.map((image, index) => {
+              let yTransform;
+              if (index === 0) {
+                yTransform = sm;
+              }
+              if (index === 1) {
+                yTransform = lg;
+              }
+              if (index === 2) {
+                yTransform = sm;
+              }
+              return (
+                <motion.div
+                  key={index}
+                  style={{ y: yTransform }}
+                  className="min-w-[250px] max-w-[400px] flex-1"
+                >
+                  <Image
+                    src={image.src}
+                    alt={image.alt}
+                    width={800}
+                    height={600}
+                    className={`rounded-lg shadow-lg ${theme === 'dark' ? 'border border-white' : ''}`}
+                  />
+                </motion.div>
+              );
+            })}
           </div>
         </div>
       </section>

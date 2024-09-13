@@ -87,7 +87,7 @@ export const projectsPageData: ProjectsPageData = [
     ],
     nextProject: { name: 'E-commerce', href: '/projects/e-commerce' },
   },
-  // TODO: Make picture for e-commerce project and update the data below
+
   {
     id: 4,
     title: 'E-Commerce',

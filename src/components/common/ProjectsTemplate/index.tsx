@@ -68,7 +68,7 @@ export default function ProjectsTemplate({
             <h1 className="text-center text-5xl font-bold sm:text-left sm:text-8xl md:text-9xl">
               {title}
             </h1>
-            <a href={liveWebsite} className="inline-block">
+            <a href={liveWebsite} className="inline-block" target="_blank">
               <Rounded>
                 <p className="z-10 m-0 text-base">Live site</p>
               </Rounded>
@@ -128,7 +128,11 @@ export default function ProjectsTemplate({
             >
               {projectDescription}
             </motion.p>
-            <a href={githubLink} className="inline-block items-center">
+            <a
+              href={githubLink}
+              className="inline-block items-center"
+              target="_blank"
+            >
               <Rounded>
                 <p className="z-10 m-0 text-base">Github Code</p>
               </Rounded>

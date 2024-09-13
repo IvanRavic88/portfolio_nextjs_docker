@@ -92,13 +92,13 @@ export const projectsPageData: ProjectsPageData = [
     id: 4,
     title: 'E-Commerce',
     services: 'Development & DevOps',
-    year: 2023,
+    year: 2022,
     location: 'Serbia',
     descriptionTitle: 'E-Commerce',
     projectDescription:
-      'This e-commerce website is a fully functional online store that offers a wide range of products to customers. The website is built with React and Redux for the frontend, Node.js and Express for the backend, and MongoDB for the database. The website also features a shopping cart and payment system, allowing customers to easily browse and purchase products. The website is deployed on Heroku for easy access and scalability.',
-    imageSrcLight: '/images/e-commerce.png',
-    imageSrcDark: '/images/e-commerce.png',
+      'The project involved creating a modern, adaptable e-commerce site with full-stack development. Sanity managed product data, while Figma, CSS, and Material UI shaped the design. Next.js powered the backend, React.js the frontend, and Stripe handled payments in test mode, all deployed on Vercel.',
+    imageSrcLight: '/images/e-commerce_parallax.png',
+    imageSrcDark: '/images/e-commerce_parallax.png',
     githubLink: 'https://github.com/IvanRavic88/E-commerce-StripeAndSanity',
     liveWebsite:
       'https://e-commerce-stripe-and-sanity-git-main-ivanravic88.vercel.app/',
@@ -112,8 +112,8 @@ export const projectsPageData: ProjectsPageData = [
         alt: 'Mobile version of main page',
       },
       {
-        src: '/images/mobile_e-commerce_menu.png',
-        alt: 'Mobile menu',
+        src: '/images/mobile_e-commerce_shoping_page.png',
+        alt: 'Mobile shopping page',
       },
     ],
     nextProject: { name: 'Evolving', href: '/projects/portfolio_v2' },

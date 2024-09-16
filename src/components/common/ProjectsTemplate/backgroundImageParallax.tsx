@@ -22,7 +22,7 @@ export default function Intro({ background }: { background: string }) {
       <motion.div style={{ y }} className="relative h-full w-full">
         <Image
           src={background}
-          alt="Parallax background"
+          alt="Main image of the project"
           layout="responsive"
           width={1920}
           height={1080}

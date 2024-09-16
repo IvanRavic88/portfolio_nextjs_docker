@@ -47,7 +47,7 @@ export const projectsPageData: ProjectsPageData = [
         alt: 'Mobile version of main page',
       },
       {
-        src: '/images/mobile_gagini_slatkisi_.png',
+        src: '/images/mobile_gagini_slatkisi_2.png',
         alt: 'Mobile version of main page',
       },
       {
@@ -77,7 +77,7 @@ export const projectsPageData: ProjectsPageData = [
         alt: 'Mobile version of main page',
       },
       {
-        src: '/images/mobile_portfolio_v1_.png',
+        src: '/images/mobile_portfolio_v1_2.png',
         alt: 'Mobile version of main page',
       },
       {
@@ -108,7 +108,7 @@ export const projectsPageData: ProjectsPageData = [
         alt: 'Mobile version of main page',
       },
       {
-        src: '/images/mobile_e-commerce_.png',
+        src: '/images/mobile_e-commerce_2.png',
         alt: 'Mobile version of main page',
       },
       {

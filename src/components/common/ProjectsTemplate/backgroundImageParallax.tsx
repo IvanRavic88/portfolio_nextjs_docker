@@ -1,13 +1,15 @@
 import Image from 'next/image';
 import { useScroll, useTransform, motion } from 'framer-motion';
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 
 export default function Intro({ background }: { background: string }) {
   const container = useRef(null);
+  const [mounted, setMounted] = useState(false);
 
   const { scrollYProgress } = useScroll({
-    target: container,
+    target: mounted ? container : undefined,
     offset: ['start start', 'end start'],
+    layoutEffect: false,
   });
 
   const y = useTransform(scrollYProgress, [0, 1], ['0vh', '50vh']);
@@ -24,10 +26,9 @@ export default function Intro({ background }: { background: string }) {
           layout="responsive"
           width={1920}
           height={1080}
-          objectFit="cover"
-          objectPosition="center"
           priority
           className="block"
+          style={{ objectFit: 'cover', objectPosition: 'center' }}
         />
       </motion.div>
     </div>

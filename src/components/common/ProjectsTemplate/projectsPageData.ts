@@ -96,7 +96,7 @@ export const projectsPageData: ProjectsPageData = [
     location: 'Serbia',
     descriptionTitle: 'E-Commerce',
     projectDescription:
-      'The project involved creating a modern, adaptable e-commerce site with full-stack development. Sanity managed product data, while Figma, CSS, and Material UI shaped the design. Next.js powered the backend, React.js the frontend, and Stripe handled payments in test mode, all deployed on Vercel.',
+      'This project focused on developing a modern and adaptable e-commerce website, with a full-stack approach. Product data management was streamlined using Sanity, while the design was crafted with Figma, CSS, and Material UI. The website was powered by Next.js, and Stripe was integrated to handle payment processing in test mode. The site was deployed efficiently using Vercel, ensuring a seamless and responsive user experience.',
     imageSrcLight: '/images/e-commerce_parallax.PNG',
     imageSrcDark: '/images/e-commerce_parallax.PNG',
     githubLink: 'https://github.com/IvanRavic88/E-commerce-StripeAndSanity',

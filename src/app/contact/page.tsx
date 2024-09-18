@@ -7,10 +7,7 @@ import LinkAnimated from '@/components/LinkAnimated';
 
 export default function ContactPage() {
   return (
-    <section
-      style={{ backgroundImage: `url("/hero-img_1.png" )` }}
-      className="flex min-h-screen flex-col bg-cover bg-right bg-no-repeat p-2 md:bg-center md:p-6 lg:p-12 xl:p-28"
-    >
+    <section className="flex min-h-screen flex-col bg-cover bg-right bg-no-repeat p-2 md:bg-center md:p-6 lg:p-12 xl:p-28">
       <div className="max-w-[90rem] py-24 sm:py-32 md:py-40">
         <div className="flex flex-wrap">
           <div className="relative order-2 block w-full">

@@ -1,32 +1,37 @@
 'use client';
-
-import Rounded from '@/components/common/Button/index';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
+import { sendEmaillAction } from '@/app/api/serverActionEmail';
+
+import { ToastContainer, toast } from 'react-toastify';
 
 import { motion } from 'framer-motion';
 
+import Rounded from '@/components/common/Button/index';
 import { Textarea } from '@/components/ui/textarea';
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
   FormMessage,
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
+import { Icon } from '@iconify/react/dist/iconify.js';
 
 const formSchema = z.object({
-  name: z.string().min(2, {
+  senderName: z.string().min(2, {
     message: 'Username must be at least 2 characters.',
   }),
-  email: z.string().email({
+  senderEmail: z.string().email({
     message: 'Invalid email address.',
   }),
-  message: z.string().min(5, {
+  whatServicesNeeded: z.string().min(5, {
+    message: 'Services must be at least 3 characters.',
+  }),
+  senderMessage: z.string().min(5, {
     message: 'Message must be at least 5 characters.',
   }),
 });
@@ -34,9 +39,30 @@ const formSchema = z.object({
 export function ContactForm() {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
+    defaultValues: {
+      senderName: '',
+      senderEmail: '',
+      whatServicesNeeded: '',
+      senderMessage: '',
+    },
   });
-  function onSubmit(data: z.infer<typeof formSchema>) {
-    console.log(data);
+  async function onSubmit(data: z.infer<typeof formSchema>) {
+    try {
+      const formData = new FormData();
+      formData.append('senderName', data.senderName);
+      formData.append('senderEmail', data.senderEmail);
+      formData.append('whatServicesNeeded', data.whatServicesNeeded);
+      formData.append('senderMessage', data.senderMessage);
+
+      const response = await sendEmaillAction(formData);
+      if (response.data) {
+        toast.success('Email sent successfully. Thanks!');
+      } else {
+        toast.error('Failed to send email, please try again later');
+      }
+    } catch {
+      toast.error('Failed to send email, please try again later');
+    }
   }
 
   return (
@@ -53,7 +79,7 @@ export function ContactForm() {
         >
           <FormField
             control={form.control}
-            name="name"
+            name="senderName"
             render={({ field }) => (
               <FormItem>
                 <FormLabel className="sm:text left-0 mr-2 text-base opacity-35">
@@ -77,7 +103,7 @@ export function ContactForm() {
           />
           <FormField
             control={form.control}
-            name="email"
+            name="senderEmail"
             render={({ field }) => (
               <FormItem>
                 <FormLabel className="sm:text left-0 mr-2 text-base opacity-35">
@@ -101,7 +127,7 @@ export function ContactForm() {
           />
           <FormField
             control={form.control}
-            name="name"
+            name="whatServicesNeeded"
             render={({ field }) => (
               <FormItem>
                 <FormLabel className="sm:text left-0 mr-2 text-base opacity-35">
@@ -125,7 +151,7 @@ export function ContactForm() {
           />
           <FormField
             control={form.control}
-            name="message"
+            name="senderMessage"
             render={({ field }) => (
               <FormItem>
                 <FormLabel className="sm:text left-0 mr-2 text-base opacity-35">
@@ -149,11 +175,16 @@ export function ContactForm() {
 
           <button type="submit" className="block">
             <Rounded>
-              <p className="z-10 m-0 whitespace-nowrap text-base">
-                Get In Touch
+              <p className="z-10 m-0 flex items-center gap-3 whitespace-nowrap text-base">
+                Get In Touch{' '}
+                <Icon
+                  icon="mdi:send"
+                  className="transform transition-transform duration-300 group-hover:translate-x-1"
+                />
               </p>
             </Rounded>
           </button>
+          <ToastContainer />
         </form>
       </Form>
     </motion.div>

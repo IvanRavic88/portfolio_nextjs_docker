@@ -1,3 +1,13 @@
+import {
+  Head,
+  Body,
+  Html,
+  Tailwind,
+  Container,
+  Heading,
+  Text,
+} from '@react-email/components';
+
 interface EmailTemplateProps {
   senderName: string;
   senderEmail: string;
@@ -12,13 +22,26 @@ export const EmailTemplate: React.FC<Readonly<EmailTemplateProps>> = ({
   whatServicesNeeded,
 }) => {
   return (
-    <div>
-      <div>
-        <h1>Sender Name: {senderName}</h1>
-        <h2>Sender Email: {senderEmail}</h2>
-        <h3>Services Needed: {whatServicesNeeded}</h3>
-        <p>Message: {senderMessage}</p>
-      </div>
-    </div>
+    <Html>
+      <Head />
+      <Tailwind>
+        <Body className="bg-gray-100">
+          <Container className="rounded-lg bg-white p-8 shadow-lg">
+            <Heading className="mx-auto my-12 text-center font-sans text-2xl font-bold text-blue-600">
+              Hi! You have a new message from {senderName}
+            </Heading>
+            <Text className="text-lg text-gray-700">
+              <strong>Email:</strong> {senderEmail}
+            </Text>
+            <Text className="pt-4 text-xl text-gray-800">
+              <strong>Services needed:</strong> {whatServicesNeeded}
+            </Text>
+            <Text className="pt-4 text-lg text-gray-700">
+              <strong>Message:</strong> {senderMessage}
+            </Text>
+          </Container>
+        </Body>
+      </Tailwind>
+    </Html>
   );
 };

@@ -1,5 +1,7 @@
 'use server';
 import { z } from 'zod';
+import validator from 'validator';
+
 import { Resend } from 'resend';
 
 import { EmailTemplate } from '@/components/common/Emails/email-template';
@@ -19,20 +21,33 @@ const formSchema = z.object({
   senderMessage: z.string().min(5, {
     message: 'Message must be at least 5 characters.',
   }),
+  company: z.string().optional(),
 });
 
 export async function sendEmaillAction(formData: FormData) {
-  const parsedData = formSchema.safeParse({
-    senderName: formData.get('senderName'),
-    senderEmail: formData.get('senderEmail'),
-    whatServicesNeeded: formData.get('whatServicesNeeded'),
-    senderMessage: formData.get('senderMessage'),
-  });
+  if (formData.get('company')) {
+    throw new Error('Failed to send email, please try again later');
+  }
+
+  // Sanitize the form data
+  const sanitizedData = {
+    senderName: validator.escape(formData.get('senderName') as string),
+    senderEmail: validator.normalizeEmail(
+      formData.get('senderEmail') as string,
+    ) as string,
+    whatServicesNeeded: validator.escape(
+      formData.get('whatServicesNeeded') as string,
+    ),
+    senderMessage: validator.escape(formData.get('senderMessage') as string),
+    company: validator.escape(formData.get('company') as string),
+  };
+
+  const parsedData = formSchema.safeParse(sanitizedData);
 
   if (!parsedData.success) {
     throw new Error('Invalid form data');
   }
-  console.log(parsedData.data);
+
   try {
     const response = await resend.emails.send({
       from: 'portfolio_v2@ivanravic.com',
@@ -40,10 +55,9 @@ export async function sendEmaillAction(formData: FormData) {
       subject: 'New contact form submission from ivanravic.com',
       react: EmailTemplate({ ...parsedData.data }),
     });
-    console.log(response);
+
     return response;
   } catch (err) {
-    console.error('Error sending email', err);
-    throw new Error('Failed to send email');
+    throw new Error('Failed to send email, please try again later');
   }
 }

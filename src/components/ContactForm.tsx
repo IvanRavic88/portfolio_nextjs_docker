@@ -5,6 +5,7 @@ import { z } from 'zod';
 import { sendEmaillAction } from '@/app/api/serverActionEmail';
 
 import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import { motion } from 'framer-motion';
 
@@ -34,9 +35,11 @@ const formSchema = z.object({
   senderMessage: z.string().min(5, {
     message: 'Message must be at least 5 characters.',
   }),
+  company: z.string().optional(),
 });
 
 export function ContactForm() {
+  // form hook
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -44,19 +47,31 @@ export function ContactForm() {
       senderEmail: '',
       whatServicesNeeded: '',
       senderMessage: '',
+      company: '',
     },
   });
+  // submit handler
   async function onSubmit(data: z.infer<typeof formSchema>) {
+    // check for spam
+    if (data.company) {
+      toast.error('Failed to send email, please try again later');
+      return;
+    }
+
     try {
       const formData = new FormData();
       formData.append('senderName', data.senderName);
       formData.append('senderEmail', data.senderEmail);
       formData.append('whatServicesNeeded', data.whatServicesNeeded);
       formData.append('senderMessage', data.senderMessage);
+      if (data.company) {
+        formData.append('company', data.company);
+      }
 
       const response = await sendEmaillAction(formData);
       if (response.data) {
         toast.success('Email sent successfully. Thanks!');
+        form.reset();
       } else {
         toast.error('Failed to send email, please try again later');
       }
@@ -70,7 +85,7 @@ export function ContactForm() {
       initial={{ x: 100, opacity: 0 }} // Animating from right
       animate={{ x: 0, opacity: 1 }} // Moving to the center
       transition={{ ease: 'easeInOut', duration: 2 }}
-      className="flex w-full flex-col py-2 sm:p-6 md:p-8 lg:p-10"
+      className="flex w-full flex-col gap-4 py-2 sm:p-6 md:p-8 lg:p-10"
     >
       <Form {...form}>
         <form
@@ -172,6 +187,17 @@ export function ContactForm() {
               </FormItem>
             )}
           />
+          <FormField
+            control={form.control}
+            name="company"
+            render={({ field }) => (
+              <FormItem className="hidden">
+                <FormControl>
+                  <Input {...field} placeholder="Leave this field empty" />
+                </FormControl>
+              </FormItem>
+            )}
+          />
 
           <button type="submit" className="block">
             <Rounded>
@@ -184,9 +210,20 @@ export function ContactForm() {
               </p>
             </Rounded>
           </button>
-          <ToastContainer />
         </form>
       </Form>
+      <ToastContainer
+        position="bottom-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="colored"
+      />
     </motion.div>
   );
 }

@@ -23,7 +23,6 @@ import { Input } from '@/components/ui/input';
 import { Icon } from '@iconify/react/dist/iconify.js';
 
 import { useState } from 'react';
-import { NextApiRequest } from 'next';
 
 const formSchema = z.object({
   senderName: z.string().min(2, {
@@ -41,10 +40,9 @@ const formSchema = z.object({
   company: z.string().optional(),
 });
 
-export function ContactForm(req: NextApiRequest) {
+export function ContactForm() {
   const [isLoading, setIsLoading] = useState(false);
-  console.log(req);
-  // form hook
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {

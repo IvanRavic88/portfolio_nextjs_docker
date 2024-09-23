@@ -22,9 +22,12 @@ import {
 import { Input } from '@/components/ui/input';
 import { Icon } from '@iconify/react/dist/iconify.js';
 
+import { useState } from 'react';
+import { NextApiRequest } from 'next';
+
 const formSchema = z.object({
   senderName: z.string().min(2, {
-    message: 'Username must be at least 2 characters.',
+    message: 'Name must be at least 2 characters.',
   }),
   senderEmail: z.string().email({
     message: 'Invalid email address.',
@@ -38,7 +41,9 @@ const formSchema = z.object({
   company: z.string().optional(),
 });
 
-export function ContactForm() {
+export function ContactForm(req: NextApiRequest) {
+  const [isLoading, setIsLoading] = useState(false);
+  console.log(req);
   // form hook
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -52,31 +57,31 @@ export function ContactForm() {
   });
   // submit handler
   async function onSubmit(data: z.infer<typeof formSchema>) {
-    // check for spam
+    // antibot check
     if (data.company) {
-      toast.error('Failed to send email, please try again later');
+      toast.error('Spam detected. Please try again.');
       return;
     }
 
-    try {
-      const formData = new FormData();
-      formData.append('senderName', data.senderName);
-      formData.append('senderEmail', data.senderEmail);
-      formData.append('whatServicesNeeded', data.whatServicesNeeded);
-      formData.append('senderMessage', data.senderMessage);
-      if (data.company) {
-        formData.append('company', data.company);
-      }
+    setIsLoading(true);
 
-      const response = await sendEmaillAction(formData);
+    try {
+      const response = await sendEmaillAction(data);
+
       if (response.data) {
-        toast.success('Email sent successfully. Thanks!');
+        toast.success('Email sent successfully. I will get back to you soon.');
         form.reset();
-      } else {
-        toast.error('Failed to send email, please try again later');
       }
-    } catch {
-      toast.error('Failed to send email, please try again later');
+    } catch (error: any) {
+      if (error.message.includes('Validation Error')) {
+        toast.error(`Validation Error: ${error.message}`);
+      } else if (error.message.includes('Email Sending Failed')) {
+        toast.error(`Error sending email: ${error.message}`);
+      } else {
+        toast.error(`Unexpected error: ${error.message}`);
+      }
+    } finally {
+      setIsLoading(false);
     }
   }
 
@@ -202,7 +207,7 @@ export function ContactForm() {
           <button type="submit" className="block">
             <Rounded>
               <p className="z-10 m-0 flex items-center gap-3 whitespace-nowrap text-base">
-                Get In Touch{' '}
+                {isLoading ? 'Sending...' : 'Get In Touch'}
                 <Icon
                   icon="mdi:send"
                   className="transform transition-transform duration-300 group-hover:translate-x-1"
@@ -222,7 +227,7 @@ export function ContactForm() {
         pauseOnFocusLoss
         draggable
         pauseOnHover
-        theme="colored"
+        theme="light"
       />
     </motion.div>
   );

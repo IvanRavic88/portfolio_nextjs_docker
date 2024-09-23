@@ -24,28 +24,24 @@ const formSchema = z.object({
   company: z.string().optional(),
 });
 
-export async function sendEmaillAction(formData: FormData) {
-  if (formData.get('company')) {
+export async function sendEmaillAction(data: z.infer<typeof formSchema>) {
+  if (data.company) {
     throw new Error('Failed to send email, please try again later');
   }
-
   // Sanitize the form data
   const sanitizedData = {
-    senderName: validator.escape(formData.get('senderName') as string),
-    senderEmail: validator.normalizeEmail(
-      formData.get('senderEmail') as string,
-    ) as string,
-    whatServicesNeeded: validator.escape(
-      formData.get('whatServicesNeeded') as string,
-    ),
-    senderMessage: validator.escape(formData.get('senderMessage') as string),
-    company: validator.escape(formData.get('company') as string),
+    senderName: validator.escape(data.senderName),
+    senderEmail: validator.normalizeEmail(data.senderEmail),
+    whatServicesNeeded: validator.escape(data.whatServicesNeeded),
+    senderMessage: validator.escape(data.senderMessage),
   };
 
   const parsedData = formSchema.safeParse(sanitizedData);
 
   if (!parsedData.success) {
-    throw new Error('Invalid form data');
+    // handling validation errors
+    const errorMessages = parsedData.error.issues.map((issue) => issue.message);
+    throw new Error(`Validation Error:${errorMessages.join(', ')}`);
   }
 
   try {
@@ -58,6 +54,10 @@ export async function sendEmaillAction(formData: FormData) {
 
     return response;
   } catch (err) {
-    throw new Error('Failed to send email, please try again later');
+    if (err instanceof Error) {
+      throw new Error(`Email Sending Failed: ${err.message}`);
+    } else {
+      throw new Error('Email Sending Failed: Unknown error');
+    }
   }
 }

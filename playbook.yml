@@ -44,6 +44,8 @@
                   proxy_cache_bypass $http_upgrade;
                 }
               }
+      notify: Restart NGINX
+
     - name: Create NGINX configuration for Portfolio
       copy:
         dest: /etc/nginx/conf.d/ivanravic.conf
@@ -60,6 +62,8 @@
                   proxy_cache_bypass $http_upgrade;
                 }
               }
+      notify: Restart NGINX
+
     - name: Restart NGINX to apply configuration
       service:
         name: nginx
@@ -77,10 +81,10 @@
         create: yes
 
     - name: Run Docker container with environment variables
-      command: docker run -d --name portfolio -p 3001:3000 -e RESEND_API_KEY=$RESEND_API_KEY public.ecr.aws/v2w5z6p0/portfolio_docker_repository:latest
+      command: docker run -d --name portfolio -p 3001:3000 -e RESEND_API_KEY={{ lookup('env', 'RESEND_API_KEY') }} public.ecr.aws/v2w5z6p0/portfolio_docker_repository:latest
 
     # Reboot the server if needed
-    - name: Check is a reboot is needed
+    - name: Check if a reboot is required
       command: 'needs-restarting -r'
       register: reboot_required
       changed_when: reboot_required.rc == 1
@@ -89,3 +93,10 @@
     - name: Reboot the server if required
       reboot:
       when: reboot_required.rc == 1
+      become: true
+
+  handlers:
+    - name: Restart NGINX
+      service:
+        name: nginx
+        state: restarted

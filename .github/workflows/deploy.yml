@@ -55,7 +55,7 @@ jobs:
             docker pull public.ecr.aws/v2w5z6p0/portfolio_docker_repository:latest
             docker stop portfolio || true
             docker rm portfolio || true
-            docker run -d --name portfolio -p 3001:3000 -e RESEND_API_KEY=$RESEND_API_KEY public.ecr.aws/v2w5z6p0/portfolio_docker_repository:latest
+            docker run -d --name portfolio -p 3001:3000 -e RESEND_API_KEY=${{ secrets.RESEND_API_KEY }} public.ecr.aws/v2w5z6p0/portfolio_docker_repository:latest
             docker image prune -a --filter "until=48h" -f
 
       - name: Revoke runner IP address

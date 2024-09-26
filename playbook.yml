@@ -33,10 +33,10 @@
         dest: /etc/nginx/conf.d/gaginislatkisi.conf
         content: |
           server {
-                listen 80;
-                server_name gaginislatkisi.com;
+               
+                server_name gaginislatkisi.com www.gaginislatkisi.com;
                 location / {
-                  proxy_pass http://localhost:3001;
+                  proxy_pass http://localhost:3000;
                   proxy_http_version 1.1;
                   proxy_set_header Upgrade $http_upgrade;
                   proxy_set_header Connection 'upgrade';
@@ -51,10 +51,10 @@
         dest: /etc/nginx/conf.d/ivanravic.conf
         content: |
           server {
-                listen 80;
-                server_name ivanravic.com;
+                listen 80 default_server;
+                server_name ivanravic.com www.ivanravic.com;
                 location / {
-                  proxy_pass http://localhost:3000;
+                  proxy_pass http://localhost:3001;
                   proxy_http_version 1.1;
                   proxy_set_header Upgrade $http_upgrade;
                   proxy_set_header Connection 'upgrade';

@@ -6,14 +6,6 @@ import { Resend } from 'resend';
 
 import { EmailTemplate } from '@/components/common/Emails/email-template';
 
-try {
-  if (!process.env.RESEND_API_KEY) {
-    throw new Error('RESEND_API_KEY is not set');
-  }
-} catch (err) {
-  console.error('Error: ', err);
-}
-
 const resend = new Resend(process.env.RESEND_API_KEY);
 
 const formSchema = z.object({

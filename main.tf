@@ -164,7 +164,21 @@ resource "aws_eip" "MyServer_eip" {
   depends_on  = [aws_instance.MyServer]
 }
 
-# Lifecycle policy for the ECR repository to expire images after 1 day
+
+# Fetch the existing Route 53 hosted zone for the domain
+data "aws_route53_zone" "portfolio_domain" {
+  name = "ivanravic.com"
+}
+
+# A record for ivanravic.com
+resource "aws_route53_record" "ivanravic_com" {
+  zone_id = data.aws_route53_zone.portfolio_domain.zone_id
+  name    = "ivanravic.com"
+  type    = "A"
+  ttl     = "300"
+  records = [aws_eip.MyServer_eip.public_ip]
+}
+
 
 
 

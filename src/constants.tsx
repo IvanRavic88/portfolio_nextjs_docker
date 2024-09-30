@@ -19,7 +19,7 @@ export const SIDE_NAV_ITEMS: SideNavItem[] = [
         title: 'All',
         path: '/projects',
       },
-      { title: '01  Evolving', path: '/projects/portfoliov02' },
+      { title: '01  Evolving', path: '/projects/portfolio_v2' },
       {
         title: '02  gaginislatkisi.com',
         path: '/projects/gaginislatkisi',
@@ -27,7 +27,7 @@ export const SIDE_NAV_ITEMS: SideNavItem[] = [
 
       {
         title: '03  Fundations',
-        path: '/projects/portfoliov01',
+        path: '/projects/fundations',
       },
       { title: '04  E-Commerce', path: '/projects/e-commerce' },
     ],
@@ -50,7 +50,7 @@ export const SIDE_NAV_ITEMS: SideNavItem[] = [
   },
   {
     title: 'Resume',
-    path: '/Ivan_Ravić_Resume_21_5_2024.pdf',
+    path: '/Ivan_Ravić_Resume_30_9_2024.pdf',
     icon: <Icon icon="lucide:file-text" width="24" height="24" />,
     new_window: true,
   },

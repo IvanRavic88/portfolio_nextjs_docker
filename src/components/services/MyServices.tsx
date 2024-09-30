@@ -3,8 +3,8 @@ import React from 'react';
 export default function MyServices() {
   return (
     <section>
-      <div className="container mx-auto my-20 max-w-[90rem] px-1 sm:my-52 sm:px-4">
-        <h2 className="mb-10 text-left text-3xl font-bold sm:text-5xl">
+      <div className="container mx-auto max-w-[90rem] px-1 sm:mb-44 sm:px-4">
+        <h2 className="mb-10 text-left text-3xl opacity-50 sm:text-5xl">
           Maybe i can help you with:
         </h2>
         <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">

@@ -27,7 +27,7 @@ export default function AboutPage() {
       className="flex min-h-screen flex-col px-3 sm:container sm:px-6"
     >
       <div>
-        <div className="max-w-[90rem] py-24 sm:py-40 md:py-52">
+        <div className="max-w-[90rem] py-14 sm:py-40 md:py-52">
           <div className="flex flex-wrap">
             <div className="relative order-2 block w-full">
               <h1 className="text-5xl sm:text-7xl md:text-8xl lg:text-9xl">
@@ -40,16 +40,17 @@ export default function AboutPage() {
           </div>
         </div>
         <motion.div
-          style={{ y: lg }}
-          className="flex flex-col items-center border-b-2 border-t-2 p-0 py-20 md:container lg:flex-row"
+          style={{ y: sm }}
+          className="flex flex-col items-center p-0 py-20 md:container sm:border-b-2 sm:border-t-2 lg:flex-row"
         >
           <Image
             src={IvanRavic}
             alt="Ivan Ravić profile picture"
             width={300}
             height={300}
-            className="mb-5 mr-3 w-full max-w-xs rounded-sm sm:max-w-sm md:max-w-md lg:max-w-lg"
+            className="mb-10 w-full max-w-xs rounded-sm sm:max-w-sm md:max-w-md lg:mr-3 lg:max-w-lg"
           />
+
           <motion.div
             ref={element}
             style={{ opacity: scrollYProgressElement }}
@@ -76,6 +77,7 @@ export default function AboutPage() {
                 am committed to continuous growth and learning.
               </p>
             </div>
+
             <div className="rounded-lg">
               <h3 className="text-2xl font-bold">Cloud & DevOps Expertise</h3>
               <p className="mt-2 opacity-80">
@@ -90,8 +92,9 @@ export default function AboutPage() {
           </motion.div>
         </motion.div>
       </div>
-
-      <MyServices />
+      <div className="pb-20">
+        <MyServices />
+      </div>
     </div>
   );
 }

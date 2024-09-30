@@ -3,10 +3,11 @@ import ThemedText from '../ThemedText';
 import Image from 'next/image';
 import IvanRavic from '@/public/images/Ivan.png';
 import CurrentTime from '@/components/footer/CurentTime';
+import { CONTACT_INFO } from '@/constants';
 
 export default function Content() {
   return (
-    <div className="flex h-full w-full flex-col justify-between bg-custom-gray px-12 py-8">
+    <div className="flex h-full w-full flex-col justify-between bg-custom-gray px-5 py-8 sm:px-12">
       <Section1 />
       <Section2 />
     </div>
@@ -16,7 +17,7 @@ export default function Content() {
 const Section1 = () => {
   return (
     <div>
-      <Nav />
+      <FooterNav />
     </div>
   );
 };
@@ -41,39 +42,47 @@ const Section2 = () => {
   );
 };
 
-const Nav = () => {
+const FooterNav = () => {
   return (
-    <div className="flex shrink-0 gap-20">
-      <div className="flex flex-col gap-2">
-        <ul>
-          <h3 className="mb-2 uppercase">
-            <LinkAnimated href="/about">
-              <ThemedText>About</ThemedText>
-            </LinkAnimated>
-          </h3>
+    <div className="flex flex-wrap gap-10 md:gap-24">
+      <div>
+        <ul className="flex w-full flex-col gap-2 lg:text-xl">
+          <LinkAnimated href="/contact">
+            <ThemedText>
+              <h2 className="pb-3 text-2xl font-bold">Let&apos;s talk</h2>
+            </ThemedText>
+          </LinkAnimated>
+
+          {CONTACT_INFO.map((info) => (
+            <div
+              key={info.id}
+              className="flex flex-row items-center gap-2 md:gap-3"
+            >
+              {info.icon && (
+                <div className="h-6 w-6 md:h-8 md:w-8">{info.icon}</div>
+              )}
+              <LinkAnimated href={info.href || ''}>
+                <p>{info.text}</p>
+              </LinkAnimated>
+            </div>
+          ))}
+        </ul>
+      </div>
+      <div className="flex flex-row sm:flex-col">
+        <ul className="lg:text-xl">
+          <LinkAnimated href="/about">
+            <ThemedText>
+              <h2 className="pb-3 text-2xl font-bold">About</h2>
+            </ThemedText>
+          </LinkAnimated>
+
           <LinkAnimated href="/contact">Contact</LinkAnimated>
           <LinkAnimated href="/projects">Projects</LinkAnimated>
-          <LinkAnimated href="/Ivan_Ravić_Resume_21_5_2024.pdf">
+          <LinkAnimated href="/Ivan_Ravić_Resume_30_9_2024.pdf">
             Resume
           </LinkAnimated>
           <LinkAnimated href="/AWS Certified Developer - Associate certificate.pdf">
             AWS Certificate
-          </LinkAnimated>
-        </ul>
-      </div>
-      <div className="flex flex-col gap-2">
-        <ul>
-          <h3 className="mb-2 uppercase">
-            <ThemedText>Socials</ThemedText>
-          </h3>
-          <LinkAnimated href="https://www.instagram.com/ivan_ravic_88/">
-            Instagram
-          </LinkAnimated>
-          <LinkAnimated href="https://linkedin.com/in/ivan-ravić-b3aa36143">
-            LinkedIn
-          </LinkAnimated>
-          <LinkAnimated href="https://github.com/IvanRavic88?tab=repositories">
-            GitHub
           </LinkAnimated>
         </ul>
       </div>

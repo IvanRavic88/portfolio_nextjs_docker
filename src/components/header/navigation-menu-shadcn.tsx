@@ -70,7 +70,7 @@ export const NavMenu: React.FC = () => {
           </Link>
         </NavigationMenuItem>
         <NavigationMenuItem>
-          <Link href="/Ivan_Ravić_Resume_21_5_2024.pdf" legacyBehavior passHref>
+          <Link href="/Ivan_Ravić_Resume_30_9_2024.pdf" legacyBehavior passHref>
             <NavigationMenuLink
               className={`bg-inherit} text-link-animation hover:bg-inherit hover:text-custom-red ${navigationMenuTriggerStyle()}`}
               target="_blank"

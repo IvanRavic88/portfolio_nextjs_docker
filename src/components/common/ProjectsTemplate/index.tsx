@@ -144,30 +144,32 @@ export default function ProjectsTemplate({
 
       <section className="py-12">
         <div className="mx-auto sm:container">
-          <div className="flex flex-wrap justify-center gap-14 sm:gap-24">
+          <div className="flex flex-wrap justify-center gap-8 sm:gap-24">
             {mobileImages.map((image, index) => {
               let yTransform;
-              if (index === 0) {
+
+              if (index === 0 && !mounted) {
                 yTransform = sm;
-              }
-              if (index === 1) {
+              } else if (index === 1 && !mounted) {
                 yTransform = lg;
-              }
-              if (index === 2) {
+              } else if (index === 2 && !mounted) {
                 yTransform = sm;
               }
+
               return (
                 <motion.div
                   key={index}
-                  style={{ y: yTransform }}
-                  className="min-w-[250px] max-w-[400px] flex-1"
+                  style={{ y: mounted ? yTransform : 0 }}
+                  className="min-w-[250px] max-w-[400px] flex-1 flex-wrap"
                 >
                   <Image
                     src={image.src}
                     alt={image.alt}
                     width={800}
                     height={600}
-                    className={`rounded-lg shadow-lg ${theme === 'dark' ? 'border border-white' : ''}`}
+                    className={`rounded-lg shadow-lg ${
+                      theme === 'dark' ? 'border border-white' : ''
+                    }`}
                   />
                 </motion.div>
               );
@@ -175,7 +177,9 @@ export default function ProjectsTemplate({
           </div>
         </div>
       </section>
+
       <div className="border-t-[1px]"></div>
+
       <section className="container py-24 sm:py-36">
         <div className="px-4">
           <div className="grid grid-cols-1 items-end gap-16 sm:grid-cols-[5fr_7fr]">

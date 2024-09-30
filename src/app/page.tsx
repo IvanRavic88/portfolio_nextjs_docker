@@ -34,7 +34,7 @@ export default function Home() {
                   applications that achieve optimal performance and sustainable
                   growth.
                 </p>
-                <a href="" className="inline-block">
+                <a href="/contact" className="inline-block">
                   <Rounded>
                     <p className="z-10 m-0 text-base">Drop me a line</p>
                   </Rounded>

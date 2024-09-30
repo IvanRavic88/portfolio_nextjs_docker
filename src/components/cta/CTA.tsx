@@ -20,10 +20,7 @@ function CTA() {
         </p>
       </div>
       <div className="">
-        <a
-          href="mailto:ravic.ivan88@gmail.com?subject=Email from Website&body=Hi, I'm interested in..."
-          className="inline-block"
-        >
+        <a href="/contact" className="inline-block">
           <Rounded>
             <p className="z-10 m-0 whitespace-nowrap text-base">
               Drop me a line

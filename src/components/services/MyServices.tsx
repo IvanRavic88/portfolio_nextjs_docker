@@ -4,9 +4,10 @@ export default function MyServices() {
   return (
     <section>
       <div className="container mx-auto max-w-[90rem] px-1 sm:mb-44 sm:px-4">
-        <h2 className="mb-10 text-left text-3xl opacity-50 sm:text-5xl">
-          Maybe i can help you with:
-        </h2>
+        <h1 className="mb-2 text-4xl sm:text-5xl md:text-6xl">Services</h1>
+        <h3 className="mb-16 text-left opacity-50">
+          Maybe I can help you with:
+        </h3>
         <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
           <div className="rounded-lg">
             <span className="mb-10 block text-6xl opacity-30">01</span>

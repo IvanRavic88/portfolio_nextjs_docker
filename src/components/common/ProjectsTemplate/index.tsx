@@ -62,7 +62,7 @@ export default function ProjectsTemplate({
   }
 
   return (
-    <div ref={container} className="p-1 sm:p-0">
+    <div ref={container} className="p-1 pb-24 sm:p-0">
       <section className="my-24 sm:mb-12">
         <div className="container mx-auto px-4">
           <div className="flex flex-col flex-wrap items-center justify-between gap-10 sm:flex-row">

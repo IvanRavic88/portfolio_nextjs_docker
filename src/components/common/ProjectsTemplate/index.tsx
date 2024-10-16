@@ -37,7 +37,7 @@ export default function ProjectsTemplate({
   mobileImages,
   nextProject: { name, href },
 }: ProjectsTemplateProps) {
-  const container = useRef(null);
+  const container = useRef<HTMLDivElement>(null);
   const { theme } = useTheme();
   const [mounted, setMounted] = useState(false);
 
@@ -48,7 +48,6 @@ export default function ProjectsTemplate({
   });
 
   const sm = useTransform(scrollYProgress, [0, 1], [0, -50]);
-  const md = useTransform(scrollYProgress, [0, 1], [0, -150]);
   const lg = useTransform(scrollYProgress, [0, 1], [0, -250]);
 
   useEffect(() => {
@@ -178,7 +177,7 @@ export default function ProjectsTemplate({
         </div>
       </section>
 
-      <div className="border-t-[1px]"></div>
+      <div className="border-t-[1px]" />
 
       <section className="container py-24 sm:py-36">
         <div className="px-4">

@@ -26,7 +26,10 @@ export default function Intro({ background }: IntroProps) {
       ref={container}
       className="relative h-[20vh] overflow-hidden sm:h-[40vh] md:h-[60vh] lg:h-[80vh]"
     >
-      <motion.div style={{ y }} className="relative h-full w-full">
+      <motion.div
+        style={{ y }}
+        className="relative h-full w-full transform-gpu will-change-transform"
+      >
         <Image
           src={background}
           alt="Main image of the project"

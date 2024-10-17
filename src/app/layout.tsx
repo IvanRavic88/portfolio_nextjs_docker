@@ -26,7 +26,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className="relative m-0 box-border h-full max-w-full p-0"
+      className="relative m-0 box-border p-0"
       suppressHydrationWarning
     >
       <body

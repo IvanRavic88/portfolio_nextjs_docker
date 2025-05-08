@@ -46,7 +46,7 @@ export async function sendEmaillAction(data: z.infer<typeof formSchema>) {
 
   try {
     const response = await resend.emails.send({
-      from: 'portfolio_v2@ivanravic.com',
+      from: 'send@ivanravic.com',
       to: ['ravic.ivan88@gmail.com'],
       subject: 'New contact form submission from ivanravic.com',
       react: EmailTemplate({ ...parsedData.data }),

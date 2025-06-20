@@ -6,7 +6,9 @@
 
 # The lifecycle policy can be implemented in the AWS Management Console.
 
+###############################################################################################################################################
 # Setup prerequisites for main.tf: created hosted zone, added PEM file, and applied chmod 400 permissions
+###############################################################################################################################################
 
 # Default provider for the AWS region
 provider "aws" {

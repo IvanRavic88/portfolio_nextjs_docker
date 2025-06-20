@@ -3,7 +3,10 @@
 # AWS_INSTANCE_SG_ID (that values will be in output after running the terraform apply command) in the GitHub Secrets.
 
 # Also because of the ECR public repository, lifecycle policy for the ECR repository to expire images after 1 day is not implemented in the code.
+
 # The lifecycle policy can be implemented in the AWS Management Console.
+
+# Setup prerequisites for main.tf: created hosted zone, added PEM file, and applied chmod 400 permissions
 
 
 # Default provider for the AWS region
@@ -98,7 +101,9 @@ data "http" "my_ip" {
 resource "aws_security_group" "SG_MyServer" {
   name        = "SGMyServer"
   description = "SGMyServer security group"
-
+  lifecycle {
+    create_before_destroy = true
+  }
   # Open port 22 for SSH access from the specified IP addresses (EC2_Instance_Connect and the public IP address of the machine that is running Terraform)
   ingress {
     from_port   = 22

@@ -11,6 +11,11 @@
         name: docker
         state: present
 
+    - name: Install NGINX
+      dnf:
+        name: nginx
+        state: present
+
     - name: Start Docker service
       service:
         name: docker
@@ -23,46 +28,70 @@
         groups: docker
         append: yes
 
-    - name: Install NGINX
+    - name: Install Certbot and NGINX plugin
       dnf:
-        name: nginx
+        name:
+          - certbot
+          - python3-certbot-nginx
         state: present
 
-    - name: Create NGINX configuration for Gaginislatkisi
+    - name: Create base HTTP config for gaginislatkisi.com
       copy:
         dest: /etc/nginx/conf.d/gaginislatkisi.conf
         content: |
           server {
-               
-                server_name gaginislatkisi.com www.gaginislatkisi.com;
-                location / {
-                  proxy_pass http://localhost:3000;
-                  proxy_http_version 1.1;
-                  proxy_set_header Upgrade $http_upgrade;
-                  proxy_set_header Connection 'upgrade';
-                  proxy_set_header Host $host;
-                  proxy_cache_bypass $http_upgrade;
-                }
-              }
+            listen 80;
+            server_name gaginislatkisi.com www.gaginislatkisi.com;
+
+            location / {
+              proxy_pass http://localhost:3000;
+              proxy_http_version 1.1;
+              proxy_set_header Upgrade $http_upgrade;
+              proxy_set_header Connection 'upgrade';
+              proxy_set_header Host $host;
+              proxy_cache_bypass $http_upgrade;
+            }
+          }
       notify: Restart NGINX
 
-    - name: Create NGINX configuration for Portfolio
+    - name: Create base HTTP config for ivanravic.com
       copy:
         dest: /etc/nginx/conf.d/ivanravic.conf
         content: |
           server {
-                listen 80 default_server;
-                server_name ivanravic.com www.ivanravic.com;
-                location / {
-                  proxy_pass http://localhost:3001;
-                  proxy_http_version 1.1;
-                  proxy_set_header Upgrade $http_upgrade;
-                  proxy_set_header Connection 'upgrade';
-                  proxy_set_header Host $host;
-                  proxy_cache_bypass $http_upgrade;
-                }
-              }
+            listen 80 default_server;
+            server_name ivanravic.com www.ivanravic.com;
+
+            location / {
+              proxy_pass http://localhost:3001;
+              proxy_http_version 1.1;
+              proxy_set_header Upgrade $http_upgrade;
+              proxy_set_header Connection 'upgrade';
+              proxy_set_header Host $host;
+              proxy_cache_bypass $http_upgrade;
+            }
+          }
       notify: Restart NGINX
+
+    - name: Ensure Certbot renewal timer is enabled and started
+      systemd:
+        name: certbot-renew.timer
+        enabled: true
+        state: started
+    # ----------------------------
+    # Certbot HTTPS – pokreni ručno ili otkomentariši ako želiš automatski
+    # ----------------------------
+    # - name: Obtain SSL cert for gaginislatkisi.com
+    #   command: >
+    #     certbot --nginx -d gaginislatkisi.com -d www.gaginislatkisi.com
+    #     --non-interactive --agree-tos -m ravic.ivan88@gmail.com --redirect
+    #   notify: Restart NGINX
+
+    # - name: Obtain SSL cert for ivanravic.com
+    #   command: >
+    #     certbot --nginx -d ivanravic.com -d www.ivanravic.com
+    #     --non-interactive --agree-tos -m ravic.ivan88@gmail.com --redirect
+    #   notify: Restart NGINX
 
     - name: Install python3 and pip3
       dnf:

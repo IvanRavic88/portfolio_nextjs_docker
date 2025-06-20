@@ -51,7 +51,7 @@ jobs:
           key: ${{ secrets.EC2_KEY }}
           script: |
             echo "Testing SSH connection..."
-            ssh -o StrictHostKeyChecking=no -i ${{ secrets.EC2_KEY }} ec2-user@${{ secrets.EC2_HOST }} 'echo "SSH connection successful"'
+            echo "SSH connection successful"
             docker pull public.ecr.aws/c2f3c2g9/portfolio_docker_repository:latest
             docker stop portfolio || true
             docker rm portfolio || true

@@ -67,4 +67,7 @@ override.tf.json
 # Ignore CLI configuration files
 my_ip.txt
 
+# AI-generated specs/plans (kept on disk, never committed)
+docs/superpowers/
+
 

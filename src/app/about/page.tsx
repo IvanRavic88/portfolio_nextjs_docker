@@ -1,6 +1,6 @@
 'use client';
 import MyServices from '@/components/services/MyServices';
-import IvanRavic from '@/public/images/Ivan.png';
+import IvanRavic from '@/public/images/Ivan.webp';
 import Image from 'next/image';
 import { useScroll, useTransform, motion } from 'framer-motion';
 import { useRef } from 'react';

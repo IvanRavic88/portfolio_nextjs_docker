@@ -1,12 +1,30 @@
 'use server';
 import { z } from 'zod';
 import validator from 'validator';
+import { headers } from 'next/headers';
 
 import { Resend } from 'resend';
 
 import { EmailTemplate } from '@/components/common/Emails/email-template';
 
 const resend = new Resend(process.env.RESEND_API_KEY);
+
+// In-memory IP rate limiting: MAX_REQ requests per WINDOW_MS per IP
+const ipBuckets = new Map<string, { count: number; resetAt: number }>();
+const WINDOW_MS = 60 * 60 * 1000;
+const MAX_REQ = 3;
+
+function rateLimit(ip: string): boolean {
+  const now = Date.now();
+  const bucket = ipBuckets.get(ip);
+  if (!bucket || bucket.resetAt < now) {
+    ipBuckets.set(ip, { count: 1, resetAt: now + WINDOW_MS });
+    return true;
+  }
+  if (bucket.count >= MAX_REQ) return false;
+  bucket.count++;
+  return true;
+}
 
 const formSchema = z.object({
   senderName: z.string().min(2, {
@@ -25,13 +43,32 @@ const formSchema = z.object({
 });
 
 export async function sendEmaillAction(data: z.infer<typeof formSchema>) {
+  // Resolve the client IP and enforce rate limiting
+  const headersList = headers();
+  const forwardedFor = headersList.get('x-forwarded-for');
+  const ip =
+    forwardedFor?.split(',')[0].trim() ||
+    headersList.get('x-real-ip') ||
+    'unknown';
+
+  if (!rateLimit(ip)) {
+    throw new Error('Too many requests. Please try again later.');
+  }
+
   if (data.company) {
     throw new Error('Failed to send email, please try again later');
   }
+
+  // Narrow normalizeEmail, which can return false
+  const normalizedEmail = validator.normalizeEmail(data.senderEmail);
+  if (normalizedEmail === false) {
+    throw new Error('Invalid email address.');
+  }
+
   // Sanitize the form data
   const sanitizedData = {
     senderName: validator.escape(data.senderName),
-    senderEmail: validator.normalizeEmail(data.senderEmail),
+    senderEmail: normalizedEmail,
     whatServicesNeeded: validator.escape(data.whatServicesNeeded),
     senderMessage: validator.escape(data.senderMessage),
   };
@@ -54,10 +91,7 @@ export async function sendEmaillAction(data: z.infer<typeof formSchema>) {
 
     return response;
   } catch (err) {
-    if (err instanceof Error) {
-      throw new Error(`Email Sending Failed: ${err.message}`);
-    } else {
-      throw new Error('Email Sending Failed: Unknown error');
-    }
+    console.error('Resend error:', err);
+    throw new Error('Email Sending Failed. Please try again later.');
   }
 }

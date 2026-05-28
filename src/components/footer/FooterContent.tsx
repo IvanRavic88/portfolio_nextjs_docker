@@ -1,7 +1,7 @@
 import LinkAnimated from '../LinkAnimated';
 import ThemedText from '../ThemedText';
 import Image from 'next/image';
-import IvanRavic from '@/public/images/Ivan.png';
+import IvanRavic from '@/public/images/Ivan.webp';
 import CurrentTime from '@/components/footer/CurentTime';
 import { CONTACT_INFO } from '@/constants';
 

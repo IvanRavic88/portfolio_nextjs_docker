@@ -54,7 +54,7 @@ export default function ProjectsTemplate({
     setMounted(true);
   }, []);
 
-  const imageSrc = theme === 'dark' ? imageSrcLight : imageSrcDark;
+  const imageSrc = theme === 'dark' ? imageSrcDark : imageSrcLight;
 
   if (!mounted) {
     return <div className="h-[300px] w-full bg-gray-200 dark:bg-gray-800" />;
@@ -68,7 +68,12 @@ export default function ProjectsTemplate({
             <h1 className="text-center text-5xl font-bold sm:text-left sm:text-8xl md:text-9xl">
               {title}
             </h1>
-            <a href={liveWebsite} className="inline-block" target="_blank">
+            <a
+              href={liveWebsite}
+              className="inline-block"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <Rounded>
                 <p className="z-10 m-0 text-base">Live site</p>
               </Rounded>
@@ -132,6 +137,7 @@ export default function ProjectsTemplate({
               href={githubLink}
               className="inline-block items-center"
               target="_blank"
+              rel="noopener noreferrer"
             >
               <Rounded>
                 <p className="z-10 m-0 text-base">Github Code</p>

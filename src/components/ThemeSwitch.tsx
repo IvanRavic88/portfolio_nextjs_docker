@@ -1,7 +1,7 @@
 'use client';
 import { useState, useEffect } from 'react';
 import { useTheme } from 'next-themes';
-import { FiSun, FiMoon } from 'react-icons/fi';
+import { Sun, Moon } from 'lucide-react';
 import Image from 'next/image';
 
 export default function ThemeSwitch() {
@@ -44,9 +44,9 @@ export default function ThemeSwitch() {
       onClick={toggleTheme}
     >
       {resolvedTheme === 'dark' ? (
-        <FiSun className={`text-xl ${animateIcon ? 'animate-spin' : ''}`} />
+        <Sun className={`text-xl ${animateIcon ? 'animate-spin' : ''}`} />
       ) : (
-        <FiMoon className={`text-xl ${animateIcon ? 'animate-spin' : ''}`} />
+        <Moon className={`text-xl ${animateIcon ? 'animate-spin' : ''}`} />
       )}
       <span className="text-sm">
         {resolvedTheme === 'dark' ? 'Light' : 'Dark'}

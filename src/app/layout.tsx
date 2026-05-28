@@ -13,9 +13,23 @@ const montserrat_display = Open_Sans({
 });
 
 export const metadata: Metadata = {
-  title: 'Ivan Ravić @Portfolio_Website',
-  description:
-    'Ivan Ravić portfolio website. Website was designed and made by software developer and AWS Developer Associate Ivan Ravić.',
+  metadataBase: new URL('https://ivanravic.com'),
+  title: {
+    default: 'Ivan Ravić — Software Developer & AWS Certified',
+    template: '%s | Ivan Ravić',
+  },
+  description: 'Portfolio of Ivan Ravić — Next.js, TypeScript, AWS Cloud, DevOps.',
+  openGraph: {
+    title: 'Ivan Ravić — Portfolio',
+    description: 'Full-Stack, DevOps, AWS Cloud Expertise',
+    url: 'https://ivanravic.com',
+    siteName: 'Ivan Ravić',
+    images: [{ url: '/images/Ivan.webp', width: 800, height: 800 }],
+    locale: 'en_US',
+    type: 'website',
+  },
+  twitter: { card: 'summary_large_image' },
+  robots: { index: true, follow: true },
 };
 
 export default function RootLayout({

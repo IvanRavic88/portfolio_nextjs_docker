@@ -15,6 +15,7 @@ function ProjectsMenu() {
               key={index}
               href={project.href}
               target="_blank"
+              rel="noopener noreferrer"
               className="flex w-full flex-col justify-between"
             >
               <Projects

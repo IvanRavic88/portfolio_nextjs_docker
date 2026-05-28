@@ -113,16 +113,24 @@ const HeaderMobile = () => {
           <ThemeSwitch />
         </MenuItem>
       </motion.ul>
-      <MenuToggle toggle={toggleOpen} />
+      <MenuToggle toggle={toggleOpen} isOpen={isOpen} />
     </motion.nav>
   );
 };
 
 export default HeaderMobile;
 
-const MenuToggle = ({ toggle }: { toggle: any }) => (
+const MenuToggle = ({
+  toggle,
+  isOpen,
+}: {
+  toggle: any;
+  isOpen: boolean;
+}) => (
   <button
     onClick={toggle}
+    aria-label={isOpen ? 'Close menu' : 'Open menu'}
+    aria-expanded={isOpen}
     className="pointer-events-auto absolute right-4 top-[14px] z-30"
   >
     <svg width="23" height="23" viewBox="0 0 23 23">

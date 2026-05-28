@@ -4,7 +4,7 @@ export default function MyServices() {
   return (
     <section>
       <div className="container mx-auto max-w-[90rem] px-1 sm:mb-44 sm:px-4">
-        <h1 className="mb-2 text-4xl sm:text-5xl md:text-6xl">Services</h1>
+        <h2 className="mb-2 text-4xl sm:text-5xl md:text-6xl">Services</h2>
         <h3 className="mb-16 text-left opacity-50">
           Maybe I can help you with:
         </h3>

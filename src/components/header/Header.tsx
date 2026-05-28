@@ -6,7 +6,7 @@ import { cn } from '@/lib/utils';
 import { NavMenu } from '@/components/header/navigation-menu-shadcn';
 import ThemeSwitch from '@/components/ThemeSwitch';
 import Image from 'next/image';
-import IvanRavic from '@/public/images/Ivan.png';
+import IvanRavic from '@/public/images/Ivan.webp';
 import FramerMagnetic from '@/components/FramerMagnetic';
 
 const Header = () => {
@@ -35,7 +35,7 @@ const Header = () => {
                 className="rounded-full"
               />
             </FramerMagnetic>
-            <span className={`flex} text-xl font-bold`}>Ivan Ravić</span>
+            <span className={`flex text-xl font-bold`}>Ivan Ravić</span>
           </Link>
         </div>
 

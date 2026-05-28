@@ -194,9 +194,22 @@ export function ContactForm() {
             control={form.control}
             name="company"
             render={({ field }) => (
-              <FormItem className="hidden">
+              <FormItem
+                aria-hidden="true"
+                style={{
+                  position: 'absolute',
+                  left: '-9999px',
+                  height: 0,
+                  overflow: 'hidden',
+                }}
+              >
                 <FormControl>
-                  <Input {...field} placeholder="Leave this field empty" />
+                  <Input
+                    {...field}
+                    placeholder="Leave this field empty"
+                    tabIndex={-1}
+                    autoComplete="off"
+                  />
                 </FormControl>
               </FormItem>
             )}

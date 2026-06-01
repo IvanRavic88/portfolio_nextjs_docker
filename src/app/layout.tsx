@@ -5,7 +5,7 @@ import { Providers } from '@/app/providers';
 import HeaderMobile from '@/components/header/header-mobile';
 import Header from '@/components/header/Header';
 import Footer from '@/components/footer/Footer';
-import LocomotiveScroll from '@/components/LocomotiveScroll';
+import SmoothScroll from '@/components/LocomotiveScroll';
 
 const montserrat_display = Open_Sans({
   subsets: ['latin-ext'],
@@ -49,7 +49,7 @@ export default function RootLayout({
         <Providers>
           <Header />
           <HeaderMobile />
-          <LocomotiveScroll>{children}</LocomotiveScroll>
+          <SmoothScroll>{children}</SmoothScroll>
           <Footer />
         </Providers>
       </body>

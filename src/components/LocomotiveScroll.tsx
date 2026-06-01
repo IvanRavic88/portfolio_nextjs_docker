@@ -1,41 +1,27 @@
 'use client';
 import { ReactNode, useEffect } from 'react';
-import { usePathname } from 'next/navigation';
-import LocomotiveScroll from 'locomotive-scroll';
+import Lenis from 'lenis';
 
-interface LayoutProps {
-  children: ReactNode;
-}
-
-export default function Layout({ children }: LayoutProps) {
-  const pathname = usePathname();
-
+export default function SmoothScroll({ children }: { children: ReactNode }) {
   useEffect(() => {
-    let isMounted = true;
-    let locomotiveScroll: LocomotiveScroll | null = null;
+    const prefersReduced = window.matchMedia(
+      '(prefers-reduced-motion: reduce)'
+    ).matches;
+    if (prefersReduced) return;
 
-    (async () => {
-      const LocomotiveScroll = (await import('locomotive-scroll')).default;
-      const instance = new LocomotiveScroll({
-        el: document.querySelector('[data-scroll-container]') as HTMLElement,
-        smooth: true,
-      });
-
-      // If the effect was already cleaned up before the import resolved,
-      // destroy the late-created instance immediately.
-      if (!isMounted) {
-        instance.destroy();
-        return;
-      }
-
-      locomotiveScroll = instance;
-    })();
+    const lenis = new Lenis({ lerp: 0.1, smoothWheel: true });
+    let rafId: number;
+    const raf = (time: number) => {
+      lenis.raf(time);
+      rafId = requestAnimationFrame(raf);
+    };
+    rafId = requestAnimationFrame(raf);
 
     return () => {
-      isMounted = false;
-      if (locomotiveScroll) locomotiveScroll.destroy();
+      cancelAnimationFrame(rafId);
+      lenis.destroy();
     };
-  }, [pathname]);
+  }, []);
 
-  return <div data-scroll-container>{children}</div>;
+  return <>{children}</>;
 }

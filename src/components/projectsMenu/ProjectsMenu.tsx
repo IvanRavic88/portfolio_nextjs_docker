@@ -1,8 +1,12 @@
 'use client';
 import React, { useState } from 'react';
-import Modal from '@/components/projectsMenu/Modal';
+import dynamic from 'next/dynamic';
 import { projects } from '@/projectMenuData';
 import Projects from './Projects';
+
+const Modal = dynamic(() => import('@/components/projectsMenu/Modal'), {
+  ssr: false,
+});
 
 function ProjectsMenu() {
   const [modal, setModal] = useState({ active: false, index: 0 });

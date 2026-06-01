@@ -37,8 +37,8 @@ export const projectsPageData: ProjectsPageData = [
     descriptionTitle: 'gaginislatkisi.com',
     projectDescription:
       'The GaginiSlatkiši website offers a modern and user-friendly platform to showcase a variety of homemade cakes and sweets. The GaginiSlatkiši website is designed using Figma for UI/UX, developed with HTML, CSS, and minimal JavaScript for the frontend, Flask (Jinja, SQLAlchemy, Pillow, WTForm, flask_login) for backend functionality, and deployed via Amazon EC2 on an Ubuntu server using Nginx and Docker for efficient containerization and scalability.',
-    imageSrcLight: '/images/gagini_slatkisi_v2.png',
-    imageSrcDark: '/images/gagini_slatkisi_v2.png',
+    imageSrcLight: '/images/gagini_slatkisi_v2.webp',
+    imageSrcDark: '/images/gagini_slatkisi_v2.webp',
     githubLink: 'https://github.com/IvanRavic88/GaginiSlatkisi',
     liveWebsite: 'https://gaginislatkisi.com',
     mobileImages: [
@@ -66,8 +66,8 @@ export const projectsPageData: ProjectsPageData = [
     descriptionTitle: 'Fundations',
     projectDescription:
       'This portfolio website represents my initial foray into serverless architecture on AWS. Originally developed with Flask, it has been transitioned to a serverless framework to enhance performance and scalability. The frontend, built with HTML and JavaScript, is hosted on Amazon S3 with CloudFront for efficient global delivery. AWS Lambda, integrated with API Gateway, handles backend services, while Terraform manages the infrastructure as code. This project showcases my proficiency in implementing modern cloud solutions and delivering scalable, high-performance web applications.',
-    imageSrcLight: '/images/hero-img.png',
-    imageSrcDark: '/images/hero-img.png',
+    imageSrcLight: '/images/hero-img.webp',
+    imageSrcDark: '/images/hero-img.webp',
     githubLink:
       'https://github.com/IvanRavic88/Portfolio_1/tree/Lambda_SES_S3_API_integration',
     liveWebsite: 'https://old.ivanravic.com',
@@ -97,8 +97,8 @@ export const projectsPageData: ProjectsPageData = [
     descriptionTitle: 'E-Commerce',
     projectDescription:
       'This project focused on developing a modern and adaptable e-commerce website, with a full-stack approach. Product data management was streamlined using Sanity, while the design was crafted with Figma, CSS, and Material UI. The website was powered by Next.js, and Stripe was integrated to handle payment processing in test mode. The site was deployed efficiently using Vercel, ensuring a seamless and responsive user experience.',
-    imageSrcLight: '/images/e-commerce_parallax.PNG',
-    imageSrcDark: '/images/e-commerce_parallax.PNG',
+    imageSrcLight: '/images/e-commerce_parallax.webp',
+    imageSrcDark: '/images/e-commerce_parallax.webp',
     githubLink: 'https://github.com/IvanRavic88/E-commerce-StripeAndSanity',
     liveWebsite:
       'https://e-commerce-stripe-and-sanity-git-main-ivanravic88.vercel.app/',

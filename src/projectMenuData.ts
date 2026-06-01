@@ -4,7 +4,7 @@ export const projects: Project[] = [
   {
     index: 1,
     title: '01  Evolving',
-    src: '/images/Ivan.png',
+    src: '/images/Ivan.webp',
     href: '/projects/portfolio_v2',
     description: 'My updated portfolio',
     color: '#111414',

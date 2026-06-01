@@ -1,9 +1,22 @@
-'use client';
-
-import { motion } from 'framer-motion';
-import { ContactForm } from '@/components/ContactForm';
+import type { Metadata } from 'next';
+import ContactAnimations from './ContactAnimations';
 import { CONTACT_INFO } from '@/constants';
 import LinkAnimated from '@/components/LinkAnimated';
+
+export const metadata: Metadata = {
+  title: 'Contact',
+  description:
+    'Get in touch with Ivan Ravić to start a project together — Next.js, TypeScript, AWS Cloud, and DevOps.',
+  openGraph: {
+    title: 'Contact | Ivan Ravić',
+    description: 'Get in touch to start a project together.',
+    url: 'https://ivanravic.com/contact',
+    siteName: 'Ivan Ravić',
+    images: [{ url: '/images/Ivan.webp', width: 800, height: 800 }],
+    locale: 'en_US',
+    type: 'website',
+  },
+};
 
 export default function ContactPage() {
   return (
@@ -19,37 +32,29 @@ export default function ContactPage() {
         </div>
       </div>
 
-      <div className="grid w-full gap-12 text-left md:grid-cols-1 lg:grid-cols-2 lg:gap-48">
-        <ContactForm />
-        <motion.div
-          initial={{ x: -100, opacity: 0 }} // Animating from left
-          animate={{ x: 0, opacity: 1 }} // Moving to the center
-          transition={{ ease: 'backInOut', duration: 2 }}
-          className="flex flex-col gap-6"
-        >
-          <div className="w-full p-4 text-base sm:p-6 md:p-8 lg:p-10">
-            <h2 className="my-6 text-2xl font-bold md:my-8 md:text-3xl lg:my-10 lg:text-4xl">
-              Let&apos;s talk
-            </h2>
+      <ContactAnimations>
+        <div className="w-full p-4 text-base sm:p-6 md:p-8 lg:p-10">
+          <h2 className="my-6 text-2xl font-bold md:my-8 md:text-3xl lg:my-10 lg:text-4xl">
+            Let&apos;s talk
+          </h2>
 
-            <ul className="flex w-full flex-col gap-2">
-              {CONTACT_INFO.map((info) => (
-                <div
-                  key={info.id}
-                  className="flex flex-row items-center gap-2 md:gap-3"
-                >
-                  {info.icon && (
-                    <div className="h-6 w-6 md:h-8 md:w-8">{info.icon}</div>
-                  )}
-                  <LinkAnimated href={info.href || ''}>
-                    <p>{info.text}</p>
-                  </LinkAnimated>
-                </div>
-              ))}
-            </ul>
-          </div>
-        </motion.div>
-      </div>
+          <ul className="flex w-full flex-col gap-2">
+            {CONTACT_INFO.map((info) => (
+              <div
+                key={info.id}
+                className="flex flex-row items-center gap-2 md:gap-3"
+              >
+                {info.icon && (
+                  <div className="h-6 w-6 md:h-8 md:w-8">{info.icon}</div>
+                )}
+                <LinkAnimated href={info.href || ''}>
+                  <p>{info.text}</p>
+                </LinkAnimated>
+              </div>
+            ))}
+          </ul>
+        </div>
+      </ContactAnimations>
     </section>
   );
 }

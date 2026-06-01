@@ -19,12 +19,15 @@ const securityHeaders = [
     key: 'Content-Security-Policy',
     value: [
       "default-src 'self'",
-      "script-src 'self' 'unsafe-inline'",
+      // 'unsafe-eval' is required: framer-motion / gsap evaluate strings at runtime.
+      // Removing it triggers a client-side EvalError that crashes all interactivity.
+      "script-src 'self' 'unsafe-inline' 'unsafe-eval'",
       "style-src 'self' 'unsafe-inline' fonts.googleapis.com",
       "font-src 'self' fonts.gstatic.com data:",
       "img-src 'self' data: blob:",
       "media-src 'self'",
-      "connect-src 'self' https://api.resend.com",
+      // Iconify (@iconify/react) loads icon data at runtime from its CDN + fallback hosts.
+      "connect-src 'self' https://api.resend.com https://api.iconify.design https://api.unisvg.com https://api.simplesvg.com",
       "frame-ancestors 'none'",
       "base-uri 'self'",
       "form-action 'self'",

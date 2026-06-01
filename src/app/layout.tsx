@@ -1,11 +1,12 @@
 import type { Metadata } from 'next';
 import { Open_Sans } from 'next/font/google';
 import './globals.css';
+import 'lenis/dist/lenis.css';
 import { Providers } from '@/app/providers';
 import HeaderMobile from '@/components/header/header-mobile';
 import Header from '@/components/header/Header';
 import Footer from '@/components/footer/Footer';
-import SmoothScroll from '@/components/LocomotiveScroll';
+import SmoothScroll from '@/components/SmoothScroll';
 
 const montserrat_display = Open_Sans({
   subsets: ['latin-ext'],

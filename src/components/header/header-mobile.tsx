@@ -8,7 +8,7 @@ import { usePathname } from 'next/navigation';
 import { SIDE_NAV_ITEMS } from '@/constants';
 import { SideNavItem } from '@/types';
 import { Icon } from '@iconify/react';
-import { motion, useCycle } from 'framer-motion';
+import { motion, useCycle, type Variants } from 'framer-motion';
 import { useTheme } from 'next-themes';
 
 import ThemeSwitch from '@/components/ThemeSwitch';
@@ -19,7 +19,7 @@ type MenuItemWithSubMenuProps = {
   toggleOpen: () => void;
 };
 
-const sidebar = {
+const sidebar: Variants = {
   open: (height = 1000) => ({
     clipPath: `circle(${height * 2 + 200}px at 100% 0)`,
     transition: {

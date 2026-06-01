@@ -1,11 +1,11 @@
 'use client';
 
 import { useRef, useEffect } from 'react';
-import { motion } from 'framer-motion';
+import { motion, type Variants } from 'framer-motion';
 import Image from 'next/image';
 import gsap from 'gsap';
 
-const scaleAnimation = {
+const scaleAnimation: Variants = {
   initial: { scale: 0, x: '-50%', y: '-50%' },
   enter: {
     scale: 1,

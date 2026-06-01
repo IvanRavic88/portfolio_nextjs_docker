@@ -44,7 +44,6 @@ export default function ProjectsTemplate({
   const { scrollYProgress } = useScroll({
     target: mounted ? container : undefined,
     offset: ['start end', 'end start'],
-    layoutEffect: false,
   });
 
   const sm = useTransform(scrollYProgress, [0, 1], [0, -50]);

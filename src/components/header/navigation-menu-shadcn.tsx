@@ -21,7 +21,7 @@ export const NavMenu: React.FC = () => {
       <NavigationMenuList>
         <NavigationMenuItem>
           <NavigationMenuTrigger className="text-link-animation">
-            <a href="/projects">Projects</a>
+            Projects
           </NavigationMenuTrigger>
           <NavigationMenuContent className="">
             <ul className="grid gap-1 p-2 md:w-80 lg:min-w-96 lg:grid-cols-[2fr]">
@@ -61,37 +61,36 @@ export const NavMenu: React.FC = () => {
           </NavigationMenuContent>
         </NavigationMenuItem>
         <NavigationMenuItem>
-          <Link href="/about" legacyBehavior passHref>
-            <NavigationMenuLink
+          <NavigationMenuLink asChild>
+            <Link
+              href="/about"
               className={`text-link-animation hover:text-custom-red ${navigationMenuTriggerStyle()}`}
             >
               About
-            </NavigationMenuLink>
-          </Link>
+            </Link>
+          </NavigationMenuLink>
         </NavigationMenuItem>
         <NavigationMenuItem>
-          <Link href="/Ivan_Ravić_Resume_30_9_2024.pdf" legacyBehavior passHref>
-            <NavigationMenuLink
-              className={`bg-inherit text-link-animation hover:bg-inherit hover:text-custom-red ${navigationMenuTriggerStyle()}`}
+          <NavigationMenuLink asChild>
+            <Link
+              href="/Ivan_Ravić_Resume_30_9_2024.pdf"
               target="_blank"
+              className={`bg-inherit text-link-animation hover:bg-inherit hover:text-custom-red ${navigationMenuTriggerStyle()}`}
             >
               Resume
-            </NavigationMenuLink>
-          </Link>
+            </Link>
+          </NavigationMenuLink>
         </NavigationMenuItem>
         <NavigationMenuItem>
-          <Link
-            href="/AWS Certified Developer - Associate certificate.pdf"
-            legacyBehavior
-            passHref
-          >
-            <NavigationMenuLink
-              className={`text-link-animation bg-inherit hover:bg-inherit hover:text-custom-red ${navigationMenuTriggerStyle()}`}
+          <NavigationMenuLink asChild>
+            <Link
+              href="/AWS Certified Developer - Associate certificate.pdf"
               target="_blank"
+              className={`text-link-animation bg-inherit hover:bg-inherit hover:text-custom-red ${navigationMenuTriggerStyle()}`}
             >
               My AWS Certificate
-            </NavigationMenuLink>
-          </Link>
+            </Link>
+          </NavigationMenuLink>
         </NavigationMenuItem>
       </NavigationMenuList>
     </NavigationMenu>

@@ -46,11 +46,13 @@ const FooterNav = () => {
     <div className="flex flex-wrap gap-10 md:gap-24">
       <div>
         <ul className="flex w-full flex-col gap-2 lg:text-xl">
-          <LinkAnimated href="/contact">
-            <span className="text-custom-dark">
-              <h2 className="pb-3 text-2xl font-bold">Let&apos;s talk</h2>
-            </span>
-          </LinkAnimated>
+          <li className="z-99 mb-2 sm:text-left">
+            <LinkAnimated href="/contact">
+              <span className="text-custom-dark">
+                <h2 className="pb-3 text-2xl font-bold">Let&apos;s talk</h2>
+              </span>
+            </LinkAnimated>
+          </li>
 
           {CONTACT_INFO.map((info) => (
             <li
@@ -72,23 +74,33 @@ const FooterNav = () => {
       </div>
       <div className="flex flex-row sm:flex-col">
         <ul className="lg:text-xl">
-          <LinkAnimated href="/about">
-            <span className="text-custom-dark">
-              <h2 className="pb-3 text-2xl font-bold">About</h2>
-            </span>
-          </LinkAnimated>
+          <li className="z-99 mb-2 sm:text-left">
+            <LinkAnimated href="/about">
+              <span className="text-custom-dark">
+                <h2 className="pb-3 text-2xl font-bold">About</h2>
+              </span>
+            </LinkAnimated>
+          </li>
 
-          <LinkAnimated href="/contact">Contact</LinkAnimated>
-          <LinkAnimated href="/projects">Projects</LinkAnimated>
-          <LinkAnimated href="/Ivan_Ravić_Resume_30_9_2024.pdf" external>
-            Resume
-          </LinkAnimated>
-          <LinkAnimated
-            href="/AWS Certified Developer - Associate certificate.pdf"
-            external
-          >
-            AWS Certificate
-          </LinkAnimated>
+          <li className="z-99 mb-2 sm:text-left">
+            <LinkAnimated href="/contact">Contact</LinkAnimated>
+          </li>
+          <li className="z-99 mb-2 sm:text-left">
+            <LinkAnimated href="/projects">Projects</LinkAnimated>
+          </li>
+          <li className="z-99 mb-2 sm:text-left">
+            <LinkAnimated href="/Ivan_Ravić_Resume_30_9_2024.pdf" external>
+              Resume
+            </LinkAnimated>
+          </li>
+          <li className="z-99 mb-2 sm:text-left">
+            <LinkAnimated
+              href="/AWS Certified Developer - Associate certificate.pdf"
+              external
+            >
+              AWS Certificate
+            </LinkAnimated>
+          </li>
         </ul>
       </div>
     </div>

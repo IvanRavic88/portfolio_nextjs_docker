@@ -1,23 +1,25 @@
+import { cn } from '@/lib/utils';
+
 type socialLinkProps = {
   href: string;
   children: React.ReactNode;
   external?: boolean;
+  className?: string;
 };
 
 export default function LinkAnimated({
   href,
   children,
   external = false,
+  className,
 }: socialLinkProps) {
   return (
-    <li className="z-99 mb-2 sm:text-left">
-      <a
-        href={href}
-        {...(external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
-        className="text-link-animation"
-      >
-        {children}
-      </a>
-    </li>
+    <a
+      href={href}
+      {...(external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+      className={cn('text-link-animation', className)}
+    >
+      {children}
+    </a>
   );
 }

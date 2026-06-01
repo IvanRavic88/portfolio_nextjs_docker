@@ -40,7 +40,7 @@ export default function ContactPage() {
 
           <ul className="flex w-full flex-col gap-2">
             {CONTACT_INFO.map((info) => (
-              <div
+              <li
                 key={info.id}
                 className="flex flex-row items-center gap-2 md:gap-3"
               >
@@ -53,7 +53,7 @@ export default function ContactPage() {
                 >
                   <p>{info.text}</p>
                 </LinkAnimated>
-              </div>
+              </li>
             ))}
           </ul>
         </div>

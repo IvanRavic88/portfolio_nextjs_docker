@@ -48,7 +48,7 @@ const formSchema = z.object({
   whatServicesNeeded: z
     .string()
     .min(5, {
-      message: 'Services must be at least 3 characters.',
+      message: 'Services must be at least 5 characters.',
     })
     .max(150, {
       message: 'Services must be at most 150 characters.',
@@ -132,7 +132,7 @@ export function ContactForm() {
             name="senderName"
             render={({ field }) => (
               <FormItem>
-                <FormLabel className="sm:text left-0 mr-2 text-base opacity-35">
+                <FormLabel className="left-0 mr-2 text-base opacity-35 sm:text-left">
                   01
                 </FormLabel>
                 <FormLabel className="text-base sm:text-lg">
@@ -156,7 +156,7 @@ export function ContactForm() {
             name="senderEmail"
             render={({ field }) => (
               <FormItem>
-                <FormLabel className="sm:text left-0 mr-2 text-base opacity-35">
+                <FormLabel className="left-0 mr-2 text-base opacity-35 sm:text-left">
                   02
                 </FormLabel>
                 <FormLabel className="text-base sm:text-lg">
@@ -180,7 +180,7 @@ export function ContactForm() {
             name="whatServicesNeeded"
             render={({ field }) => (
               <FormItem>
-                <FormLabel className="sm:text left-0 mr-2 text-base opacity-35">
+                <FormLabel className="left-0 mr-2 text-base opacity-35 sm:text-left">
                   03
                 </FormLabel>
                 <FormLabel className="text-base sm:text-lg">
@@ -190,7 +190,7 @@ export function ContactForm() {
                   <Input
                     placeholder="Web Development, DevOps, AWS services..."
                     {...field}
-                    autoComplete="email"
+                    autoComplete="off"
                     className="transition-colors focus:border-custom-red"
                   />
                 </FormControl>
@@ -204,7 +204,7 @@ export function ContactForm() {
             name="senderMessage"
             render={({ field }) => (
               <FormItem>
-                <FormLabel className="sm:text left-0 mr-2 text-base opacity-35">
+                <FormLabel className="left-0 mr-2 text-base opacity-35 sm:text-left">
                   04
                 </FormLabel>
                 <FormLabel className="text-base sm:text-lg">

@@ -1,5 +1,4 @@
 import LinkAnimated from '../LinkAnimated';
-import ThemedText from '../ThemedText';
 import Image from 'next/image';
 import IvanRavic from '@/public/images/Ivan.webp';
 import CurrentTime from '@/components/footer/CurentTime';
@@ -25,7 +24,7 @@ const Section1 = () => {
 const Section2 = () => {
   return (
     <div className="flex items-end justify-between">
-      <h1 className="mt-10 flex items-center text-[10vw] leading-[0.8] text-custom-dark">
+      <p className="mt-10 flex items-center text-[10vw] leading-[0.8] text-custom-dark">
         <Image
           src={IvanRavic}
           alt="Ivan Ravić profile picture"
@@ -34,10 +33,10 @@ const Section2 = () => {
           className="mr-3 hidden rounded-full sm:block"
         />
         Ivan Ravic
-      </h1>
-      <ThemedText>
+      </p>
+      <span className="text-custom-dark">
         <CurrentTime />
-      </ThemedText>
+      </span>
     </div>
   );
 };
@@ -48,13 +47,13 @@ const FooterNav = () => {
       <div>
         <ul className="flex w-full flex-col gap-2 lg:text-xl">
           <LinkAnimated href="/contact">
-            <ThemedText>
+            <span className="text-custom-dark">
               <h2 className="pb-3 text-2xl font-bold">Let&apos;s talk</h2>
-            </ThemedText>
+            </span>
           </LinkAnimated>
 
           {CONTACT_INFO.map((info) => (
-            <div
+            <li
               key={info.id}
               className="flex flex-row items-center gap-2 md:gap-3"
             >
@@ -67,16 +66,16 @@ const FooterNav = () => {
               >
                 <p>{info.text}</p>
               </LinkAnimated>
-            </div>
+            </li>
           ))}
         </ul>
       </div>
       <div className="flex flex-row sm:flex-col">
         <ul className="lg:text-xl">
           <LinkAnimated href="/about">
-            <ThemedText>
+            <span className="text-custom-dark">
               <h2 className="pb-3 text-2xl font-bold">About</h2>
-            </ThemedText>
+            </span>
           </LinkAnimated>
 
           <LinkAnimated href="/contact">Contact</LinkAnimated>

@@ -8,7 +8,7 @@ import Header from '@/components/header/Header';
 import Footer from '@/components/footer/Footer';
 import SmoothScroll from '@/components/SmoothScroll';
 
-const montserrat_display = Open_Sans({
+const openSans = Open_Sans({
   subsets: ['latin-ext'],
   weight: ['500', '700'],
 });
@@ -45,7 +45,7 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <body
-        className={`md:text-lg lg:text-2xl ${montserrat_display.className}`}
+        className={`md:text-lg lg:text-2xl ${openSans.className}`}
       >
         <Providers>
           <Header />

@@ -11,7 +11,7 @@ const Modal = dynamic(() => import('@/components/projectsMenu/Modal'), {
 function ProjectsMenu() {
   const [modal, setModal] = useState({ active: false, index: 0 });
   return (
-    <section className="h-screen w-full justify-center p-0 sm:container sm:items-center 2xl:max-w-[90rem]">
+    <section className="min-h-screen w-full justify-center p-0 sm:container sm:items-center 2xl:max-w-[90rem]">
       <div>
         {projects.map((project, index) => {
           return (

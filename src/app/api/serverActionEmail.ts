@@ -46,7 +46,7 @@ const formSchema = z.object({
   whatServicesNeeded: z
     .string()
     .min(5, {
-      message: 'Services must be at least 3 characters.',
+      message: 'Services must be at least 5 characters.',
     })
     .max(150, {
       message: 'Services must be at most 150 characters.',

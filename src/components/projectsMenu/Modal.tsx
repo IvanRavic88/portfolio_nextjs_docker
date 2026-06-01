@@ -38,7 +38,15 @@ export default function Modal({ modal, projects }: ModalProps) {
   const cursor = useRef(null);
   const cursorLabel = useRef(null);
 
-  const { src, color, description } = projects[index];
+  // projects[index] is now possibly-undefined under noUncheckedIndexedAccess.
+  // Fall back to an empty entry so hooks stay unconditional (no early return
+  // before useEffect) and <Image> always receives a string src; runtime
+  // behavior is unchanged because index is always a valid project index.
+  const { src, color, description } = projects[index] ?? {
+    src: '',
+    color: '',
+    description: '',
+  };
 
   useEffect(() => {
     // Move Container

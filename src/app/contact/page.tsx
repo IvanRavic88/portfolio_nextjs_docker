@@ -47,7 +47,10 @@ export default function ContactPage() {
                 {info.icon && (
                   <div className="h-6 w-6 md:h-8 md:w-8">{info.icon}</div>
                 )}
-                <LinkAnimated href={info.href || ''}>
+                <LinkAnimated
+                  href={info.href || ''}
+                  external={info.href?.startsWith('http') ?? false}
+                >
                   <p>{info.text}</p>
                 </LinkAnimated>
               </div>

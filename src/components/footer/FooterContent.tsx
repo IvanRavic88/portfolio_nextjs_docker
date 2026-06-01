@@ -61,7 +61,10 @@ const FooterNav = () => {
               {info.icon && (
                 <div className="h-6 w-6 md:h-8 md:w-8">{info.icon}</div>
               )}
-              <LinkAnimated href={info.href || ''}>
+              <LinkAnimated
+                href={info.href || ''}
+                external={info.href?.startsWith('http') ?? false}
+              >
                 <p>{info.text}</p>
               </LinkAnimated>
             </div>
@@ -78,10 +81,13 @@ const FooterNav = () => {
 
           <LinkAnimated href="/contact">Contact</LinkAnimated>
           <LinkAnimated href="/projects">Projects</LinkAnimated>
-          <LinkAnimated href="/Ivan_Ravić_Resume_30_9_2024.pdf">
+          <LinkAnimated href="/Ivan_Ravić_Resume_30_9_2024.pdf" external>
             Resume
           </LinkAnimated>
-          <LinkAnimated href="/AWS Certified Developer - Associate certificate.pdf">
+          <LinkAnimated
+            href="/AWS Certified Developer - Associate certificate.pdf"
+            external
+          >
             AWS Certificate
           </LinkAnimated>
         </ul>

@@ -11,6 +11,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 import { motion } from 'framer-motion';
+import { useTheme } from 'next-themes';
 
 import Rounded from '@/components/common/Button/index';
 import { Textarea } from '@/components/ui/textarea';
@@ -65,6 +66,7 @@ const formSchema = z.object({
 
 export function ContactForm() {
   const [isLoading, setIsLoading] = useState(false);
+  const { resolvedTheme } = useTheme();
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -141,7 +143,7 @@ export function ContactForm() {
                     placeholder="John Doe*"
                     {...field}
                     autoComplete="name"
-                    className="text-sm focus:text-lg"
+                    className="text-sm transition-colors focus:border-custom-red"
                   />
                 </FormControl>
 
@@ -165,7 +167,7 @@ export function ContactForm() {
                     placeholder="john@doe.com*"
                     {...field}
                     autoComplete="email"
-                    className="focus:text-lg"
+                    className="transition-colors focus:border-custom-red"
                   />
                 </FormControl>
 
@@ -189,7 +191,7 @@ export function ContactForm() {
                     placeholder="Web Development, DevOps, AWS services..."
                     {...field}
                     autoComplete="email"
-                    className="focus:text-lg"
+                    className="transition-colors focus:border-custom-red"
                   />
                 </FormControl>
 
@@ -212,7 +214,7 @@ export function ContactForm() {
                   <Textarea
                     placeholder="Hello Ivan, can you help me with..."
                     {...field}
-                    className="focus:text-lg"
+                    className="transition-colors focus:border-custom-red"
                   />
                 </FormControl>
 
@@ -245,7 +247,10 @@ export function ContactForm() {
             )}
           />
 
-          <button type="submit" className="block">
+          <button
+            type="submit"
+            className="block rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-custom-red focus-visible:ring-offset-2"
+          >
             <Rounded>
               <p className="z-10 m-0 flex items-center gap-3 whitespace-nowrap text-base">
                 {isLoading ? 'Sending...' : 'Get In Touch'}
@@ -268,7 +273,7 @@ export function ContactForm() {
         pauseOnFocusLoss
         draggable
         pauseOnHover
-        theme="light"
+        theme={resolvedTheme === 'dark' ? 'dark' : 'light'}
       />
     </motion.div>
   );

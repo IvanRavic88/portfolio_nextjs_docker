@@ -37,6 +37,7 @@ export default function Intro({ background }: IntroProps) {
           alt="Main image of the project"
           width={1920}
           height={1080}
+          sizes="100vw"
           priority
         />
       </motion.div>

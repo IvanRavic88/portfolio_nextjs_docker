@@ -151,20 +151,12 @@ export default function ProjectsTemplate({
         <div className="mx-auto sm:container">
           <div className="flex flex-wrap justify-center gap-8 sm:gap-24">
             {mobileImages.map((image, index) => {
-              let yTransform;
-
-              if (index === 0 && !mounted) {
-                yTransform = sm;
-              } else if (index === 1 && !mounted) {
-                yTransform = lg;
-              } else if (index === 2 && !mounted) {
-                yTransform = sm;
-              }
+              const yTransforms = [sm, lg, sm];
 
               return (
                 <motion.div
                   key={index}
-                  style={{ y: mounted ? yTransform : 0 }}
+                  style={{ y: mounted ? (yTransforms[index] ?? 0) : 0 }}
                   className="min-w-[250px] max-w-[400px] flex-1 flex-wrap"
                 >
                   <Image

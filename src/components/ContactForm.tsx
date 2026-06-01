@@ -2,7 +2,10 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
-import { sendEmaillAction } from '@/app/api/serverActionEmail';
+import {
+  sendEmaillAction,
+  type SendEmailResult,
+} from '@/app/api/serverActionEmail';
 
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -25,19 +28,39 @@ import { Icon } from '@iconify/react/dist/iconify.js';
 import { useState } from 'react';
 
 const formSchema = z.object({
-  senderName: z.string().min(2, {
-    message: 'Name must be at least 2 characters.',
-  }),
-  senderEmail: z.string().email({
-    message: 'Invalid email address.',
-  }),
-  whatServicesNeeded: z.string().min(5, {
-    message: 'Services must be at least 3 characters.',
-  }),
-  senderMessage: z.string().min(5, {
-    message: 'Message must be at least 5 characters.',
-  }),
-  company: z.string().optional(),
+  senderName: z
+    .string()
+    .min(2, {
+      message: 'Name must be at least 2 characters.',
+    })
+    .max(100, {
+      message: 'Name must be at most 100 characters.',
+    }),
+  senderEmail: z
+    .string()
+    .email({
+      message: 'Invalid email address.',
+    })
+    .max(254, {
+      message: 'Email must be at most 254 characters.',
+    }),
+  whatServicesNeeded: z
+    .string()
+    .min(5, {
+      message: 'Services must be at least 3 characters.',
+    })
+    .max(150, {
+      message: 'Services must be at most 150 characters.',
+    }),
+  senderMessage: z
+    .string()
+    .min(5, {
+      message: 'Message must be at least 5 characters.',
+    })
+    .max(2000, {
+      message: 'Message must be at most 2000 characters.',
+    }),
+  company: z.string().max(100).optional(),
 });
 
 export function ContactForm() {
@@ -53,6 +76,16 @@ export function ContactForm() {
       company: '',
     },
   });
+  // Maps each server-side error code to a user-facing toast message.
+  type SendEmailErrorCode = Extract<SendEmailResult, { ok: false }>['code'];
+  const errorMessages: Record<SendEmailErrorCode, string> = {
+    RATE_LIMITED: 'Too many requests. Please try again later.',
+    HONEYPOT: 'Spam detected. Please try again.',
+    INVALID_EMAIL: 'Invalid email address.',
+    VALIDATION: 'Please check your details and try again.',
+    SEND_FAILED: 'Email Sending Failed. Please try again later.',
+  };
+
   // submit handler
   async function onSubmit(data: z.infer<typeof formSchema>) {
     // antibot check
@@ -64,20 +97,17 @@ export function ContactForm() {
     setIsLoading(true);
 
     try {
-      const response = await sendEmaillAction(data);
+      const result = await sendEmaillAction(data);
 
-      if (response.data) {
+      if (result.ok) {
         toast.success('Email sent successfully. I will get back to you soon.');
         form.reset();
-      }
-    } catch (error: any) {
-      if (error.message.includes('Validation Error')) {
-        toast.error(`Validation Error: ${error.message}`);
-      } else if (error.message.includes('Email Sending Failed')) {
-        toast.error(`Error sending email: ${error.message}`);
       } else {
-        toast.error(`Unexpected error: ${error.message}`);
+        toast.error(errorMessages[result.code]);
       }
+    } catch {
+      // Truly unexpected (e.g. network) failures only.
+      toast.error('Unexpected error. Please try again later.');
     } finally {
       setIsLoading(false);
     }

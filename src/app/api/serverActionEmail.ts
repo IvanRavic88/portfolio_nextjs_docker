@@ -27,22 +27,56 @@ function rateLimit(ip: string): boolean {
 }
 
 const formSchema = z.object({
-  senderName: z.string().min(2, {
-    message: 'Username must be at least 2 characters.',
-  }),
-  senderEmail: z.string().email({
-    message: 'Invalid email address.',
-  }),
-  whatServicesNeeded: z.string().min(5, {
-    message: 'Services must be at least 3 characters.',
-  }),
-  senderMessage: z.string().min(5, {
-    message: 'Message must be at least 5 characters.',
-  }),
-  company: z.string().optional(),
+  senderName: z
+    .string()
+    .min(2, {
+      message: 'Username must be at least 2 characters.',
+    })
+    .max(100, {
+      message: 'Name must be at most 100 characters.',
+    }),
+  senderEmail: z
+    .string()
+    .email({
+      message: 'Invalid email address.',
+    })
+    .max(254, {
+      message: 'Email must be at most 254 characters.',
+    }),
+  whatServicesNeeded: z
+    .string()
+    .min(5, {
+      message: 'Services must be at least 3 characters.',
+    })
+    .max(150, {
+      message: 'Services must be at most 150 characters.',
+    }),
+  senderMessage: z
+    .string()
+    .min(5, {
+      message: 'Message must be at least 5 characters.',
+    })
+    .max(2000, {
+      message: 'Message must be at most 2000 characters.',
+    }),
+  company: z.string().max(100).optional(),
 });
 
-export async function sendEmaillAction(data: z.infer<typeof formSchema>) {
+export type SendEmailResult =
+  | { ok: true }
+  | {
+      ok: false;
+      code:
+        | 'RATE_LIMITED'
+        | 'HONEYPOT'
+        | 'INVALID_EMAIL'
+        | 'VALIDATION'
+        | 'SEND_FAILED';
+    };
+
+export async function sendEmaillAction(
+  data: z.infer<typeof formSchema>
+): Promise<SendEmailResult> {
   // Resolve the client IP and enforce rate limiting
   const headersList = headers();
   const forwardedFor = headersList.get('x-forwarded-for');
@@ -52,17 +86,17 @@ export async function sendEmaillAction(data: z.infer<typeof formSchema>) {
     'unknown';
 
   if (!rateLimit(ip)) {
-    throw new Error('Too many requests. Please try again later.');
+    return { ok: false, code: 'RATE_LIMITED' };
   }
 
   if (data.company) {
-    throw new Error('Failed to send email, please try again later');
+    return { ok: false, code: 'HONEYPOT' };
   }
 
   // Narrow normalizeEmail, which can return false
   const normalizedEmail = validator.normalizeEmail(data.senderEmail);
   if (normalizedEmail === false) {
-    throw new Error('Invalid email address.');
+    return { ok: false, code: 'INVALID_EMAIL' };
   }
 
   // Sanitize the form data
@@ -76,22 +110,23 @@ export async function sendEmaillAction(data: z.infer<typeof formSchema>) {
   const parsedData = formSchema.safeParse(sanitizedData);
 
   if (!parsedData.success) {
-    // handling validation errors
+    // Log validation detail server-side only; do not leak to the client.
     const errorMessages = parsedData.error.issues.map((issue) => issue.message);
-    throw new Error(`Validation Error:${errorMessages.join(', ')}`);
+    console.error('Validation error:', errorMessages.join(', '));
+    return { ok: false, code: 'VALIDATION' };
   }
 
   try {
-    const response = await resend.emails.send({
+    await resend.emails.send({
       from: 'send@ivanravic.com',
       to: ['ravic.ivan88@gmail.com'],
       subject: 'New contact form submission from ivanravic.com',
       react: EmailTemplate({ ...parsedData.data }),
     });
 
-    return response;
+    return { ok: true };
   } catch (err) {
     console.error('Resend error:', err);
-    throw new Error('Email Sending Failed. Please try again later.');
+    return { ok: false, code: 'SEND_FAILED' };
   }
 }

@@ -1,5 +1,3 @@
-'use client';
-
 import ProjectsMenu from '@/components/projectsMenu/ProjectsMenu';
 import CTA from '@/components/cta/CTA';
 import MyServices from '@/components/services/MyServices';

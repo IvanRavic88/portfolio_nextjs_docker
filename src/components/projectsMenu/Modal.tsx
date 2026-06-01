@@ -42,34 +42,34 @@ export default function Modal({ modal, projects }: ModalProps) {
 
   useEffect(() => {
     // Move Container
-    let xMoveContainer = gsap.quickTo(modalContainer.current, 'left', {
+    const xMoveContainer = gsap.quickTo(modalContainer.current, 'left', {
       duration: 0.8,
       ease: 'power3',
     });
-    let yMoveContainer = gsap.quickTo(modalContainer.current, 'top', {
+    const yMoveContainer = gsap.quickTo(modalContainer.current, 'top', {
       duration: 0.8,
       ease: 'power3',
     });
     // Move cursor
-    let xMoveCursor = gsap.quickTo(cursor.current, 'left', {
+    const xMoveCursor = gsap.quickTo(cursor.current, 'left', {
       duration: 0.5,
       ease: 'power3',
     });
-    let yMoveCursor = gsap.quickTo(cursor.current, 'top', {
+    const yMoveCursor = gsap.quickTo(cursor.current, 'top', {
       duration: 0.5,
       ease: 'power3',
     });
     // Move cursor label
-    let xMoveCursorLabel = gsap.quickTo(cursorLabel.current, 'left', {
+    const xMoveCursorLabel = gsap.quickTo(cursorLabel.current, 'left', {
       duration: 0.45,
       ease: 'power3',
     });
-    let yMoveCursorLabel = gsap.quickTo(cursorLabel.current, 'top', {
+    const yMoveCursorLabel = gsap.quickTo(cursorLabel.current, 'top', {
       duration: 0.45,
       ease: 'power3',
     });
 
-    window.addEventListener('mousemove', (e) => {
+    const handleMouseMove = (e: MouseEvent) => {
       const { pageX, pageY } = e;
       xMoveContainer(pageX);
       yMoveContainer(pageY);
@@ -77,7 +77,10 @@ export default function Modal({ modal, projects }: ModalProps) {
       yMoveCursor(pageY);
       xMoveCursorLabel(pageX);
       yMoveCursorLabel(pageY);
-    });
+    };
+
+    window.addEventListener('mousemove', handleMouseMove);
+    return () => window.removeEventListener('mousemove', handleMouseMove);
   }, []);
 
   return (
@@ -90,26 +93,17 @@ export default function Modal({ modal, projects }: ModalProps) {
         className="pointer-events-none absolute flex h-[410px] w-[410px] items-center justify-center overflow-hidden bg-white"
       >
         <div
-          className="duration-[0.5s] ease-[cubic-bezier(0.76,0,0.24,1)]; absolute h-full w-full transition-[top]"
-          style={{ top: index * -100 + '%' }}
+          className="flex h-full w-full items-center justify-center"
+          style={{ backgroundColor: color }}
+          key={`modal_${index}`}
         >
-          {projects.map((project) => {
-            return (
-              <div
-                className="flex h-full w-full items-center justify-center"
-                style={{ backgroundColor: color }}
-                key={`modal_${project.index}`}
-              >
-                <Image
-                  className="h-auto w-full"
-                  src={src}
-                  width={300}
-                  height={300}
-                  alt={description}
-                />
-              </div>
-            );
-          })}
+          <Image
+            className="h-auto w-full"
+            src={src}
+            width={300}
+            height={300}
+            alt={description}
+          />
         </div>
       </motion.div>
       <motion.div

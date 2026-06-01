@@ -1,4 +1,6 @@
 'use server';
+import { createElement } from 'react';
+
 import { z } from 'zod';
 import validator from 'validator';
 import { headers } from 'next/headers';
@@ -78,7 +80,7 @@ export async function sendEmaillAction(
   data: z.infer<typeof formSchema>
 ): Promise<SendEmailResult> {
   // Resolve the client IP and enforce rate limiting
-  const headersList = headers();
+  const headersList = await headers();
   const forwardedFor = headersList.get('x-forwarded-for');
   const ip =
     forwardedFor?.split(',')[0]?.trim() ||
@@ -121,7 +123,7 @@ export async function sendEmaillAction(
       from: 'send@ivanravic.com',
       to: ['ravic.ivan88@gmail.com'],
       subject: 'New contact form submission from ivanravic.com',
-      react: EmailTemplate({ ...parsedData.data }),
+      react: createElement(EmailTemplate, { ...parsedData.data }),
     });
 
     return { ok: true };

@@ -14,7 +14,7 @@ import { useTheme } from 'next-themes';
 import ThemeSwitch from '@/components/ThemeSwitch';
 
 type MenuItemWithSubMenuProps = {
-  icon?: JSX.Element;
+  icon?: React.JSX.Element;
   item: SideNavItem;
   toggleOpen: () => void;
 };
@@ -175,7 +175,7 @@ const MenuItem = ({
 }: {
   className?: string;
   children?: ReactNode;
-  icon?: JSX.Element;
+  icon?: React.JSX.Element;
 }) => {
   return (
     <motion.li variants={MenuItemVariants} className={className}>

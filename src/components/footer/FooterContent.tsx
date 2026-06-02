@@ -1,99 +1,73 @@
+import Link from 'next/link';
 import LinkAnimated from '../LinkAnimated';
-import Image from 'next/image';
-import IvanRavic from '@/public/images/Ivan.webp';
 import CurrentTime from '@/components/footer/CurentTime';
 import { CONTACT_INFO } from '@/constants';
 
+// Split contact methods (email/phone) from social profiles so we can show the
+// methods as labelled links and the socials as a compact icon row.
+const contactMethods = CONTACT_INFO.filter(
+  (c) => c.href && /^(mailto:|tel:)/.test(c.href),
+);
+const socials = CONTACT_INFO.filter(
+  (c) => c.href && /instagram|linkedin|github/i.test(c.href),
+);
+
 export default function Content() {
   return (
-    <div className="flex h-full w-full flex-col justify-between bg-custom-gray px-5 py-8 sm:px-12">
-      <Section1 />
+    <div className="flex h-full w-full flex-col justify-between bg-custom-dark px-5 py-8 text-custom-light sm:px-12">
+      <FooterNav />
       <Section2 />
     </div>
   );
 }
 
-const Section1 = () => {
-  return (
-    <div>
-      <FooterNav />
-    </div>
-  );
-};
-
-const Section2 = () => {
-  return (
-    <div className="flex items-end justify-between">
-      <p className="mt-10 flex items-center text-[10vw] leading-[0.8] text-custom-dark">
-        <Image
-          src={IvanRavic}
-          alt="Ivan Ravić profile picture"
-          width={200}
-          height={200}
-          className="mr-3 hidden rounded-full sm:block"
-        />
-        Ivan Ravić
-      </p>
-      <span className="text-custom-dark">
-        <CurrentTime />
-      </span>
-    </div>
-  );
-};
-
 const FooterNav = () => {
   return (
     <div className="flex flex-wrap gap-10 md:gap-24">
       <div>
+        <LinkAnimated href="/contact">
+          <h2 className="pb-3 text-2xl font-bold">Let&apos;s talk</h2>
+        </LinkAnimated>
         <ul className="flex w-full flex-col gap-2 lg:text-xl">
-          <li className="z-99 mb-2 sm:text-left">
-            <LinkAnimated href="/contact">
-              <span className="text-custom-dark">
-                <h2 className="pb-3 text-2xl font-bold">Let&apos;s talk</h2>
-              </span>
-            </LinkAnimated>
-          </li>
-
-          {CONTACT_INFO.map((info) => (
+          {contactMethods.map((info) => (
             <li
               key={info.id}
               className="flex flex-row items-center gap-2 md:gap-3"
             >
               {info.icon && (
-                <div className="h-6 w-6 md:h-8 md:w-8">{info.icon}</div>
+                <span className="text-xl text-custom-light/80">
+                  {info.icon}
+                </span>
               )}
               <LinkAnimated
                 href={info.href || ''}
                 external={info.href?.startsWith('http') ?? false}
               >
-                <p>{info.text}</p>
+                <span>{info.text}</span>
               </LinkAnimated>
             </li>
           ))}
         </ul>
       </div>
-      <div className="flex flex-row sm:flex-col">
-        <ul className="lg:text-xl">
-          <li className="z-99 mb-2 sm:text-left">
-            <LinkAnimated href="/about">
-              <span className="text-custom-dark">
-                <h2 className="pb-3 text-2xl font-bold">About</h2>
-              </span>
-            </LinkAnimated>
-          </li>
 
-          <li className="z-99 mb-2 sm:text-left">
-            <LinkAnimated href="/contact">Contact</LinkAnimated>
+      <div className="flex flex-col">
+        <h2 className="pb-3 text-2xl font-bold">Explore</h2>
+        <ul className="flex flex-col gap-2 lg:text-xl">
+          <li>
+            <LinkAnimated href="/about">About</LinkAnimated>
           </li>
-          <li className="z-99 mb-2 sm:text-left">
+          <li>
             <LinkAnimated href="/projects">Projects</LinkAnimated>
           </li>
-          <li className="z-99 mb-2 sm:text-left">
+          <li>
+            <LinkAnimated href="/contact">Contact</LinkAnimated>
+          </li>
+          <li>
             <LinkAnimated href="/Ivan_Ravić_Resume_30_9_2024.pdf" external>
               Resume
             </LinkAnimated>
           </li>
-          <li className="z-99 mb-2 sm:text-left">
+          <li>
             <LinkAnimated
               href="/AWS Certified Developer - Associate certificate.pdf"
               external
@@ -102,6 +76,47 @@ const FooterNav = () => {
             </LinkAnimated>
           </li>
         </ul>
+
+        <div className="mt-6 flex items-center gap-5">
+          {socials.map((social) => (
+            <a
+              key={social.id}
+              href={social.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={social.description}
+              className="text-2xl text-custom-light/80 transition-colors hover:text-custom-red"
+            >
+              {social.icon}
+            </a>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+};
+
+const Section2 = () => {
+  const year = new Date().getFullYear();
+  return (
+    <div className="mt-10">
+      <Link
+        href="/"
+        aria-label="Back to home"
+        className="block font-display text-[13vw] font-semibold leading-[0.85] tracking-tight transition-colors hover:text-custom-red sm:text-[10vw]"
+      >
+        Ivan Ravić
+      </Link>
+      <div className="mt-6 flex flex-col gap-3 border-t border-white/15 pt-5 text-sm text-custom-light/70 sm:flex-row sm:items-center sm:justify-between">
+        <span>© {year} Ivan Ravić · Belgrade, Serbia · Available for work</span>
+        <span className="flex items-center gap-2">
+          <span
+            className="inline-block h-2 w-2 rounded-full bg-custom-red"
+            aria-hidden="true"
+          />
+          Belgrade&nbsp;
+          <CurrentTime />
+        </span>
       </div>
     </div>
   );

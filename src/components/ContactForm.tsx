@@ -249,7 +249,8 @@ export function ContactForm() {
 
           <button
             type="submit"
-            className="block rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-custom-red focus-visible:ring-offset-2"
+            disabled={isLoading}
+            className="block rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-custom-red focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-60"
           >
             <Rounded>
               <p className="z-10 m-0 flex items-center gap-3 whitespace-nowrap text-base">

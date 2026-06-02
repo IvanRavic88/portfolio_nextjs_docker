@@ -1,7 +1,7 @@
 'use client';
 
-import React, { useState, useRef } from 'react';
-import { motion, useReducedMotion } from 'framer-motion';
+import React, { useState, useRef, useEffect } from 'react';
+import { motion } from 'framer-motion';
 
 export default function FramerMagnetic({
   children,
@@ -12,7 +12,17 @@ export default function FramerMagnetic({
 }) {
   const ref = useRef<HTMLDivElement>(null);
   const [position, setPosition] = useState({ x: 0, y: 0 });
-  const shouldReduceMotion = useReducedMotion();
+
+  // The magnetic pull is a fine-pointer hover effect — it can't be triggered on
+  // touch and is pointless under reduced-motion. In those cases we render a
+  // plain wrapper so framer-motion never animates here, which removes its
+  // hydration/animation cost on mobile (where it ran for nothing).
+  const [enabled, setEnabled] = useState(false);
+  useEffect(() => {
+    const fine = window.matchMedia('(pointer: fine)').matches;
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    setEnabled(fine && !reduce);
+  }, []);
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     if (!ref.current) return;
@@ -28,7 +38,7 @@ export default function FramerMagnetic({
     setPosition({ x: 0, y: 0 });
   };
 
-  if (shouldReduceMotion) {
+  if (!enabled) {
     return <div style={{ position: 'relative' }}>{children}</div>;
   }
 

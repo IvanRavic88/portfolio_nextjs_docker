@@ -31,7 +31,7 @@ export default function Home() {
             <div className="flex flex-col items-start gap-14 lg:grid lg:grid-cols-12 lg:gap-20">
               <FadeIn className="col-span-8 text-left" delay={0.2}>
                 <p className="mb-10 md:text-xl xl:mb-10 xl:text-3xl">
-                  I&rsquo;m Ivan Ravić — an AWS-certified full-stack developer
+                  I&rsquo;m Ivan Ravić - an AWS-certified full-stack developer
                   building fast, scalable web apps in Next.js &amp; TypeScript and
                   deploying them with production-grade DevOps (Docker, Terraform,
                   AWS). One person, from first commit to live infrastructure.

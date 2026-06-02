@@ -33,7 +33,7 @@ export default function TechStack() {
         className="mt-6 inline-flex items-center gap-2 text-sm opacity-70 transition-colors hover:text-custom-red hover:opacity-100"
       >
         <span className="h-2 w-2 rounded-full bg-custom-red" aria-hidden="true" />
-        AWS Certified Developer – Associate
+        AWS Certified Developer - Associate
         <span aria-hidden="true">↗</span>
       </a>
     </section>

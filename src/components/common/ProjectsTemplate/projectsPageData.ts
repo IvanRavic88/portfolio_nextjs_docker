@@ -9,7 +9,7 @@ export const projectsPageData: ProjectsPageData = [
     location: 'Serbia',
     descriptionTitle: 'Portfolio v2',
     projectDescription:
-      'Built with Next.js, TypeScript, Tailwind CSS and Framer Motion, this portfolio is now hosted on Vercel. It was originally deployed on AWS as containerized infrastructure-as-code — Docker, Terraform for IaC, and Ansible for configuration management. I migrated it to Vercel to simplify hosting and lower maintenance cost, while keeping the same codebase and DevOps practices behind it.',
+      'Built with Next.js, TypeScript, Tailwind CSS and Framer Motion, this portfolio is now hosted on Vercel. It was originally deployed on AWS as containerized infrastructure-as-code - Docker, Terraform for IaC, and Ansible for configuration management. I migrated it to Vercel to simplify hosting and lower maintenance cost, while keeping the same codebase and DevOps practices behind it.',
     imageSrcLight: '/images/portfolio_v02_light.png',
     imageSrcDark: '/images/portfolio_v02_dark.png',
     githubLink: 'https://github.com/IvanRavic88/portfolio_nextjs_docker',
@@ -69,7 +69,7 @@ export const projectsPageData: ProjectsPageData = [
     location: 'Serbia',
     descriptionTitle: 'Foundations',
     projectDescription:
-      'My first portfolio and first venture into serverless on AWS: a static HTML/JavaScript frontend on Amazon S3 with CloudFront, backed by AWS Lambda and API Gateway, with Terraform managing the infrastructure as code. The live site is currently offline — I took the AWS infrastructure down to reduce running costs — but it may return. The source remains on GitHub.',
+      'My first portfolio and first venture into serverless on AWS: a static HTML/JavaScript frontend on Amazon S3 with CloudFront, backed by AWS Lambda and API Gateway, with Terraform managing the infrastructure as code. The live site is currently offline - I took the AWS infrastructure down to reduce running costs - but it may return. The source remains on GitHub.',
     imageSrcLight: '/images/hero-img.webp',
     imageSrcDark: '/images/hero-img.webp',
     githubLink:

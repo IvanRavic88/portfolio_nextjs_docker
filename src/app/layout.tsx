@@ -26,12 +26,12 @@ const inter = Inter({
 export const metadata: Metadata = {
   metadataBase: new URL('https://ivanravic.com'),
   title: {
-    default: 'Ivan Ravić — Software Developer & AWS Certified',
+    default: 'Ivan Ravić - Software Developer & AWS Certified',
     template: '%s | Ivan Ravić',
   },
-  description: 'Portfolio of Ivan Ravić — Next.js, TypeScript, AWS Cloud, DevOps.',
+  description: 'Portfolio of Ivan Ravić - Next.js, TypeScript, AWS Cloud, DevOps.',
   openGraph: {
-    title: 'Ivan Ravić — Portfolio',
+    title: 'Ivan Ravić - Portfolio',
     description: 'Full-Stack, DevOps, AWS Cloud Expertise',
     url: 'https://ivanravic.com',
     siteName: 'Ivan Ravić',

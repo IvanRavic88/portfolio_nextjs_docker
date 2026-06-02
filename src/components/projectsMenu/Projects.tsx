@@ -17,7 +17,7 @@ export default function Projects({
   description,
   src,
 }: ProjectsProps) {
-  // Titles are formatted "NN  Name" — split so the leading number can carry the red accent.
+  // Titles are formatted "NN  Name"; split so the leading number can carry the red accent.
   const [projectNumber, ...rest] = title.trim().split(/\s{2,}/);
   const projectName = rest.join(' ') || projectNumber;
   const hasNumber = rest.length > 0;

@@ -6,7 +6,7 @@ import LinkAnimated from '@/components/LinkAnimated';
 export const metadata: Metadata = {
   title: 'Contact',
   description:
-    'Get in touch with Ivan Ravić to start a project together — Next.js, TypeScript, AWS Cloud, and DevOps.',
+    'Get in touch with Ivan Ravić to start a project together - Next.js, TypeScript, AWS Cloud, and DevOps.',
   openGraph: {
     title: 'Contact | Ivan Ravić',
     description: 'Get in touch to start a project together.',

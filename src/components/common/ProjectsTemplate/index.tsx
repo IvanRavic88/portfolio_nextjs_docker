@@ -84,7 +84,7 @@ export default function ProjectsTemplate({
               </a>
             ) : (
               <span className="text-base opacity-60">
-                Offline — may return
+                Offline - may return
               </span>
             )}
           </div>

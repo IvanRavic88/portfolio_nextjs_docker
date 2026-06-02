@@ -3,6 +3,7 @@ import CTA from '@/components/cta/CTA';
 import MyServices from '@/components/services/MyServices';
 import Rounded from '@/components/common/Button/index';
 import Socials from '@/components/socials/Socials';
+import FadeIn from '@/components/common/FadeIn';
 
 export default function Home() {
   return (
@@ -11,20 +12,23 @@ export default function Home() {
         <section className="relative flex flex-col bg-center">
           <div className="mx-auto my-0 max-w-full pb-40 pt-32 md:px-5 md:pt-40 xl:pt-60 2xl:max-w-[90rem]">
             <div className="mb-14 flex flex-col items-start gap-14 xl:mb-20 xl:grid xl:grid-cols-12 xl:items-end xl:gap-20">
-              <div className="col-span-8 text-left">
+              <FadeIn className="col-span-8 text-left" delay={0}>
                 <h1 className="-ml-[0.375rem] text-4xl sm:text-5xl md:text-8xl 2xl:text-9xl">
                   <span className="hidden">Ivan Ravić</span>
                   <span>Full-stack web apps, shipped on the cloud they run on.</span>
                 </h1>
-              </div>
-              <div className="mt-[-2.7rem] max-w-60 xl:col-span-4 xl:mx-auto xl:max-w-40">
+              </FadeIn>
+              <FadeIn
+                className="mt-[-2.7rem] max-w-60 xl:col-span-4 xl:mx-auto xl:max-w-40"
+                delay={0.1}
+              >
                 <p className="text-lg opacity-50 xl:opacity-100">
                   Available for freelance &amp; full-time work
                 </p>
-              </div>
+              </FadeIn>
             </div>
             <div className="flex flex-col items-start gap-14 lg:grid lg:grid-cols-12 lg:gap-20">
-              <div className="col-span-8 text-left">
+              <FadeIn className="col-span-8 text-left" delay={0.2}>
                 <p className="mb-10 md:text-xl xl:mb-10 xl:text-3xl">
                   I&rsquo;m Ivan Ravić — an AWS-certified full-stack developer
                   building fast, scalable web apps in Next.js &amp; TypeScript and
@@ -36,7 +40,7 @@ export default function Home() {
                     <p className="z-10 m-0 text-base">Drop me a line</p>
                   </Rounded>
                 </a>
-              </div>
+              </FadeIn>
               <Socials />
             </div>
           </div>

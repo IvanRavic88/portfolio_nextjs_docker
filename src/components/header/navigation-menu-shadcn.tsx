@@ -49,16 +49,14 @@ export const NavMenu: React.FC = () => {
         </NavigationMenuItem>
 
         <NavigationMenuItem>
-          <NavigationMenuTrigger className={`text-link-animation`}>
-            Contact
-          </NavigationMenuTrigger>
-          <NavigationMenuContent>
-            <ul className="md:w-30 grid w-40 gap-3 p-4 md:grid-cols-1 lg:w-80">
-              <ListItem title="Contact me" href="/contact">
-                Questions? Reach out anytime. I&apos;m here to help!
-              </ListItem>
-            </ul>
-          </NavigationMenuContent>
+          <NavigationMenuLink asChild>
+            <Link
+              href="/contact"
+              className={`text-link-animation hover:text-custom-red ${navigationMenuTriggerStyle()}`}
+            >
+              Contact
+            </Link>
+          </NavigationMenuLink>
         </NavigationMenuItem>
         <NavigationMenuItem>
           <NavigationMenuLink asChild>

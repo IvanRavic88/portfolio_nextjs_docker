@@ -32,7 +32,7 @@ const Section2 = () => {
           height={200}
           className="mr-3 hidden rounded-full sm:block"
         />
-        Ivan Ravic
+        Ivan Ravić
       </p>
       <span className="text-custom-dark">
         <CurrentTime />

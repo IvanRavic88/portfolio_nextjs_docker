@@ -1,5 +1,5 @@
 'use client';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import dynamic from 'next/dynamic';
 import Link from 'next/link';
 import { projects } from '@/projectMenuData';
@@ -11,6 +11,16 @@ const Modal = dynamic(() => import('@/components/projectsMenu/Modal'), {
 
 function ProjectsMenu() {
   const [modal, setModal] = useState({ active: false, index: 0 });
+  // The cursor-follow Modal pulls in gsap + framer-motion purely for a hover
+  // effect. Touch devices can't trigger it (they get the inline preview in
+  // Projects instead), so only mount it on hover-capable pointers — this keeps
+  // gsap out of the mobile bundle entirely.
+  const [canHover, setCanHover] = useState(false);
+  useEffect(() => {
+    setCanHover(
+      window.matchMedia('(hover: hover) and (pointer: fine)').matches
+    );
+  }, []);
   return (
     <section className="min-h-screen w-full justify-center p-0 sm:container sm:items-center 2xl:max-w-[90rem]">
       <div>
@@ -33,7 +43,7 @@ function ProjectsMenu() {
         })}
       </div>
       <div>
-        <Modal modal={modal} projects={projects} />
+        {canHover && <Modal modal={modal} projects={projects} />}
       </div>
     </section>
   );

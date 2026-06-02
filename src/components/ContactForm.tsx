@@ -24,7 +24,7 @@ import {
   FormMessage,
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
-import { Icon } from '@iconify/react/dist/iconify.js';
+import { Send } from 'lucide-react';
 
 import { useState } from 'react';
 
@@ -271,8 +271,8 @@ export function ContactForm() {
             <Rounded>
               <p className="z-10 m-0 flex items-center gap-3 whitespace-nowrap text-base">
                 {isLoading ? 'Sending...' : 'Get In Touch'}
-                <Icon
-                  icon="mdi:send"
+                <Send
+                  size="1em"
                   className="transform transition-transform duration-300 group-hover:translate-x-1"
                 />
               </p>

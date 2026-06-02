@@ -5,12 +5,12 @@ export default function MyServices() {
     <section>
       <div className="container mx-auto max-w-[90rem] px-4 sm:mb-44 sm:px-6">
         <h2 className="mb-2 text-4xl sm:text-5xl md:text-6xl">Services</h2>
-        <h3 className="mb-16 text-left opacity-50">
+        <h3 className="mb-16 text-left opacity-70">
           Maybe I can help you with:
         </h3>
         <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
           <div className="rounded-lg">
-            <span className="mb-10 block text-6xl opacity-30">01</span>
+            <span className="mb-10 block text-6xl opacity-50">01</span>
 
             <h3 className="text-2xl font-bold">Full-Stack Web Development</h3>
             <p className="mt-4 opacity-80">
@@ -20,7 +20,7 @@ export default function MyServices() {
             </p>
           </div>
           <div className="rounded-lg">
-            <span className="mb-10 block text-6xl opacity-30">02</span>
+            <span className="mb-10 block text-6xl opacity-50">02</span>
             <h3 className="text-2xl font-bold">DevOps</h3>
             <p className="mt-4 opacity-80">
               Streamlining your development processes with efficient and
@@ -29,7 +29,7 @@ export default function MyServices() {
             </p>
           </div>
           <div className="rounded-lg">
-            <span className="mb-10 block text-6xl opacity-30">03</span>
+            <span className="mb-10 block text-6xl opacity-50">03</span>
             <h3 className="text-2xl font-bold">AWS Cloud</h3>
             <p className="mt-4 opacity-80">
               Leveraging the power of AWS to build scalable and secure cloud

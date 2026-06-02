@@ -5,7 +5,7 @@ function Socials() {
   return (
     <>
       <ul className="z-99 col-span-4 mx-auto hidden list-none sm:text-sm lg:block xl:text-xl">
-        <li className="mb-4 border-b-2 pb-2 text-center opacity-50">
+        <li className="mb-4 border-b-2 pb-2 text-center opacity-70">
           <span>Let&apos;s get connected</span>
         </li>
         <li className="z-99 mb-2 sm:text-left">

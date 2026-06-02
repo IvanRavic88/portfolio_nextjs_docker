@@ -10,7 +10,7 @@ import { SIDE_NAV_ITEMS } from '@/constants';
 import { projects } from '@/projectMenuData';
 import { SideNavItem } from '@/types';
 import { cn } from '@/lib/utils';
-import { Icon } from '@iconify/react';
+import { ChevronDown } from 'lucide-react';
 import { motion, useCycle, type Variants } from 'framer-motion';
 import { useTheme } from 'next-themes';
 
@@ -140,7 +140,7 @@ const MenuToggle = ({
     onClick={toggle}
     aria-label={isOpen ? 'Close menu' : 'Open menu'}
     aria-expanded={isOpen}
-    className="pointer-events-auto absolute right-4 top-[14px] z-30"
+    className="pointer-events-auto absolute right-1 top-1 z-30 flex h-12 w-12 items-center justify-center"
   >
     <svg width="23" height="23" viewBox="0 0 23 23">
       <Path
@@ -225,7 +225,7 @@ const MenuItemWithSubMenu: React.FC<MenuItemWithSubMenuProps> = ({
                 subMenuOpen && 'rotate-180 text-custom-red',
               )}
             >
-              <Icon icon="lucide:chevron-down" width="24" height="24" />
+              <ChevronDown width={24} height={24} />
             </div>
           </div>
         </button>

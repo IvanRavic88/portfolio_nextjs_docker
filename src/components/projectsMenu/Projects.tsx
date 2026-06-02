@@ -41,7 +41,7 @@ export default function Projects({
           title
         )}
       </h2>
-      <p className="duration-400 transform font-light opacity-50 transition-all group-hover:translate-x-2">
+      <p className="duration-400 transform font-light opacity-70 transition-all group-hover:translate-x-2">
         {description}
       </p>
       {/* Inline preview for touch devices (the cursor-follow modal is hover-only). */}

@@ -1,7 +1,6 @@
 import type { Metadata } from 'next';
 import ContactAnimations from './ContactAnimations';
 import { CONTACT_INFO } from '@/constants';
-import LinkAnimated from '@/components/LinkAnimated';
 
 export const metadata: Metadata = {
   title: 'Contact',
@@ -38,23 +37,33 @@ export default function ContactPage() {
             Let&apos;s talk
           </h2>
 
-          <ul className="flex w-full flex-col gap-2">
-            {CONTACT_INFO.map((info) => (
-              <li
-                key={info.id}
-                className="flex flex-row items-center gap-2 md:gap-3"
-              >
-                {info.icon && (
-                  <div className="h-6 w-6 md:h-8 md:w-8">{info.icon}</div>
-                )}
-                <LinkAnimated
-                  href={info.href || ''}
-                  external={info.href?.startsWith('http') ?? false}
-                >
-                  <p>{info.text}</p>
-                </LinkAnimated>
-              </li>
-            ))}
+          <ul className="flex w-full flex-col gap-1 sm:gap-2">
+            {CONTACT_INFO.map((info) => {
+              const external = info.href?.startsWith('http') ?? false;
+              return (
+                <li key={info.id}>
+                  <a
+                    href={info.href || ''}
+                    {...(external
+                      ? { target: '_blank', rel: 'noopener noreferrer' }
+                      : {})}
+                    className="group inline-flex items-center gap-4 py-1 focus-visible:outline-none"
+                  >
+                    {info.icon && (
+                      <span
+                        aria-hidden="true"
+                        className="shrink-0 text-foreground/55 transition-all duration-300 ease-out [&_svg]:h-7 [&_svg]:w-7 group-hover:-translate-y-0.5 group-hover:scale-125 group-hover:text-custom-red group-focus-visible:scale-125 group-focus-visible:text-custom-red"
+                      >
+                        {info.icon}
+                      </span>
+                    )}
+                    <span className="relative inline-block text-foreground/90 transition-colors duration-300 after:absolute after:-bottom-0.5 after:left-0 after:h-px after:w-full after:origin-right after:scale-x-0 after:bg-custom-red after:transition-transform after:duration-300 after:ease-out group-hover:text-custom-red group-hover:after:origin-left group-hover:after:scale-x-100 group-focus-visible:text-custom-red group-focus-visible:after:origin-left group-focus-visible:after:scale-x-100">
+                      {info.text}
+                    </span>
+                  </a>
+                </li>
+              );
+            })}
           </ul>
         </div>
       </ContactAnimations>

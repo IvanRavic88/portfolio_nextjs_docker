@@ -26,8 +26,7 @@ const securityHeaders = [
       "font-src 'self' fonts.gstatic.com data:",
       "img-src 'self' data: blob:",
       "media-src 'self'",
-      // Iconify (@iconify/react) loads icon data at runtime from its CDN + fallback hosts.
-      "connect-src 'self' https://api.resend.com https://api.iconify.design https://api.unisvg.com https://api.simplesvg.com",
+      "connect-src 'self' https://api.resend.com",
       "frame-ancestors 'none'",
       "base-uri 'self'",
       "form-action 'self'",
@@ -43,7 +42,7 @@ const nextConfig = {
     formats: ['image/avif', 'image/webp'],
   },
   experimental: {
-    optimizePackageImports: ['@iconify/react', 'lucide-react', 'framer-motion'],
+    optimizePackageImports: ['lucide-react', 'framer-motion'],
   },
   async headers() {
     return [{ source: '/(.*)', headers: securityHeaders }];

@@ -23,7 +23,7 @@ export default function Home() {
                 className="mt-[-2.7rem] max-w-60 xl:col-span-4 xl:mx-auto xl:max-w-40"
                 delay={0.1}
               >
-                <p className="text-lg opacity-50 xl:opacity-100">
+                <p className="text-lg opacity-70 xl:opacity-100">
                   Available for freelance &amp; full-time work
                 </p>
               </FadeIn>

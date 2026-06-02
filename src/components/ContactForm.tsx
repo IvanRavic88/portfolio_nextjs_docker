@@ -64,6 +64,14 @@ const formSchema = z.object({
   company: z.string().max(100).optional(),
 });
 
+// Red underline that grows from the left when the adjacent input is focused
+// (peer). Replaces the static focus ring with a smoother, intentional accent.
+function FieldUnderline() {
+  return (
+    <span className="pointer-events-none absolute inset-x-0 bottom-0 h-[2px] origin-left scale-x-0 bg-custom-red transition-transform duration-300 ease-out peer-focus:scale-x-100" />
+  );
+}
+
 export function ContactForm() {
   const [isLoading, setIsLoading] = useState(false);
   const { resolvedTheme } = useTheme();
@@ -131,21 +139,23 @@ export function ContactForm() {
             control={form.control}
             name="senderName"
             render={({ field }) => (
-              <FormItem>
+              <FormItem className="group">
                 <FormLabel className="left-0 mr-2 text-base opacity-35 sm:text-left">
                   01
                 </FormLabel>
-                <FormLabel className="text-base sm:text-lg">
+                <FormLabel className="text-base transition-colors group-focus-within:text-custom-red sm:text-lg">
                   What&rsquo;s your name?
                 </FormLabel>
-                <FormControl>
-                  <Input
-                    placeholder="John Doe*"
-                    {...field}
-                    autoComplete="name"
-                    className="text-sm transition-colors focus:border-custom-red"
-                  />
-                </FormControl>
+                <div className="relative">
+                  <FormControl>
+                    <Input
+                      placeholder="John Doe*"
+                      {...field}
+                      autoComplete="name"
+                    />
+                  </FormControl>
+                  <FieldUnderline />
+                </div>
 
                 <FormMessage />
               </FormItem>
@@ -155,21 +165,23 @@ export function ContactForm() {
             control={form.control}
             name="senderEmail"
             render={({ field }) => (
-              <FormItem>
+              <FormItem className="group">
                 <FormLabel className="left-0 mr-2 text-base opacity-35 sm:text-left">
                   02
                 </FormLabel>
-                <FormLabel className="text-base sm:text-lg">
+                <FormLabel className="text-base transition-colors group-focus-within:text-custom-red sm:text-lg">
                   What&rsquo;s your email?
                 </FormLabel>
-                <FormControl>
-                  <Input
-                    placeholder="john@doe.com*"
-                    {...field}
-                    autoComplete="email"
-                    className="transition-colors focus:border-custom-red"
-                  />
-                </FormControl>
+                <div className="relative">
+                  <FormControl>
+                    <Input
+                      placeholder="john@doe.com*"
+                      {...field}
+                      autoComplete="email"
+                    />
+                  </FormControl>
+                  <FieldUnderline />
+                </div>
 
                 <FormMessage />
               </FormItem>
@@ -179,21 +191,23 @@ export function ContactForm() {
             control={form.control}
             name="whatServicesNeeded"
             render={({ field }) => (
-              <FormItem>
+              <FormItem className="group">
                 <FormLabel className="left-0 mr-2 text-base opacity-35 sm:text-left">
                   03
                 </FormLabel>
-                <FormLabel className="text-base sm:text-lg">
+                <FormLabel className="text-base transition-colors group-focus-within:text-custom-red sm:text-lg">
                   What services are you looking for?
                 </FormLabel>
-                <FormControl>
-                  <Input
-                    placeholder="Web Development, DevOps, AWS services..."
-                    {...field}
-                    autoComplete="off"
-                    className="transition-colors focus:border-custom-red"
-                  />
-                </FormControl>
+                <div className="relative">
+                  <FormControl>
+                    <Input
+                      placeholder="Web Development, DevOps, AWS services..."
+                      {...field}
+                      autoComplete="off"
+                    />
+                  </FormControl>
+                  <FieldUnderline />
+                </div>
 
                 <FormMessage />
               </FormItem>
@@ -203,20 +217,22 @@ export function ContactForm() {
             control={form.control}
             name="senderMessage"
             render={({ field }) => (
-              <FormItem>
+              <FormItem className="group">
                 <FormLabel className="left-0 mr-2 text-base opacity-35 sm:text-left">
                   04
                 </FormLabel>
-                <FormLabel className="text-base sm:text-lg">
+                <FormLabel className="text-base transition-colors group-focus-within:text-custom-red sm:text-lg">
                   Your message
                 </FormLabel>
-                <FormControl>
-                  <Textarea
-                    placeholder="Hello Ivan, can you help me with..."
-                    {...field}
-                    className="transition-colors focus:border-custom-red"
-                  />
-                </FormControl>
+                <div className="relative">
+                  <FormControl>
+                    <Textarea
+                      placeholder="Hello Ivan, can you help me with..."
+                      {...field}
+                    />
+                  </FormControl>
+                  <FieldUnderline />
+                </div>
 
                 <FormMessage />
               </FormItem>

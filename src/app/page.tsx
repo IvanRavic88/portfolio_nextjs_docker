@@ -14,7 +14,7 @@ export default function Home() {
           <div className="mx-auto my-0 max-w-full pb-40 pt-32 md:px-5 md:pt-40 xl:pt-60 2xl:max-w-[90rem]">
             <div className="mb-14 flex flex-col items-start gap-14 xl:mb-20 xl:grid xl:grid-cols-12 xl:items-end xl:gap-20">
               <FadeIn className="col-span-8 text-left" delay={0}>
-                <h1 className="-ml-[0.375rem] text-4xl sm:text-5xl md:text-8xl 2xl:text-9xl">
+                <h1 className="-ml-[0.375rem] break-words text-4xl sm:text-5xl md:text-8xl 2xl:text-9xl">
                   <span className="hidden">Ivan Ravić</span>
                   <span>Software Developer with AWS Certification</span>
                 </h1>

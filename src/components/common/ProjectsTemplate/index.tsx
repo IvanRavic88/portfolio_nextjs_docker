@@ -81,7 +81,7 @@ export default function ProjectsTemplate({
       <section className="my-24 sm:mb-12">
         <div className="container mx-auto px-4">
           <div className="flex flex-col flex-wrap items-center justify-between gap-10 sm:flex-row">
-            <h1 className="text-center text-5xl font-bold sm:text-left sm:text-8xl md:text-9xl">
+            <h1 className="break-words text-center text-5xl font-bold sm:text-left sm:text-8xl md:text-9xl">
               {title}
             </h1>
             {status === 'live' && liveWebsite ? (
@@ -199,7 +199,7 @@ export default function ProjectsTemplate({
                 <motion.div
                   key={index}
                   style={{ y: applyParallax ? (yTransforms[index] ?? 0) : 0 }}
-                  className="min-w-[250px] max-w-[400px] flex-1 flex-wrap"
+                  className="min-w-0 max-w-[400px] flex-1 flex-wrap sm:min-w-[250px]"
                 >
                   <Image
                     src={image.src}

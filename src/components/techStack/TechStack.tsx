@@ -30,11 +30,16 @@ export default function TechStack() {
         href="/AWS Certified Developer - Associate certificate.pdf"
         target="_blank"
         rel="noopener noreferrer"
-        className="mt-6 inline-flex items-center gap-2 text-sm opacity-70 transition-colors hover:text-custom-red hover:opacity-100"
+        className="mt-6 inline-block text-sm opacity-70 transition-colors hover:text-custom-red hover:opacity-100"
       >
-        <span className="h-2 w-2 rounded-full bg-custom-red" aria-hidden="true" />
+        <span
+          className="mr-2 inline-block h-2 w-2 rounded-full bg-custom-red align-middle"
+          aria-hidden="true"
+        />
         AWS Certified Developer - Associate
-        <span aria-hidden="true">↗</span>
+        <span aria-hidden="true" className="ml-1">
+          ↗
+        </span>
       </a>
     </section>
   );

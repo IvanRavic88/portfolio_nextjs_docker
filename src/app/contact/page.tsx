@@ -24,7 +24,7 @@ export default function ContactPage() {
       <div className="max-w-[90rem] py-24 sm:py-32 md:py-40">
         <div className="flex flex-wrap">
           <div className="relative order-2 block w-full">
-            <h1 className="text-5xl sm:text-7xl md:text-8xl lg:text-9xl">
+            <h1 className="break-words text-5xl sm:text-7xl md:text-8xl lg:text-9xl">
               <span className="block">Let&rsquo;s start a</span>
               <span>project together</span>
             </h1>

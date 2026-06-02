@@ -13,12 +13,15 @@ export default function Home() {
         <section className="relative flex flex-col bg-center">
           <div className="mx-auto my-0 max-w-full pb-40 pt-32 md:px-5 md:pt-40 xl:pt-60 2xl:max-w-[90rem]">
             <div className="mb-14 flex flex-col items-start gap-14 xl:mb-20 xl:grid xl:grid-cols-12 xl:items-end xl:gap-20">
-              <FadeIn className="col-span-8 text-left" delay={0}>
+              {/* No reveal wrapper on the LCP heading: it must paint immediately
+                  so it doesn't gate Largest Contentful Paint. Supporting copy
+                  below still staggers in. */}
+              <div className="col-span-8 text-left">
                 <h1 className="-ml-[0.375rem] text-3xl sm:text-5xl md:text-8xl 2xl:text-9xl">
                   <span className="hidden">Ivan Ravić</span>
                   <span>Software Developer with AWS Certification</span>
                 </h1>
-              </FadeIn>
+              </div>
               <FadeIn
                 className="mt-[-2.7rem] max-w-60 xl:col-span-4 xl:mx-auto xl:max-w-40"
                 delay={0.1}

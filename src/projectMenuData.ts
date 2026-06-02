@@ -11,7 +11,7 @@ export const projects: Project[] = [
   },
   {
     index: 2,
-    title: '02  Gagini Slatkisi',
+    title: '02  Gagini Slatkiši',
     src: '/images/gagini_slatkisi_v1.png',
     href: '/projects/gaginislatkisi',
     description: 'Website for a local sweets shop',
@@ -21,7 +21,7 @@ export const projects: Project[] = [
     index: 3,
     title: '03  Foundations',
     src: '/images/portfolio_v01_1.png',
-    href: '/projects/fundations',
+    href: '/projects/foundations',
     description: 'My first personal portfolio',
     color: '#ffd6a5',
   },

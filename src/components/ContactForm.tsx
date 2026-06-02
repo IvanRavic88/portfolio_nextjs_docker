@@ -117,9 +117,9 @@ export function ContactForm() {
 
   return (
     <motion.div
-      initial={{ x: 100, opacity: 0 }} // Animating from right
-      animate={{ x: 0, opacity: 1 }} // Moving to the center
-      transition={{ ease: 'easeInOut', duration: 2 }}
+      initial={{ y: 24, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ ease: [0.76, 0, 0.24, 1], duration: 0.5 }}
       className="flex w-full flex-col gap-4 py-2 sm:p-6 md:p-8 lg:p-10"
     >
       <Form {...form}>

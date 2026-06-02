@@ -4,6 +4,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
   return [
     '', '/about', '/contact', '/projects',
     '/projects/portfolio_v2', '/projects/gaginislatkisi',
-    '/projects/fundations', '/projects/e-commerce',
+    '/projects/foundations', '/projects/e-commerce',
   ].map((p) => ({ url: base + p, lastModified: new Date() }));
 }

@@ -1,6 +1,7 @@
 'use client';
 import React, { useState } from 'react';
 import dynamic from 'next/dynamic';
+import Link from 'next/link';
 import { projects } from '@/projectMenuData';
 import Projects from './Projects';
 
@@ -15,11 +16,9 @@ function ProjectsMenu() {
       <div>
         {projects.map((project, index) => {
           return (
-            <a
+            <Link
               key={index}
               href={project.href}
-              target="_blank"
-              rel="noopener noreferrer"
               className="flex w-full flex-col justify-between"
             >
               <Projects
@@ -28,7 +27,7 @@ function ProjectsMenu() {
                 title={project.title}
                 setModal={setModal}
               />
-            </a>
+            </Link>
           );
         })}
       </div>

@@ -31,12 +31,12 @@ export const NavMenu: React.FC = () => {
               </ListItem>
               <ListItem
                 href="/projects/gaginislatkisi"
-                title="02 GaginiSlatkisi.com"
+                title="02 Gagini Slatkiši"
               >
                 A client app for homemade sweets, featuring a database and admin
                 login.
               </ListItem>
-              <ListItem href="/projects/fundations" title="03 Fundations">
+              <ListItem href="/projects/foundations" title="03 Foundations">
                 Early projects where I honed my skills and built my software
                 development foundation with small twist.
               </ListItem>

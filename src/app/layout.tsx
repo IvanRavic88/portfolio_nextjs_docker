@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { Open_Sans } from 'next/font/google';
+import { Bricolage_Grotesque, Inter } from 'next/font/google';
 import './globals.css';
 import 'lenis/dist/lenis.css';
 import { Providers } from '@/app/providers';
@@ -8,9 +8,19 @@ import Header from '@/components/header/Header';
 import Footer from '@/components/footer/Footer';
 import SmoothScroll from '@/components/SmoothScroll';
 
-const openSans = Open_Sans({
-  subsets: ['latin-ext'],
-  weight: ['500', '700'],
+// Display font for headings (characterful grotesque); body font for prose (neutral, legible).
+// latin-ext is required for Serbian diacritics (š, ć, č, ž) used in names/copy.
+const bricolage = Bricolage_Grotesque({
+  subsets: ['latin', 'latin-ext'],
+  weight: ['500', '600', '700'],
+  variable: '--font-display',
+  display: 'swap',
+});
+
+const inter = Inter({
+  subsets: ['latin', 'latin-ext'],
+  variable: '--font-body',
+  display: 'swap',
 });
 
 export const metadata: Metadata = {
@@ -41,11 +51,11 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className="relative m-0 box-border p-0"
+      className={`relative m-0 box-border p-0 ${bricolage.variable} ${inter.variable}`}
       suppressHydrationWarning
     >
       <body
-        className={`md:text-lg lg:text-2xl ${openSans.className}`}
+        className={`font-sans md:text-lg lg:text-2xl`}
       >
         <Providers>
           <Header />

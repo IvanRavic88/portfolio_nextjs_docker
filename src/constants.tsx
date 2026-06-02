@@ -21,13 +21,13 @@ export const SIDE_NAV_ITEMS: SideNavItem[] = [
       },
       { title: '01  Evolving', path: '/projects/portfolio_v2' },
       {
-        title: '02  gaginislatkisi.com',
+        title: '02  Gagini Slatkiši',
         path: '/projects/gaginislatkisi',
       },
 
       {
-        title: '03  Fundations',
-        path: '/projects/fundations',
+        title: '03  Foundations',
+        path: '/projects/foundations',
       },
       { title: '04  E-Commerce', path: '/projects/e-commerce' },
     ],

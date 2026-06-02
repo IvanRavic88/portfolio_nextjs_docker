@@ -48,6 +48,16 @@ const nextConfig = {
   async headers() {
     return [{ source: '/(.*)', headers: securityHeaders }];
   },
+  async redirects() {
+    // Old route had a typo ("fundations"); preserve any existing inbound links.
+    return [
+      {
+        source: '/projects/fundations',
+        destination: '/projects/foundations',
+        permanent: true,
+      },
+    ];
+  },
 };
 
 export default withBundleAnalyzer(nextConfig);

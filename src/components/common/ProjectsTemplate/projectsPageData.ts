@@ -26,7 +26,7 @@ export const projectsPageData: ProjectsPageData = [
       { src: '/images/mobile_menu_portfolio_v02.png', alt: 'Mobile menu' },
     ],
 
-    nextProject: { name: 'Gagini Slatkisi ', href: '/projects/gaginislatkisi' },
+    nextProject: { name: 'Gagini Slatkiši', href: '/projects/gaginislatkisi' },
   },
   {
     id: 2,
@@ -36,7 +36,7 @@ export const projectsPageData: ProjectsPageData = [
     location: 'Serbia',
     descriptionTitle: 'gaginislatkisi.com',
     projectDescription:
-      'The GaginiSlatkiši website offers a modern and user-friendly platform to showcase a variety of homemade cakes and sweets. The GaginiSlatkiši website is designed using Figma for UI/UX, developed with HTML, CSS, and minimal JavaScript for the frontend, Flask (Jinja, SQLAlchemy, Pillow, WTForm, flask_login) for backend functionality, and deployed via Amazon EC2 on an Ubuntu server using Nginx and Docker for efficient containerization and scalability.',
+      'The Gagini Slatkiši website offers a modern and user-friendly platform to showcase a variety of homemade cakes and sweets. The Gagini Slatkiši website is designed using Figma for UI/UX, developed with HTML, CSS, and minimal JavaScript for the frontend, Flask (Jinja, SQLAlchemy, Pillow, WTForm, flask_login) for backend functionality, and deployed via Amazon EC2 on an Ubuntu server using Nginx and Docker for efficient containerization and scalability.',
     imageSrcLight: '/images/gagini_slatkisi_v2.webp',
     imageSrcDark: '/images/gagini_slatkisi_v2.webp',
     githubLink: 'https://github.com/IvanRavic88/GaginiSlatkisi',
@@ -55,15 +55,15 @@ export const projectsPageData: ProjectsPageData = [
         alt: 'Mobile menu',
       },
     ],
-    nextProject: { name: 'Fundations', href: '/projects/fundations' },
+    nextProject: { name: 'Foundations', href: '/projects/foundations' },
   },
   {
     id: 3,
-    title: 'Fundations',
+    title: 'Foundations',
     services: 'Development & DevOps',
     year: 2023,
     location: 'Serbia',
-    descriptionTitle: 'Fundations',
+    descriptionTitle: 'Foundations',
     projectDescription:
       'This portfolio website represents my initial foray into serverless architecture on AWS. Originally developed with Flask, it has been transitioned to a serverless framework to enhance performance and scalability. The frontend, built with HTML and JavaScript, is hosted on Amazon S3 with CloudFront for efficient global delivery. AWS Lambda, integrated with API Gateway, handles backend services, while Terraform manages the infrastructure as code. This project showcases my proficiency in implementing modern cloud solutions and delivering scalable, high-performance web applications.',
     imageSrcLight: '/images/hero-img.webp',

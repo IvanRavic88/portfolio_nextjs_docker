@@ -98,17 +98,31 @@ const HeaderMobile = () => {
                 />
               ) : (
                 <MenuItem icon={item.icon}>
-                  <Link
-                    href={item.path}
-                    onClick={() => toggleOpen()}
-                    className={cn(
-                      'flex w-full font-display text-2xl',
-                      item.path === pathname && 'font-semibold text-custom-red',
-                    )}
-                    target={item.new_window ? '_blank' : ''}
-                  >
-                    {item.title}
-                  </Link>
+                  {item.new_window ? (
+                    // Static files (PDF resume / certificate) are not routes —
+                    // a plain <a> avoids Next's RSC prefetch firing a 404.
+                    <a
+                      href={item.path}
+                      onClick={() => toggleOpen()}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex w-full font-display text-2xl"
+                    >
+                      {item.title}
+                    </a>
+                  ) : (
+                    <Link
+                      href={item.path}
+                      onClick={() => toggleOpen()}
+                      className={cn(
+                        'flex w-full font-display text-2xl',
+                        item.path === pathname &&
+                          'font-semibold text-custom-red',
+                      )}
+                    >
+                      {item.title}
+                    </Link>
+                  )}
                 </MenuItem>
               )}
 

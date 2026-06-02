@@ -98,24 +98,26 @@ export const NavMenu: React.FC = () => {
         </NavigationMenuItem>
         <NavigationMenuItem>
           <NavigationMenuLink asChild>
-            <Link
+            <a
               href="/Ivan_Ravić_Resume_30_9_2024.pdf"
               target="_blank"
+              rel="noopener noreferrer"
               className={`bg-inherit text-link-animation hover:bg-inherit hover:text-custom-red ${navigationMenuTriggerStyle()}`}
             >
               Resume
-            </Link>
+            </a>
           </NavigationMenuLink>
         </NavigationMenuItem>
         <NavigationMenuItem>
           <NavigationMenuLink asChild>
-            <Link
+            <a
               href="/AWS Certified Developer - Associate certificate.pdf"
               target="_blank"
+              rel="noopener noreferrer"
               className={`text-link-animation bg-inherit hover:bg-inherit hover:text-custom-red ${navigationMenuTriggerStyle()}`}
             >
               My AWS Certificate
-            </Link>
+            </a>
           </NavigationMenuLink>
         </NavigationMenuItem>
       </NavigationMenuList>

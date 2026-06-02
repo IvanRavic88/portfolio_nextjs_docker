@@ -26,10 +26,13 @@ export const NavMenu: React.FC = () => {
       <NavigationMenuList>
         <NavigationMenuItem>
           <NavigationMenuTrigger
-            className={cn('text-link-animation', isProjects && 'is-active')}
             aria-current={isProjects ? 'page' : undefined}
           >
-            Projects
+            <span
+              className={cn('text-link-animation', isProjects && 'is-active')}
+            >
+              Projects
+            </span>
           </NavigationMenuTrigger>
           <NavigationMenuContent className="">
             <ul className="grid gap-1 p-2 md:w-80 lg:min-w-96 lg:grid-cols-[2fr]">
@@ -117,19 +120,36 @@ const ListItem = React.forwardRef<
   React.ElementRef<'a'>,
   React.ComponentPropsWithoutRef<'a'>
 >(({ className, title, children, ...props }, ref) => {
+  // Titles come in as "NN Name"; pull the leading number out for the red accent.
+  const [projectNumber, ...rest] = (title ?? '').trim().split(/\s+/);
+  const projectName = rest.join(' ');
+  const hasNumber = rest.length > 0;
   return (
     <li>
       <NavigationMenuLink asChild>
         <a
           ref={ref}
           className={cn(
-            'block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground',
+            'group/item block select-none rounded-md p-3 no-underline outline-none transition-colors hover:bg-accent focus:bg-accent',
             className,
           )}
           {...props}
         >
-          <div className="text-sm font-medium leading-none">{title}</div>
-          <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
+          <div className="flex items-center gap-3 text-sm font-medium leading-none">
+            {hasNumber && (
+              <span className="font-display tabular-nums text-custom-red">
+                {projectNumber}
+              </span>
+            )}
+            <span className="flex-1">{hasNumber ? projectName : title}</span>
+            <span
+              aria-hidden="true"
+              className="-translate-x-1 text-custom-red opacity-0 transition-all duration-200 group-hover/item:translate-x-0 group-hover/item:opacity-100"
+            >
+              &#8594;
+            </span>
+          </div>
+          <p className="mt-2 line-clamp-2 text-sm leading-snug text-muted-foreground">
             {children}
           </p>
         </a>

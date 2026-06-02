@@ -81,7 +81,7 @@ const HeaderMobile = () => {
         }`}
         variants={sidebar}
       />
-      <motion.ul
+      <motion.div
         variants={variants}
         className={`absolute grid max-h-screen w-full gap-3 overflow-y-auto px-10 py-16 ${textThemeClass}`}
       >
@@ -121,7 +121,7 @@ const HeaderMobile = () => {
         <MenuItem className="mt-9 flex justify-end">
           <ThemeSwitch />
         </MenuItem>
-      </motion.ul>
+      </motion.div>
       <MenuToggle toggle={toggleOpen} isOpen={isOpen} />
     </motion.nav>
   );
@@ -187,10 +187,10 @@ const MenuItem = ({
   icon?: React.JSX.Element;
 }) => {
   return (
-    <motion.li variants={MenuItemVariants} className={className}>
+    <motion.div variants={MenuItemVariants} className={className}>
       {icon}
       {children}
-    </motion.li>
+    </motion.div>
   );
 };
 

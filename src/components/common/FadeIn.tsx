@@ -1,30 +1,20 @@
-'use client';
-
-import { motion, useReducedMotion } from 'framer-motion';
-
 interface FadeInProps {
   children: React.ReactNode;
   className?: string;
   delay?: number;
 }
 
-// Staggered y/opacity reveal. Honors prefers-reduced-motion in JS, since
-// framer-motion drives animations outside the global reduced-motion CSS.
+// CSS-only staggered y/opacity reveal — no framer-motion, so this stays off
+// the client JS hydration path (it renders as a server component). `motion-safe`
+// gates the animation; reduced-motion users get the content immediately at full
+// opacity, and the `both` fill-mode holds the start state during the delay.
 export default function FadeIn({ children, className, delay = 0 }: FadeInProps) {
-  const shouldReduceMotion = useReducedMotion();
-
-  if (shouldReduceMotion) {
-    return <div className={className}>{children}</div>;
-  }
-
   return (
-    <motion.div
-      className={className}
-      initial={{ y: 24, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.6, delay, ease: [0.76, 0, 0.24, 1] }}
+    <div
+      className={`motion-safe:animate-fadeRise ${className ?? ''}`}
+      style={{ animationDelay: `${delay}s` }}
     >
       {children}
-    </motion.div>
+    </div>
   );
 }

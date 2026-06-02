@@ -2,6 +2,7 @@
 
 import * as React from 'react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 
 import { cn } from '@/lib/utils';
 
@@ -16,11 +17,18 @@ import {
 } from '@/components/ui/navigation-menu';
 
 export const NavMenu: React.FC = () => {
+  const pathname = usePathname();
+  const isProjects = pathname.startsWith('/projects');
+  const isContact = pathname === '/contact';
+  const isAbout = pathname === '/about';
   return (
     <NavigationMenu>
       <NavigationMenuList>
         <NavigationMenuItem>
-          <NavigationMenuTrigger className="text-link-animation">
+          <NavigationMenuTrigger
+            className={cn('text-link-animation', isProjects && 'is-active')}
+            aria-current={isProjects ? 'page' : undefined}
+          >
             Projects
           </NavigationMenuTrigger>
           <NavigationMenuContent className="">
@@ -52,7 +60,12 @@ export const NavMenu: React.FC = () => {
           <NavigationMenuLink asChild>
             <Link
               href="/contact"
-              className={`text-link-animation hover:text-custom-red ${navigationMenuTriggerStyle()}`}
+              aria-current={isContact ? 'page' : undefined}
+              className={cn(
+                'text-link-animation hover:text-custom-red',
+                navigationMenuTriggerStyle(),
+                isContact && 'is-active',
+              )}
             >
               Contact
             </Link>
@@ -62,7 +75,12 @@ export const NavMenu: React.FC = () => {
           <NavigationMenuLink asChild>
             <Link
               href="/about"
-              className={`text-link-animation hover:text-custom-red ${navigationMenuTriggerStyle()}`}
+              aria-current={isAbout ? 'page' : undefined}
+              className={cn(
+                'text-link-animation hover:text-custom-red',
+                navigationMenuTriggerStyle(),
+                isAbout && 'is-active',
+              )}
             >
               About
             </Link>

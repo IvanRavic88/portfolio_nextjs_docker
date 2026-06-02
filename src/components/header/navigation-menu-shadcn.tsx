@@ -2,9 +2,16 @@
 
 import * as React from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 
 import { cn } from '@/lib/utils';
+import { projects } from '@/projectMenuData';
+
+// Thumbnails for the Projects dropdown, looked up by route so the paths stay
+// in one place (projectMenuData).
+const projectThumb = (href?: string) =>
+  projects.find((p) => p.href === href)?.src ?? '';
 
 import {
   NavigationMenu,
@@ -35,7 +42,7 @@ export const NavMenu: React.FC = () => {
             </span>
           </NavigationMenuTrigger>
           <NavigationMenuContent className="">
-            <ul className="grid gap-1 p-2 md:w-80 lg:min-w-96 lg:grid-cols-[2fr]">
+            <ul className="grid gap-1 p-2 md:w-96 lg:min-w-[28rem] lg:grid-cols-[2fr]">
               <ListItem href="/projects/portfolio_v2" title="01 Evolving">
                 A collection showcasing my growth, with refined techniques and
                 innovative solutions.
@@ -124,34 +131,48 @@ const ListItem = React.forwardRef<
   const [projectNumber, ...rest] = (title ?? '').trim().split(/\s+/);
   const projectName = rest.join(' ');
   const hasNumber = rest.length > 0;
+  const thumb = projectThumb(props.href);
   return (
     <li>
       <NavigationMenuLink asChild>
         <a
           ref={ref}
           className={cn(
-            'group/item block select-none rounded-md p-3 no-underline outline-none transition-colors hover:bg-accent focus:bg-accent',
+            'group/item flex select-none items-center gap-3 rounded-md p-2 no-underline outline-none transition-colors hover:bg-accent focus:bg-accent',
             className,
           )}
           {...props}
         >
-          <div className="flex items-center gap-3 text-sm font-medium leading-none">
-            {hasNumber && (
-              <span className="font-display tabular-nums text-custom-red">
-                {projectNumber}
-              </span>
-            )}
-            <span className="flex-1">{hasNumber ? projectName : title}</span>
-            <span
-              aria-hidden="true"
-              className="-translate-x-1 text-custom-red opacity-0 transition-all duration-200 group-hover/item:translate-x-0 group-hover/item:opacity-100"
-            >
-              &#8594;
+          {thumb && (
+            <span className="relative h-12 w-16 shrink-0 overflow-hidden rounded border">
+              <Image
+                src={thumb}
+                alt=""
+                fill
+                sizes="64px"
+                className="object-cover grayscale transition duration-300 group-hover/item:grayscale-0"
+              />
             </span>
-          </div>
-          <p className="mt-2 line-clamp-2 text-sm leading-snug text-muted-foreground">
-            {children}
-          </p>
+          )}
+          <span className="min-w-0 flex-1">
+            <span className="flex items-center gap-3 text-sm font-medium leading-none">
+              {hasNumber && (
+                <span className="font-display tabular-nums text-custom-red">
+                  {projectNumber}
+                </span>
+              )}
+              <span className="flex-1">{hasNumber ? projectName : title}</span>
+              <span
+                aria-hidden="true"
+                className="-translate-x-1 text-custom-red opacity-0 transition-all duration-200 group-hover/item:translate-x-0 group-hover/item:opacity-100"
+              >
+                &#8594;
+              </span>
+            </span>
+            <span className="mt-1.5 line-clamp-2 block text-sm leading-snug text-muted-foreground">
+              {children}
+            </span>
+          </span>
         </a>
       </NavigationMenuLink>
     </li>

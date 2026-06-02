@@ -98,21 +98,17 @@ export default function Modal({ modal, projects }: ModalProps) {
         variants={scaleAnimation}
         initial="initial"
         animate={active ? 'enter' : 'closed'}
-        className="pointer-events-none absolute flex h-[410px] w-[410px] items-center justify-center overflow-hidden bg-white"
+        style={{ backgroundColor: color }}
+        className="pointer-events-none absolute h-[240px] w-[340px] overflow-hidden rounded-lg shadow-xl"
       >
-        <div
-          className="flex h-full w-full items-center justify-center"
-          style={{ backgroundColor: color }}
+        <Image
           key={`modal_${index}`}
-        >
-          <Image
-            className="h-auto w-full"
-            src={src}
-            width={300}
-            height={300}
-            alt={description}
-          />
-        </div>
+          src={src}
+          alt={description}
+          fill
+          sizes="340px"
+          className="object-cover"
+        />
       </motion.div>
       <motion.div
         ref={cursor}

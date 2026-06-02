@@ -25,6 +25,7 @@ function ProjectsMenu() {
                 description={project.description}
                 index={index}
                 title={project.title}
+                src={project.src}
                 setModal={setModal}
               />
             </Link>

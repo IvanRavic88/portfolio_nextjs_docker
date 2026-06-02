@@ -1,3 +1,5 @@
+import Image from 'next/image';
+
 interface ProjectsProps {
   index: number;
   title: string;
@@ -5,6 +7,7 @@ interface ProjectsProps {
     React.SetStateAction<{ active: boolean; index: number }>
   >;
   description: string;
+  src: string;
 }
 
 export default function Projects({
@@ -12,6 +15,7 @@ export default function Projects({
   title,
   setModal,
   description,
+  src,
 }: ProjectsProps) {
   // Titles are formatted "NN  Name" — split so the leading number can carry the red accent.
   const [projectNumber, ...rest] = title.trim().split(/\s{2,}/);
@@ -40,6 +44,16 @@ export default function Projects({
       <p className="duration-400 transform font-light opacity-50 transition-all group-hover:translate-x-2">
         {description}
       </p>
+      {/* Inline preview for touch devices (the cursor-follow modal is hover-only). */}
+      <div className="w-full overflow-hidden rounded-lg [@media(hover:hover)]:hidden">
+        <Image
+          src={src}
+          alt={description}
+          width={800}
+          height={500}
+          className="h-48 w-full object-cover"
+        />
+      </div>
     </div>
   );
 }

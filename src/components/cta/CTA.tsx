@@ -4,7 +4,7 @@ import Rounded from '@/components/common/Button';
 
 function CTA() {
   return (
-    <div className="mx-auto my-44 flex max-w-[90rem] flex-shrink flex-col justify-between gap-10 rounded-lg p-0 sm:container sm:my-20 sm:p-8 md:flex-row md:items-center">
+    <div className="mx-auto my-24 flex max-w-[90rem] flex-shrink flex-col justify-between gap-10 rounded-lg p-0 sm:container sm:my-20 sm:p-8 md:flex-row md:items-center">
       <div className="flex flex-col md:flex-row md:items-center">
         <Image
           src={IvanRavic}

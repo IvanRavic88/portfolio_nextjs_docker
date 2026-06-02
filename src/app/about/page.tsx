@@ -14,8 +14,9 @@ export default function AboutPage() {
     offset: ['start end', 'end start'],
   });
   const sm = useTransform(scrollYProgressContainer, [0, 1], [0, -150]);
-  const md = useTransform(scrollYProgressContainer, [0, 1], [0, -250]);
-  const lg = useTransform(scrollYProgressContainer, [0, 1], [0, -350]);
+  // Two heading lines drift up at slightly different rates for a subtle parallax.
+  const headingY1 = useTransform(scrollYProgressContainer, [0, 1], [0, -120]);
+  const headingY2 = useTransform(scrollYProgressContainer, [0, 1], [0, -60]);
 
   return (
     <div
@@ -27,10 +28,18 @@ export default function AboutPage() {
           <div className="flex flex-wrap">
             <div className="relative order-2 block w-full">
               <h1 className="text-5xl sm:text-7xl md:text-8xl lg:text-9xl">
-                <motion.span className="block" style={{ top: lg }}>
+                <motion.span
+                  className="block"
+                  style={{ y: shouldReduceMotion ? undefined : headingY1 }}
+                >
                   Empowering Your{' '}
                 </motion.span>
-                <motion.span style={{ top: sm }}>Digital Journey</motion.span>
+                <motion.span
+                  className="block"
+                  style={{ y: shouldReduceMotion ? undefined : headingY2 }}
+                >
+                  Digital Journey
+                </motion.span>
               </h1>
             </div>
           </div>

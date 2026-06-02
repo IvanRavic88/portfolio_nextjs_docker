@@ -26,7 +26,7 @@ const Header = () => {
             className="flex flex-row items-center justify-center space-x-3"
             href="/"
           >
-            <FramerMagnetic>
+            <FramerMagnetic strength={0.2}>
               <Image
                 src={IvanRavic}
                 alt="Ivan Ravić profile picture"

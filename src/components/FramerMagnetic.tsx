@@ -1,30 +1,36 @@
 'use client';
 
 import React, { useState, useRef } from 'react';
-import { motion } from 'framer-motion';
+import { motion, useReducedMotion } from 'framer-motion';
 
 export default function FramerMagnetic({
   children,
+  strength = 0.35,
 }: {
   children: React.ReactNode;
+  strength?: number;
 }) {
   const ref = useRef<HTMLDivElement>(null);
   const [position, setPosition] = useState({ x: 0, y: 0 });
+  const shouldReduceMotion = useReducedMotion();
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    const { height, width, left, top } =
-      ref.current != null
-        ? ref.current.getBoundingClientRect()
-        : { height: 0, width: 0, left: 0, top: 0 };
-    const { clientX, clientY } = e;
-    const middleX = clientX - (left + width / 2);
-    const middleY = clientY - (top + height / 2);
-    setPosition({ x: middleX, y: middleY });
+    if (!ref.current) return;
+    const { height, width, left, top } = ref.current.getBoundingClientRect();
+    const middleX = e.clientX - (left + width / 2);
+    const middleY = e.clientY - (top + height / 2);
+    // Pull a fraction of the cursor distance so the element glides toward the
+    // pointer instead of jumping the full distance.
+    setPosition({ x: middleX * strength, y: middleY * strength });
   };
 
   const reset = () => {
     setPosition({ x: 0, y: 0 });
   };
+
+  if (shouldReduceMotion) {
+    return <div style={{ position: 'relative' }}>{children}</div>;
+  }
 
   const { x, y } = position;
 
@@ -35,7 +41,7 @@ export default function FramerMagnetic({
       onMouseMove={handleMouseMove}
       onMouseLeave={reset}
       animate={{ x, y }}
-      transition={{ type: 'spring', stiffness: 150, damping: 5, mass: 0.2 }}
+      transition={{ type: 'spring', stiffness: 200, damping: 15, mass: 0.1 }}
     >
       {children}
     </motion.div>

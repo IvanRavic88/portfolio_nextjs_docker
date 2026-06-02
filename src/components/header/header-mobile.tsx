@@ -3,15 +3,23 @@
 import React, { ReactNode, useEffect, useRef, useState } from 'react';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 
 import { SIDE_NAV_ITEMS } from '@/constants';
+import { projects } from '@/projectMenuData';
 import { SideNavItem } from '@/types';
+import { cn } from '@/lib/utils';
 import { Icon } from '@iconify/react';
 import { motion, useCycle, type Variants } from 'framer-motion';
 import { useTheme } from 'next-themes';
 
 import ThemeSwitch from '@/components/ThemeSwitch';
+
+// Thumbnail lookup for the Projects submenu, keyed by route (same source as the
+// desktop dropdown) so the mobile menu matches the rest of the site.
+const projectThumb = (href: string) =>
+  projects.find((p) => p.href === href)?.src ?? '';
 
 type MenuItemWithSubMenuProps = {
   icon?: React.JSX.Element;
@@ -93,9 +101,10 @@ const HeaderMobile = () => {
                   <Link
                     href={item.path}
                     onClick={() => toggleOpen()}
-                    className={`flex w-full text-2xl ${
-                      item.path === pathname ? 'font-bold' : ''
-                    }`}
+                    className={cn(
+                      'flex w-full font-display text-2xl',
+                      item.path === pathname && 'font-semibold text-custom-red',
+                    )}
                     target={item.new_window ? '_blank' : ''}
                   >
                     {item.title}
@@ -198,17 +207,24 @@ const MenuItemWithSubMenu: React.FC<MenuItemWithSubMenuProps> = ({
       <MenuItem>
         {icon}
         <button
-          className="flex w-full text-2xl"
+          className="flex w-full font-display text-2xl"
           onClick={() => setSubMenuOpen(!subMenuOpen)}
           aria-expanded={subMenuOpen}
         >
           <div className="flex w-full flex-row items-center justify-between">
             <span
-              className={`${pathname.includes(item.path) ? 'font-bold' : ''}`}
+              className={cn(
+                pathname.includes(item.path) && 'font-semibold text-custom-red',
+              )}
             >
               {item.title}
             </span>
-            <div className={`${subMenuOpen && 'rotate-180'}`}>
+            <div
+              className={cn(
+                'transition-transform duration-200',
+                subMenuOpen && 'rotate-180 text-custom-red',
+              )}
+            >
               <Icon icon="lucide:chevron-down" width="24" height="24" />
             </div>
           </div>
@@ -218,16 +234,39 @@ const MenuItemWithSubMenu: React.FC<MenuItemWithSubMenuProps> = ({
         {subMenuOpen && (
           <>
             {item.subMenuItems?.map((subItem, subIdx) => {
+              // Titles are "NN  Name"; split so the number can carry the accent.
+              const [projectNumber, ...rest] = subItem.title.trim().split(/\s{2,}/);
+              const projectName = rest.join(' ');
+              const hasNumber = rest.length > 0;
+              const thumb = projectThumb(subItem.path);
+              const active = subItem.path === pathname;
               return (
                 <MenuItem key={subIdx}>
                   <Link
                     href={subItem.path}
                     onClick={() => toggleOpen()}
-                    className={` ${
-                      subItem.path === pathname ? 'font-bold' : ''
-                    }`}
+                    className={cn(
+                      'flex items-center gap-3 text-lg',
+                      active && 'text-custom-red',
+                    )}
                   >
-                    {subItem.title}
+                    {thumb && (
+                      <span className="relative h-10 w-14 shrink-0 overflow-hidden rounded border">
+                        <Image
+                          src={thumb}
+                          alt=""
+                          fill
+                          sizes="56px"
+                          className="object-cover grayscale"
+                        />
+                      </span>
+                    )}
+                    {hasNumber && (
+                      <span className="font-display tabular-nums text-custom-red">
+                        {projectNumber}
+                      </span>
+                    )}
+                    <span>{hasNumber ? projectName : subItem.title}</span>
                   </Link>
                 </MenuItem>
               );

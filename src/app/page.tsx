@@ -13,24 +13,23 @@ export default function Home() {
             <div className="mb-14 flex flex-col items-start gap-14 xl:mb-20 xl:grid xl:grid-cols-12 xl:items-end xl:gap-20">
               <div className="col-span-8 text-left">
                 <h1 className="-ml-[0.375rem] text-4xl sm:text-5xl md:text-8xl 2xl:text-9xl">
-                  <span className="hidden">Ivan Ravic</span>
-                  <span>Software Developer with AWS Certification</span>
+                  <span className="hidden">Ivan Ravić</span>
+                  <span>Full-stack web apps, shipped on the cloud they run on.</span>
                 </h1>
               </div>
               <div className="mt-[-2.7rem] max-w-60 xl:col-span-4 xl:mx-auto xl:max-w-40">
                 <p className="text-lg opacity-50 xl:opacity-100">
-                  Full-Stack, DevOps, AWS Cloud Expertise
+                  Available for freelance &amp; full-time work
                 </p>
               </div>
             </div>
             <div className="flex flex-col items-start gap-14 lg:grid lg:grid-cols-12 lg:gap-20">
               <div className="col-span-8 text-left">
                 <p className="mb-10 md:text-xl xl:mb-10 xl:text-3xl">
-                  Specializing in modern web development frameworks like Next.js
-                  and Tailwind CSS, alongside AWS cloud solutions, I assist
-                  startups and businesses in creating robust, scalable
-                  applications that achieve optimal performance and sustainable
-                  growth.
+                  I&rsquo;m Ivan Ravić — an AWS-certified full-stack developer
+                  building fast, scalable web apps in Next.js &amp; TypeScript and
+                  deploying them with production-grade DevOps (Docker, Terraform,
+                  AWS). One person, from first commit to live infrastructure.
                 </p>
                 <a href="/contact" className="inline-block">
                   <Rounded>

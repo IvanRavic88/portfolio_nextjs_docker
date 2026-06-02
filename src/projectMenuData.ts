@@ -6,7 +6,7 @@ export const projects: Project[] = [
     title: '01  Evolving',
     src: '/images/Ivan.webp',
     href: '/projects/portfolio_v2',
-    description: 'My updated portfolio',
+    description: 'Next.js + TypeScript, Dockerized, deployed via Terraform & Ansible IaC',
     color: '#111414',
   },
   {
@@ -14,7 +14,7 @@ export const projects: Project[] = [
     title: '02  Gagini Slatkiši',
     src: '/images/gagini_slatkisi_v1.png',
     href: '/projects/gaginislatkisi',
-    description: 'Website for a local sweets shop',
+    description: 'Live client site — Flask, Nginx & Docker on AWS EC2',
     color: '#bb2649',
   },
   {
@@ -22,7 +22,7 @@ export const projects: Project[] = [
     title: '03  Foundations',
     src: '/images/portfolio_v01_1.png',
     href: '/projects/foundations',
-    description: 'My first personal portfolio',
+    description: 'Serverless on AWS — Lambda, API Gateway, S3 + CloudFront',
     color: '#ffd6a5',
   },
   {
@@ -30,7 +30,7 @@ export const projects: Project[] = [
     title: '04  E-Commerce',
     src: '/images/e-commerce_1.png',
     href: '/projects/e-commerce',
-    description: 'Example of E-commerce website',
+    description: 'Next.js storefront — Stripe checkout, Sanity CMS, on Vercel',
     color: '#EFE8D3',
   },
 ];

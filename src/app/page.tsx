@@ -41,13 +41,12 @@ export default function Home() {
                     <p className="z-10 m-0 text-base">Drop me a line</p>
                   </Rounded>
                 </a>
+                <TechStack />
               </FadeIn>
               <Socials />
             </div>
           </div>
         </section>
-
-        <TechStack />
 
         <MyServices />
 

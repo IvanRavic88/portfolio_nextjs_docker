@@ -14,10 +14,7 @@ const stack = [
 // to the certificate PDF in /public). Monochrome chips keep the minimal identity.
 export default function TechStack() {
   return (
-    <section
-      aria-label="Tech stack and certification"
-      className="mx-auto my-10 px-6 sm:container sm:px-10 2xl:max-w-[90rem]"
-    >
+    <section aria-label="Tech stack and certification" className="mt-12">
       <p className="mb-4 text-sm uppercase tracking-widest opacity-50">Stack</p>
       <ul className="flex flex-wrap gap-2 text-base">
         {stack.map((tech) => (

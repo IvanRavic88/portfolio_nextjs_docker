@@ -44,6 +44,10 @@ export default function ProjectsTemplate({
   const container = useRef<HTMLDivElement>(null);
   const { theme } = useTheme();
   const [mounted, setMounted] = useState(false);
+  // The staggered image parallax only makes sense when the previews sit in one
+  // row (lg+). On smaller screens they stack, so a per-image y offset would make
+  // them overlap; gate it behind a wide-viewport check.
+  const [isWide, setIsWide] = useState(false);
 
   const { scrollYProgress } = useScroll({
     target: mounted ? container : undefined,
@@ -59,6 +63,11 @@ export default function ProjectsTemplate({
 
   useEffect(() => {
     setMounted(true);
+    const mq = window.matchMedia('(min-width: 1024px)');
+    const update = () => setIsWide(mq.matches);
+    update();
+    mq.addEventListener('change', update);
+    return () => mq.removeEventListener('change', update);
   }, []);
 
   const imageSrc = theme === 'dark' ? imageSrcDark : imageSrcLight;
@@ -152,7 +161,7 @@ export default function ProjectsTemplate({
 
       <section className="py-10 sm:py-36">
         <div className="container mx-auto px-4">
-          <div className="mb-8 flex flex-col flex-wrap items-center pb-10">
+          <div className="mb-8 flex flex-col flex-wrap items-center gap-6 pb-10 sm:gap-8">
             <motion.h2
               style={{ y: shouldReduceMotion ? undefined : sm }}
               className="text-center text-2xl font-semibold text-gray-800 dark:text-gray-200 sm:text-3xl md:text-4xl"
@@ -161,7 +170,7 @@ export default function ProjectsTemplate({
             </motion.h2>
             <motion.p
               style={{ y: shouldReduceMotion ? undefined : descY }}
-              className="mb-6 max-w-6xl text-center text-base leading-relaxed text-gray-700 dark:text-gray-300 sm:text-lg md:text-xl lg:text-2xl"
+              className="max-w-6xl text-center text-base leading-relaxed text-gray-700 dark:text-gray-300 sm:text-lg md:text-xl lg:text-2xl"
             >
               {projectDescription}
             </motion.p>
@@ -184,11 +193,12 @@ export default function ProjectsTemplate({
           <div className="flex flex-wrap justify-center gap-8 sm:gap-24">
             {mobileImages.map((image, index) => {
               const yTransforms = [sm, lg, sm];
+              const applyParallax = mounted && isWide && !shouldReduceMotion;
 
               return (
                 <motion.div
                   key={index}
-                  style={{ y: mounted ? (yTransforms[index] ?? 0) : 0 }}
+                  style={{ y: applyParallax ? (yTransforms[index] ?? 0) : 0 }}
                   className="min-w-[250px] max-w-[400px] flex-1 flex-wrap"
                 >
                   <Image

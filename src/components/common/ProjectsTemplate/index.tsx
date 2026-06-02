@@ -18,6 +18,8 @@ interface ProjectsTemplateProps {
   imageSrcDark: string;
   githubLink: string;
   liveWebsite: string;
+  status: 'live' | 'offline';
+  host: string;
   mobileImages: { src: string; alt: string }[];
 
   nextProject: { name: string; href: string };
@@ -34,6 +36,8 @@ export default function ProjectsTemplate({
   imageSrcDark,
   githubLink,
   liveWebsite,
+  status,
+  host,
   mobileImages,
   nextProject: { name, href },
 }: ProjectsTemplateProps) {
@@ -67,16 +71,22 @@ export default function ProjectsTemplate({
             <h1 className="text-center text-5xl font-bold sm:text-left sm:text-8xl md:text-9xl">
               {title}
             </h1>
-            <a
-              href={liveWebsite}
-              className="inline-block"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <Rounded>
-                <p className="z-10 m-0 text-base">Live site</p>
-              </Rounded>
-            </a>
+            {status === 'live' && liveWebsite ? (
+              <a
+                href={liveWebsite}
+                className="inline-block"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Rounded>
+                  <p className="z-10 m-0 text-base">Live site</p>
+                </Rounded>
+              </a>
+            ) : (
+              <span className="text-base opacity-60">
+                Offline — may return
+              </span>
+            )}
           </div>
         </div>
       </section>
@@ -109,6 +119,25 @@ export default function ProjectsTemplate({
               <div className="h-[1px] w-full bg-gray-300 dark:bg-gray-600"></div>
               <li className="list-none">
                 <p className="text-lg">{location}</p>
+              </li>
+            </div>
+            <div className="flex flex-1 flex-col gap-2">
+              <h5 className="mb-4 text-base uppercase text-gray-600 dark:text-gray-400">
+                Status
+              </h5>
+              <div className="h-[1px] w-full bg-gray-300 dark:bg-gray-600"></div>
+              <li className="list-none">
+                <p className="flex items-center justify-center gap-2 text-lg">
+                  <span
+                    aria-hidden="true"
+                    className={`inline-block h-2 w-2 rounded-full ${
+                      status === 'live'
+                        ? 'bg-custom-red'
+                        : 'border border-gray-400'
+                    }`}
+                  />
+                  {status === 'live' ? `Live on ${host}` : 'Offline'}
+                </p>
               </li>
             </div>
           </div>

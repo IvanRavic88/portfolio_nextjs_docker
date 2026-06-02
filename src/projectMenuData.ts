@@ -6,7 +6,7 @@ export const projects: Project[] = [
     title: '01  Evolving',
     src: '/images/Ivan.webp',
     href: '/projects/portfolio_v2',
-    description: 'Next.js + TypeScript, Dockerized, deployed via Terraform & Ansible IaC',
+    description: 'Next.js + TypeScript — now on Vercel (originally AWS IaC)',
     color: '#111414',
   },
   {
@@ -14,7 +14,7 @@ export const projects: Project[] = [
     title: '02  Gagini Slatkiši',
     src: '/images/gagini_slatkisi_v1.png',
     href: '/projects/gaginislatkisi',
-    description: 'Live client site — Flask, Nginx & Docker on AWS EC2',
+    description: 'Live client site — rebuilt in Next.js + TS on Vercel',
     color: '#bb2649',
   },
   {
@@ -22,7 +22,7 @@ export const projects: Project[] = [
     title: '03  Foundations',
     src: '/images/portfolio_v01_1.png',
     href: '/projects/foundations',
-    description: 'Serverless on AWS — Lambda, API Gateway, S3 + CloudFront',
+    description: 'Serverless on AWS (Lambda, S3, CloudFront) — currently offline',
     color: '#ffd6a5',
   },
   {

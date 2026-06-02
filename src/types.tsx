@@ -47,6 +47,8 @@ export type ProjectsPageData = {
   imageSrcDark: string;
   githubLink: string;
   liveWebsite: string;
+  status: 'live' | 'offline';
+  host: string;
   mobileImages: { src: string; alt: string }[];
   nextProject: { name: string; href: string };
 }[];

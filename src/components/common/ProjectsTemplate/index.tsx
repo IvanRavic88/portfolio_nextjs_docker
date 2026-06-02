@@ -3,7 +3,7 @@ import Image from 'next/image';
 import { useTheme } from 'next-themes';
 import Rounded from '@/components/common/Button/index';
 import { useEffect, useRef, useState } from 'react';
-import { useScroll, useTransform, motion } from 'framer-motion';
+import { useScroll, useTransform, motion, useReducedMotion } from 'framer-motion';
 import Intro from '@/components/common/ProjectsTemplate/backgroundImageParallax';
 
 interface ProjectsTemplateProps {
@@ -52,6 +52,10 @@ export default function ProjectsTemplate({
 
   const sm = useTransform(scrollYProgress, [0, 1], [0, -50]);
   const lg = useTransform(scrollYProgress, [0, 1], [0, -250]);
+  // Gentle drift for the description so it parallaxes under the title without
+  // colliding with it.
+  const descY = useTransform(scrollYProgress, [0, 1], [0, -90]);
+  const shouldReduceMotion = useReducedMotion();
 
   useEffect(() => {
     setMounted(true);
@@ -150,13 +154,13 @@ export default function ProjectsTemplate({
         <div className="container mx-auto px-4">
           <div className="mb-8 flex flex-col flex-wrap items-center pb-10">
             <motion.h2
-              style={{ y: sm }}
+              style={{ y: shouldReduceMotion ? undefined : sm }}
               className="text-center text-2xl font-semibold text-gray-800 dark:text-gray-200 sm:text-3xl md:text-4xl"
             >
               {descriptionTitle}
             </motion.h2>
             <motion.p
-              style={{ top: lg }}
+              style={{ y: shouldReduceMotion ? undefined : descY }}
               className="mb-6 max-w-6xl text-center text-base leading-relaxed text-gray-700 dark:text-gray-300 sm:text-lg md:text-xl lg:text-2xl"
             >
               {projectDescription}

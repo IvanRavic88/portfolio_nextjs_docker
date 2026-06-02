@@ -16,7 +16,7 @@ export default function Home() {
               <FadeIn className="col-span-8 text-left" delay={0}>
                 <h1 className="-ml-[0.375rem] text-4xl sm:text-5xl md:text-8xl 2xl:text-9xl">
                   <span className="hidden">Ivan Ravić</span>
-                  <span>Full-stack web apps, shipped on the cloud they run on.</span>
+                  <span>Software Developer with AWS Certification</span>
                 </h1>
               </FadeIn>
               <FadeIn

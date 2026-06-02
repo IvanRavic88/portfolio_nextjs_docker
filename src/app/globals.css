@@ -152,6 +152,13 @@
   }
 }
 
+/* react-toastify: align with the site's font and accent. */
+:root {
+  --toastify-font-family: var(--font-body), system-ui, sans-serif;
+  --toastify-color-progress-success: #16a34a;
+  --toastify-color-progress-error: #bb2649;
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,

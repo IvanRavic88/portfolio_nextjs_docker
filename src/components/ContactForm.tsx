@@ -291,6 +291,7 @@ export function ContactForm() {
         draggable
         pauseOnHover
         theme={resolvedTheme === 'dark' ? 'dark' : 'light'}
+        toastClassName="!rounded-xl !font-sans !shadow-xl"
       />
     </motion.div>
   );

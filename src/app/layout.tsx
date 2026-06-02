@@ -4,6 +4,7 @@ import './globals.css';
 import 'lenis/dist/lenis.css';
 import { Providers } from '@/app/providers';
 import HeaderMobile from '@/components/header/header-mobile';
+import MobileQuickNav from '@/components/MobileQuickNav';
 import Header from '@/components/header/Header';
 import Footer from '@/components/footer/Footer';
 import SmoothScroll from '@/components/SmoothScroll';
@@ -60,6 +61,7 @@ export default function RootLayout({
         <Providers>
           <Header />
           <HeaderMobile />
+          <MobileQuickNav />
           <SmoothScroll>{children}</SmoothScroll>
           <Footer />
         </Providers>

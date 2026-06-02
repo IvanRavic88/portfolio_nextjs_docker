@@ -27,7 +27,7 @@ export default function AboutPage() {
         <div className="max-w-[90rem] py-14 sm:py-40 md:py-52">
           <div className="flex flex-wrap">
             <div className="relative order-2 block w-full">
-              <h1 className="break-words text-5xl sm:text-7xl md:text-8xl lg:text-9xl">
+              <h1 className="text-4xl sm:text-7xl md:text-8xl lg:text-9xl">
                 <motion.span
                   className="block"
                   style={{ y: shouldReduceMotion ? undefined : headingY1 }}

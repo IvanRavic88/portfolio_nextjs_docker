@@ -200,6 +200,7 @@ const MenuItemWithSubMenu: React.FC<MenuItemWithSubMenuProps> = ({
         <button
           className="flex w-full text-2xl"
           onClick={() => setSubMenuOpen(!subMenuOpen)}
+          aria-expanded={subMenuOpen}
         >
           <div className="flex w-full flex-row items-center justify-between">
             <span

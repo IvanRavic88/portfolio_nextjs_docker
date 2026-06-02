@@ -4,6 +4,7 @@ import MyServices from '@/components/services/MyServices';
 import Rounded from '@/components/common/Button/index';
 import Socials from '@/components/socials/Socials';
 import FadeIn from '@/components/common/FadeIn';
+import TechStack from '@/components/techStack/TechStack';
 
 export default function Home() {
   return (
@@ -45,6 +46,8 @@ export default function Home() {
             </div>
           </div>
         </section>
+
+        <TechStack />
 
         <MyServices />
 

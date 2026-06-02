@@ -1,0 +1,44 @@
+const stack = [
+  'Next.js',
+  'TypeScript',
+  'React',
+  'Tailwind CSS',
+  'Node.js',
+  'Docker',
+  'Terraform',
+  'AWS',
+  'Nginx',
+];
+
+// Factual trust signals: the stack I build with + the AWS certification (links
+// to the certificate PDF in /public). Monochrome chips keep the minimal identity.
+export default function TechStack() {
+  return (
+    <section
+      aria-label="Tech stack and certification"
+      className="mx-auto my-10 px-6 sm:container sm:px-10 2xl:max-w-[90rem]"
+    >
+      <p className="mb-4 text-sm uppercase tracking-widest opacity-50">Stack</p>
+      <ul className="flex flex-wrap gap-2 text-base">
+        {stack.map((tech) => (
+          <li
+            key={tech}
+            className="rounded-full border px-4 py-1.5 text-sm opacity-70 transition-colors hover:border-custom-red hover:text-custom-red hover:opacity-100"
+          >
+            {tech}
+          </li>
+        ))}
+      </ul>
+      <a
+        href="/AWS Certified Developer - Associate certificate.pdf"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="mt-6 inline-flex items-center gap-2 text-sm opacity-70 transition-colors hover:text-custom-red hover:opacity-100"
+      >
+        <span className="h-2 w-2 rounded-full bg-custom-red" aria-hidden="true" />
+        AWS Certified Developer – Associate
+        <span aria-hidden="true">↗</span>
+      </a>
+    </section>
+  );
+}

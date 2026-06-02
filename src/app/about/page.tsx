@@ -2,16 +2,12 @@
 import MyServices from '@/components/services/MyServices';
 import IvanRavic from '@/public/images/Ivan.webp';
 import Image from 'next/image';
-import { useScroll, useTransform, motion } from 'framer-motion';
+import { useScroll, useTransform, motion, useReducedMotion } from 'framer-motion';
 import { useRef } from 'react';
 
 export default function AboutPage() {
   const container = useRef(null);
-  const element = useRef(null);
-  const { scrollYProgress: scrollYProgressElement } = useScroll({
-    target: element,
-    offset: ['start 0.9', 'start 0.25'],
-  });
+  const shouldReduceMotion = useReducedMotion();
 
   const { scrollYProgress: scrollYProgressContainer } = useScroll({
     target: container,
@@ -52,8 +48,14 @@ export default function AboutPage() {
           />
 
           <motion.div
-            ref={element}
-            style={{ opacity: scrollYProgressElement }}
+            initial={shouldReduceMotion ? { opacity: 1 } : { opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={
+              shouldReduceMotion
+                ? { duration: 0 }
+                : { duration: 0.6, ease: [0.76, 0, 0.24, 1] }
+            }
             className="flex flex-col gap-10 p-0 text-base md:container sm:text-xl"
           >
             <div className="rounded-lg">
